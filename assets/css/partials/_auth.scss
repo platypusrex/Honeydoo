@@ -1,0 +1,44 @@
+.login-container {
+  &:after {
+    content: "";
+    background: url(../img/couples2.jpg);
+    background-size: cover;
+    background-position: top right;
+    position: absolute;
+    top: 62px;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: block;
+    opacity: 0.5;
+  }
+
+  .login-wrapper {
+    position: relative;
+    z-index: 2;
+    top: 100px;
+    border-radius: 2px;
+    padding: 25px 25px 45px;
+    box-shadow: 0 2px 8px 2px #777;
+    background: #fff;
+
+    h2 {
+      font-family: 'Clicker Script', cursive;
+    }
+
+    .btn {
+      color: #fff;
+      margin-top: 25px;
+      border-radius: 0;
+    }
+
+    .alert {
+      .fa {
+        font-size: 18px;
+        position: relative;
+        top: -15px;
+        left: 5px;
+      }
+    }
+  }
+}

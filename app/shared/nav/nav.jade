@@ -1,0 +1,33 @@
+div.nav.navbar-custom.navbar-static-top
+  div.container
+    div.navbar-header
+      button.navbar-toggle(type="button", data-toggle="collapse", data-target="navbar-collapse")
+        span.sr-only Toggle Navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand(href="index.html") Honeydoo List&nbsp;
+        i.fa.fa-venus-mars
+    div.collapse.navbar-collapse
+      ul.nav.navbar-nav.navbar-right(ng-hide="loggedIn")
+        li
+          a(href="#/login") Sign In
+        li
+          a(href="#/register") Register
+      ul.nav.navbar-nav.navbar-right(ng-hide="!loggedIn")
+        li.dropdown
+          a.dropdown-toggle(href="", data-toggle="dropdown")
+            i.fa.fa-user
+            strong &nbsp;&nbsp;{{user}}&nbsp;&nbsp;
+            i.fa.fa-angle-down
+          ul.dropdown-menu
+            li
+              div.container-fluid
+                div.row
+                  div.col-lg-4
+                    p.text-center
+                      i.fa.fa-user.fa-3x
+                  div.col-lg-8
+                    p.text-center {{user}}
+                    p.text-left.logout-container
+                      a.btn.btn-danger.btn-block(ng-click="logOut()") Logout
