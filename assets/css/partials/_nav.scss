@@ -41,15 +41,8 @@
       position: relative;
 
       .btn {
-        color: #d9534f;
-        background: #ddd;
         border-radius: 0;
-        border: 2px solid #d9534f;
-
-        &:hover {
-          background: #d9534f;
-          color: #fff;
-        }
+        color: #fff;
       }
     }
   }
