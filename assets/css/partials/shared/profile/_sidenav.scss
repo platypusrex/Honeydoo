@@ -1,0 +1,30 @@
+.profile-sidebar {
+  height: calc(100vh - 94px);
+  padding-top: 15px;
+  border-radius: 3px;
+  background: #fff;
+
+  .profile-userpic {
+
+  }
+
+  .profile-usertitle {
+    margin-bottom: 35px;
+  }
+
+  .profile-userbutton {
+
+  }
+
+  .profile-usermenu {
+    margin-top: 40px;
+
+    .panel,
+    .list-group-item {
+      box-shadow: none;
+      border-radius: 0;
+      border-right: none !important;
+      border-left: none !important;
+    }
+  }
+}

@@ -1,7 +1,9 @@
 // Variables
 @import 'globals/variables';
 
-// Partials
-@import 'partials/auth';
-@import 'partials/nav';
-@import 'partials/profile';
+// Partials: Components
+@import 'partials/components/auth/auth';
+
+// Partials: Shared
+@import 'partials/shared/nav/nav';
+@import 'partials/shared/profile/profile';

@@ -1,0 +1,15 @@
+@import 'sidenav';
+@import 'content';
+
+.profile-container {
+  padding: 15px;
+  background: $green1;
+
+  .col-md-3 {
+    padding-right: 7px;
+  }
+
+  .col-md-9 {
+    padding-left: 7px;
+  }
+}
