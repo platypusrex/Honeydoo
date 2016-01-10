@@ -1,8 +1,25 @@
 .navbar-custom {
-  background: #fee;
+  background: $green3; //#fee;
+
+  .navbar-nav>li>a:hover,
+  .navbar-nav>li>a:active,
+  .navbar-nav>li>a:focus {
+    background: transparent;
+  }
 
   a {
-    color: #444444;
+    color: #fff;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: transparent;
+    }
+  }
+
+  .img-thumbnail {
+    height: 30px;
+    width: 30px;
   }
 
   .fa {
@@ -17,24 +34,101 @@
 
   .dropdown {
     strong {
-      color: #777;
+      color: #fff;
+    }
+
+    .dropdown-toggle {
+      height: 71px;
+
+      &:hover,
+      //&:focus,
+      //&:active {
+      //  background: transparent;
+      //}
+
+      .fa-angle-down {
+        position: relative;
+        top: 10%;
+        color: #fff;
+      }
     }
   }
 
   .dropdown-menu {
-    min-width: 250px;
+    min-width: 295px;
 
-    .fa {
-      font-size: 80px;
-      color: rgba(68,68,68, 0.25);
+    &:before {
+      border: solid;
+      border-color: #fff transparent;
+      border-width: 0 12px 12px 12px;
+      position: absolute;
+      content: "";
+      right: 20px;
+      top: -12px;
     }
 
-    p {
-      &:nth-of-type(1) {
-        font-size: 10px;
-        margin-top: 15px;
-        color: #222;
+    .container-fluid {
+      padding: 10px 15px;
+    }
+
+    .user-img-container {
+      margin: 0 10px 0 0;
+    }
+
+    .buttons-container {
+      height: 80px;
+      text-align: center;
+    }
+
+    .acct-btn-container,
+    .login-btn-container {
+      height: 40px;
+      cursor: pointer;
+      transition: all .4s ease;
+
+      &:hover {
+        background: #4790C9;
+
+        p, .fa {
+          color: #fff
+        }
       }
+
+      .fa {
+        color: #4790C9;
+      }
+
+      .fa,
+      p {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      a {
+        height: inherit;
+        width: inherit;
+      }
+    }
+
+    //.fa-cogs {
+    //  font-size: 30px;
+    //  color: rgba(68,68,68, 0.25);
+    //}
+
+    //p {
+    //  &:nth-of-type(1) {
+    //    font-size: 10px;
+    //    margin-top: 15px;
+    //    color: #222;
+    //  }
+    //}
+
+    p {
+      display: inline-block;
+      color: #444;
+      padding: 0;
+      margin: 0;
     }
 
     .logout-container {

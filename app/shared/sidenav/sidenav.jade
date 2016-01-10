@@ -1,0 +1,30 @@
+div.col-md-3
+  div.profile-sidebar
+    div.container-fluid.text-center
+      div.profile-userpic
+        img.img-circle(ng-src="{{user.password.profileImageURL}}")
+      div.profile-usertitle
+        div.usertitle-name
+          h5 {{username}}
+        div.usertitle-email
+          p {{user.password.email}}
+      div.profile-userbutton
+        button.btn.btn-default.btn-block Honey Chat!
+    div.profile-usermenu
+      div.panel.list-group
+        a.list-group-item(href="", data-toggle="collapse" data-target="#sm" data-parent="#menu") ITEM 1
+          span.glyphicon.glyphicon-envelope.pull-right
+        div#sm.sublinks.collapse
+          a.list-group-item.small
+            span.glyphicon.glyphicon-chevron-right sub-item 1
+          a.list-group-item.small
+            span.glyphicon.glyphicon-chevron-right sub-item 2
+        a.list-group-item(href="", data-toggle="collapse", data-target="#sl", data-parent="#menu") ITEM 2
+          span.glyphicon.glyphicon-tag.pull-right
+        div#sl.sublinks.collapse
+          a.list-group-item.small
+            span.glyphicon.glyphicon-chevron-right sub-item 1
+          a.list-group-item.small
+            span.glyphicon.glyphicon-chevron-right sub-item 2
+        a.list-group-item(href="") ANOTHER LINK ...
+          span.glyphicon.glyphicon-stats.pull-right

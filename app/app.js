@@ -1,7 +1,15 @@
 (function(){
     'use strict';
 
-    angular.module('HoneydooApp', ['ngRoute', 'firebase', 'AuthModule', 'NavModule', 'CoreModule', 'HomeModule'])
+    angular.module('HoneydooApp', [
+        'ngRoute',
+        'firebase',
+        'AuthModule',
+        'NavModule',
+        'CoreModule',
+        'HomeModule',
+        'SidenavModule',
+        'ContentModule'])
         .config(['$routeProvider', function($routeProvider){
             $routeProvider
                 .otherwise({

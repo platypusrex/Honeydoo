@@ -18,11 +18,15 @@ div.login-container
             div(ng-show="formTitle === 'Register'")
               label.sr-only(for="inputUsername") Username
               input#inputUsername.form-control(type="text", name="username", placeholder="Username", ng-model="user.username", required)
+              label.sr-only(for="inputFirstname") Username
+              input#inputUsername.form-control(type="text", name="firstname", placeholder="First Name", ng-model="user.firstname", required)
+              label.sr-only(for="inputLastname") Username
+              input#inputUsername.form-control(type="text", name="lastname", placeholder="Last Name", ng-model="user.lastname", required)
               div.form-group
-                label.col-lg-12 Gender:
-                div.radio-container.text-center
+                label.col-lg-2 Gender:
+                div.radio-container.text-center.col-lg-10
                   label.radio-inline
-                    input(type="radio", name="radios", id="option1", value="his", ng-model="user.gender", checked="")
+                    input(type="radio", name="radios", id="option1", value="his", ng-model="user.gender", required)
                     | Male &nbsp;
                   label.radio-inline
                     input(type="radio", name="radios", id="option2", value="hers", ng-model="user.gender")

@@ -17,17 +17,24 @@ div.nav.navbar-custom.navbar-static-top
       ul.nav.navbar-nav.navbar-right(ng-hide="!loggedIn")
         li.dropdown
           a.dropdown-toggle(href="", data-toggle="dropdown")
-            i.fa.fa-user
-            strong &nbsp;&nbsp;{{user}}&nbsp;&nbsp;
+            img(ng-src="{{user.password.profileImageURL}}", class="img-thumbnail")
+            strong &nbsp;&nbsp;{{user.password.email}}&nbsp;&nbsp;
             i.fa.fa-angle-down
           ul.dropdown-menu
             li
               div.container-fluid
                 div.row
                   div.col-lg-4
-                    p.text-center
-                      i.fa.fa-user.fa-3x
-                  div.col-lg-8
-                    p.text-center {{user}}
-                    p.text-left.logout-container
-                      a.btn.btn-danger.btn-block(ng-click="logOut()") Logout
+                    div.user-img-container
+                      img.img-rounded(ng-src="{{user.password.profileImageURL}}")
+                  div.col-lg-8.buttons-container
+                    div.row
+                      div.col-lg-12.acct-btn-container
+                        //p.text-center {{user.password.email}}
+                        //div.text-left.logout-container
+                        //  a.btn.btn-danger.btn-block(ng-click="logOut()") Logout
+                        i.fa.fa-cogs
+                        p.text-center &nbsp;&nbsp;Account Settings
+                      div.col-lg-12.login-btn-container(ng-click="logOut()")
+                        i.fa.fa-power-off
+                        p.text-center &nbsp;&nbsp;Sign Out

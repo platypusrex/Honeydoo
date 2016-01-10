@@ -22,9 +22,15 @@
             firebaseAuthObject.$unauth();
         };
 
-        //var isLoggedIn = function(){
+        //function isLoggedIn(){
+        //    var currentUser = null;
+        //    firebaseAuthObject.$onAuth(function(auth){
+        //        currentUser =  auth;
+        //        console.log(currentUser);
+        //    });
+        //
         //    return currentUser;
-        //};
+        //}
 
         //var sendWelcomeEmail = function(emailAddress){
         //    firebaseDataService.users.push({
@@ -34,6 +40,7 @@
 
         return {
             firebaseAuthObject: firebaseAuthObject,
+            currentUser: currentUser,
             register: register,
             login: login,
             logout: logout

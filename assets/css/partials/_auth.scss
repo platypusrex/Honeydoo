@@ -10,13 +10,13 @@
     height: 100%;
     width: 100%;
     display: block;
-    opacity: 0.5;
+    opacity: 0.4;
   }
 
   .login-wrapper {
     position: relative;
     z-index: 2;
-    top: 100px;
+    top: 60px;
     border-radius: 2px;
     padding: 25px 25px 45px;
     box-shadow: 0 2px 8px 2px #777;
@@ -27,7 +27,14 @@
     }
 
     .form-control {
-      margin-bottom: 12px;
+      margin-bottom: 15px;
+    }
+
+    label {
+      &.col-lg-2 {
+        color: #999999;
+        margin-bottom: 20px;
+      }
     }
 
     .btn {

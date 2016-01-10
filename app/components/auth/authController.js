@@ -12,7 +12,9 @@
                     ref.child(uid).set({
                         email: user.email,
                         username: user.username,
-                        gender: user.gender
+                        gender: user.gender,
+                        firstname: user.firstname,
+                        lastname: user.lastname
                     });
 
                     return $scope.user;
