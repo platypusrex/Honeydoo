@@ -25,6 +25,55 @@
       border-radius: 0;
       border-right: none !important;
       border-left: none !important;
+      height: 55px;
+    }
+
+    .fa,
+    span {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .fa {
+      font-size: 20px;
+      color: lighten($blue1, 10%);
+    }
+
+    .fa-caret-right,
+    .fa-angle-down,
+    .fa-angle-up {
+      color: #444;
+    }
+
+    .fa-plus-circle,
+    .fa-male,
+    .fa-female {
+      color: $green2;
+    }
+
+    .fa-male,
+    .fa-female {
+      margin-right: 3px;
+    }
+
+    .fa-caret-right {
+      font-size: 16px;
+      margin-left: 5px;
+    }
+
+    span {
+      margin-left: 8px;
+      font-size: 16px;
+      display: inline-block;
+    }
+
+    .sub {
+      font-size: 12px;
+    }
+
+    .fa-plus {
+      font-size: 12px;
     }
   }
 }

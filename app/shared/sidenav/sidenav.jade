@@ -12,19 +12,37 @@ div.col-md-3
         button.btn.btn-default.btn-block Honey Chat!
     div.profile-usermenu
       div.panel.list-group
-        a.list-group-item(href="", data-toggle="collapse" data-target="#sm" data-parent="#menu") ITEM 1
-          span.glyphicon.glyphicon-envelope.pull-right
+        a.list-group-item.main(href="", data-toggle="collapse" data-target="#sm" data-parent="#menu", ng-model="icon1", ng-click="iconToggle(icon1)")
+          span Honeydoo's
+          i.fa.fa-database.pull-left
+          i.fa.pull-right(ng-class="{'fa-angle-down': !iconActive1, 'fa-angle-up': iconActive1}")
         div#sm.sublinks.collapse
           a.list-group-item.small
-            span.glyphicon.glyphicon-chevron-right sub-item 1
+            span.sub Add Honeydoo
+            i.fa.fa-plus-circle.pull-right
+            i.fa.fa-caret-right.pull-left
           a.list-group-item.small
-            span.glyphicon.glyphicon-chevron-right sub-item 2
-        a.list-group-item(href="", data-toggle="collapse", data-target="#sl", data-parent="#menu") ITEM 2
-          span.glyphicon.glyphicon-tag.pull-right
+            span.sub Your List
+            i.fa.pull-right(ng-class="{'fa-male': userIcon, 'fa-female': !userIcon}")
+            i.fa.fa-caret-right.pull-left
+          a.list-group-item.small
+            span.sub Your Honey's List
+            i.fa.pull-right(ng-class="{'fa-male': !userIcon, 'fa-female': userIcon}")
+            i.fa.fa-caret-right.pull-left
+        a.list-group-item.main(href="", data-toggle="collapse", data-target="#sl", data-parent="#menu", ng-model="icon2", ng-click="iconToggle(icon2)")
+          span Account Settings
+          i.fa.fa-user.pull-left
+          i.fa.pull-right(ng-class="{'fa-angle-down': !iconActive2, 'fa-angle-up': iconActive2}")
         div#sl.sublinks.collapse
           a.list-group-item.small
-            span.glyphicon.glyphicon-chevron-right sub-item 1
+            span.sub Edit Profile
+            i.fa.fa-caret-right.pull-left
           a.list-group-item.small
-            span.glyphicon.glyphicon-chevron-right sub-item 2
-        a.list-group-item(href="") ANOTHER LINK ...
-          span.glyphicon.glyphicon-stats.pull-right
+            span.sub Add Profile Pic
+            i.fa.fa-caret-right.pull-left
+          a.list-group-item.small
+            span.sub Connect with your Honey
+            i.fa.fa-caret-right.pull-left
+        a.list-group-item(href="")
+          span Honeychat
+          i.fa.fa-comments-o.pull-left
