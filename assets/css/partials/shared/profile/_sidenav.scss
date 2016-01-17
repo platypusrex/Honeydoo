@@ -28,6 +28,36 @@
       height: 55px;
     }
 
+    .small {
+      transition: all .2s ease;
+
+      &:before {
+        transition: all .3s ease;
+      }
+
+      &:hover,
+      &:active,
+      &:focus {
+        background: lighten($blue1, 10%);
+        color: #fff;
+
+        &:before {
+          border: solid;
+          border-color: lighten($blue1, 10%) transparent;
+          border-width: 0 12px 12px 12px;
+          position: absolute;
+          content: "";
+          right: -18px;
+          top: 40%;
+          transform: rotate(90deg);
+        }
+
+        .fa {
+          color: #fff;
+        }
+      }
+    }
+
     .fa,
     span {
       position: relative;
@@ -37,7 +67,7 @@
 
     .fa {
       font-size: 20px;
-      color: lighten($blue1, 10%);
+      color: $green2;
     }
 
     .fa-caret-right,
@@ -46,10 +76,8 @@
       color: #444;
     }
 
-    .fa-plus-circle,
-    .fa-male,
-    .fa-female {
-      color: $green2;
+    .sub-icon {
+      color: lighten($blue1, 10%);
     }
 
     .fa-male,

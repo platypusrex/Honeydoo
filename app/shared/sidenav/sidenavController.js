@@ -22,6 +22,7 @@
             userData.$loaded(
                 function(data){
                     $scope.username = data.username;
+                    $scope.firstLastName = data.firstname + ' ' + data.lastname;
                     $scope.userIcon = (data.gender === 'his');
                 },
                 function(error){
