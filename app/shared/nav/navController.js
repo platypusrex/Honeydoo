@@ -1,7 +1,7 @@
 (function(navModule){
     'use strict';
 
-    navModule.controller('navCtrl', ['$scope', '$location', '$firebaseAuth', 'firebaseDataService', '$firebaseObject', 'authService', function($scope, $location, $firebaseAuth, firebaseDataService, $firebaseObject, authService){
+    navModule.controller('navCtrl', ['$scope', '$state', '$firebaseAuth', 'firebaseDataService', '$firebaseObject', 'authService', function($scope, $state, $firebaseAuth, firebaseDataService, $firebaseObject, authService){
         $scope.logOut = logout;
         var authData = authService.firebaseAuthObject.$getAuth();
 
@@ -27,7 +27,7 @@
 
         function logout(){
             authService.logout();
-            $location.path('/login');
+            $state.go('login');
         }
     }]);
 }(angular.module('NavModule')));

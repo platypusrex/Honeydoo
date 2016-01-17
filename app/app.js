@@ -2,24 +2,23 @@
     'use strict';
 
     angular.module('HoneydooApp', [
-        'ngRoute',
+        'ui.router',
         'firebase',
         'AuthModule',
         'NavModule',
         'CoreModule',
         'HomeModule',
         'SidenavModule',
-        'ContentModule'])
-        .config(['$routeProvider', function($routeProvider){
-            $routeProvider
-                .otherwise({
-                    redirectTo: '/login'
-                });
+        'ContentModule',
+        'ConnectModule'
+        ])
+        .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
+            $urlRouterProvider.otherwise('/login');
         }])
-        .run(['$rootScope', '$location', function($rootScope, $location){
-            $rootScope.$on('$routeChangeError', function(event, next, previous, error){
+        .run(['$rootScope', '$state', function($rootScope, $state){
+            $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error){
                 if(error === 'AUTH_REQUIRED'){
-                    $location.path('/login');
+                    $state.go('/login');
                 }
             });
         }]);

@@ -2,13 +2,15 @@
     'use strict';
 
     angular.module('AuthModule', ['firebase'])
-        .config(['$routeProvider', function($routeProvider){
-            $routeProvider
-                .when('/login', {
+        .config(['$stateProvider', function($stateProvider){
+            $stateProvider
+                .state('login', {
+                    url: '/login',
                     templateUrl: 'app/components/auth/login.html',
                     controller: 'authCtrl'
                 })
-                .when('/register', {
+                .state('register', {
+                    url: '/register',
                     templateUrl: 'app/components/auth/register.html',
                     controller: 'authCtrl'
                 });

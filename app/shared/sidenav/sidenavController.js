@@ -1,7 +1,7 @@
 (function(sidenavModule){
     'use strict';
 
-    sidenavModule.controller('sidenavCtrl', ['$scope', 'sidenavService', function($scope, sidenavService){
+    sidenavModule.controller('sidenavCtrl', ['$scope', 'sidenavService', '$state', function($scope, sidenavService, $state){
         $scope.user = sidenavService.getUserAuth();
         $scope.iconActive1 = false;
         $scope.iconActive2 = false;
@@ -14,6 +14,13 @@
             }
             if(val === 2){
                 $scope.iconActive2 = !$scope.iconActive2;
+            }
+        };
+
+        $scope.changeContent = function(val){
+            console.log(val);
+            if(val === 1){
+                $state.go('connect');
             }
         };
 
