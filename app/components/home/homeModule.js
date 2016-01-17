@@ -9,6 +9,5 @@
                     templateUrl: 'app/components/home/home.html',
                     controller: 'homeCtrl'
                 });
-        }])
-        ;
+        }]);
 }());
