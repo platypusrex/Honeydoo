@@ -18,15 +18,15 @@ div.col-md-3
           i.fa.fa-database.pull-left.list-icon
           i.fa.pull-right(ng-class="{'fa-angle-down': !iconActive1, 'fa-angle-up': iconActive1}")
         div#sm.sublinks.collapse
-          a.list-group-item.small
+          a.list-group-item.small(ui-sref="home.add")
             span.sub Add Honeydoo
             i.fa.fa-plus-circle.pull-right.sub-icon
             i.fa.fa-caret-right.pull-left
-          a.list-group-item.small
+          a.list-group-item.small(ui-sref="home.your_list")
             span.sub Your List
             i.fa.pull-right.sub-icon(ng-class="{'fa-male': userIcon, 'fa-female': !userIcon}")
             i.fa.fa-caret-right.pull-left
-          a.list-group-item.small
+          a.list-group-item.small(ui-sref="home.partner_list")
             span.sub Your Honey's List
             i.fa.pull-right.sub-icon(ng-class="{'fa-male': !userIcon, 'fa-female': userIcon}")
             i.fa.fa-caret-right.pull-left
@@ -35,11 +35,11 @@ div.col-md-3
           i.fa.fa-user.pull-left.list-icon
           i.fa.pull-right(ng-class="{'fa-angle-down': !iconActive2, 'fa-angle-up': iconActive2}")
         div#sl.sublinks.collapse
-          a.list-group-item.small
+          a.list-group-item.small(ui-sref="home.edit_profile")
             span.sub Edit Profile
             i.fa.fa-cog.pull-right.sub-icon
             i.fa.fa-caret-right.pull-left
-          a.list-group-item.small
+          a.list-group-item.small(ui-sref="home.add_pic")
             span.sub Add Profile Pic
             i.fa.fa-image.pull-right.sub-icon
             i.fa.fa-caret-right.pull-left

@@ -1,3 +1,4 @@
 .profile-content {
-  @extend .profile-sidebar
+  @extend .profile-sidebar;
+  padding: 2px 15px 15px;
 }

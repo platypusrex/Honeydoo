@@ -35,7 +35,25 @@
         transition: all .3s ease;
       }
 
-      &:hover,
+      &:hover {
+        background: lighten($blue1, 25%);
+
+        &:before {
+          border: solid;
+          border-color: lighten($blue1, 25%) transparent;
+          border-width: 0 12px 12px 12px;
+          position: absolute;
+          content: "";
+          right: -18px;
+          top: 40%;
+          transform: rotate(90deg);
+        }
+
+        .fa {
+          color: #fff;
+        }
+      }
+
       &:active,
       &:focus {
         background: lighten($blue1, 10%);

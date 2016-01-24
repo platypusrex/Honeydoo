@@ -10,16 +10,44 @@
         'HomeModule',
         'SidenavModule',
         'ContentModule',
+        'AddItemModule',
+        'YourListModule',
+        'PartnerListModule',
+        'EditProfileModule',
+        'AddPicModule',
         'ConnectModule'
         ])
         .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
             $urlRouterProvider.otherwise('/login');
         }])
-        .run(['$rootScope', '$state', function($rootScope, $state){
+        .run(['$rootScope', '$state', '$log', function($rootScope, $state, $log){
             $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error){
                 if(error === 'AUTH_REQUIRED'){
                     $state.go('/login');
                 }
+
+                $log.error('An error occurred during state change: ', error);
+
+                $log.debug('event: ', event);
+                $log.debug('toState: ', toState);
+                $log.debug('toParams: ', toParams);
+                $log.debug('fromState: ', fromState);
+                $log.debug('fromParams: ', fromParams);
+                $log.debug('error: ', error);
+            });
+
+            $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+                $log.debug('State change successful');
+
+                $log.debug('event: ', event);
+                $log.debug('toState: ', toState);
+                $log.debug('toParams: ', toParams);
+                $log.debug('fromState: ', fromState);
+                $log.debug('fromParams: ', fromParams);
+            });
+
+            $rootScope.$on('$stateNotFound', function(event, unfoundState, fromState, fromParams){
+                $log.error('State not found: ', unfoundState);
             });
         }]);
 }());
