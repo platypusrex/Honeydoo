@@ -36,11 +36,11 @@
       }
 
       &:hover {
-        background: lighten($blue1, 25%);
+        background: lighten($blue1, 30%);
 
         &:before {
           border: solid;
-          border-color: lighten($blue1, 25%) transparent;
+          border-color: lighten($blue1, 30%) transparent;
           border-width: 0 12px 12px 12px;
           position: absolute;
           content: "";

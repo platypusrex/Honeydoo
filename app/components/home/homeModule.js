@@ -29,7 +29,7 @@
                     }
                 })
                 .state('home.your_list', {
-                    url: 'your_list',
+                    url: '/your_list',
                     views: {
                         'your-list': {
                             templateUrl: 'app/components/yourList/yourList.html',
@@ -38,7 +38,7 @@
                     }
                 })
                 .state('home.partner_list', {
-                    url: 'partner_list',
+                    url: '/partner_list',
                     views: {
                         'partner-list': {
                             templateUrl: 'app/components/partnerList/partnerList.html',

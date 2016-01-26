@@ -5,7 +5,7 @@
         $scope.register = function(user){
             authService.register(user)
                 .then(function(userData){
-                    $state.go('form');
+                    //$state.go('form');
                     var ref = firebaseDataService.users;
                     var uid = userData.uid;
 
