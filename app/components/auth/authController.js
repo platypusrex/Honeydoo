@@ -13,7 +13,8 @@
                         username: user.username,
                         gender: user.gender,
                         firstname: user.firstname,
-                        lastname: user.lastname
+                        lastname: user.lastname,
+                        invitation: 'none'
                     });
 
                     return $scope.user;

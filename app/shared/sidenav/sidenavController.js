@@ -36,6 +36,11 @@
                     console.log(error);
                 }
             );
+
+            var inviteStatus = sidenavService.getInvitationStatus($scope.user.uid);
+            inviteStatus.$bindTo($scope, 'status').then(function(){
+                $scope.value = $scope.status.$value;
+            });
         }
 
     }]);

@@ -9,8 +9,13 @@ div.col-md-3
         div.usertitle-email
           p {{firstLastName}}
       div.profile-userbutton
-        button.btn.btn-warning.btn-block Honey Chat! &nbsp;
-          i.fa.fa-comments-o
+        button.btn.btn-warning.btn-block(type="button", data-toggle="collapse", data-target="#notificationWell", aria-expanded="false", aria-controls="notificationWell") Notifications &nbsp;
+          i.fa.fa-bell-o
+        div.collapse#notificationWell
+          div.well
+            p(ng-show="value === 'none'") You have no new notifications...
+            div(ng-show="value === 'sent'")
+              p
     div.profile-usermenu
       div.panel.list-group
         a.list-group-item.main(href="", data-toggle="collapse" data-target="#sm" data-parent="#menu", ng-model="icon1", ng-click="iconToggle(icon1)")

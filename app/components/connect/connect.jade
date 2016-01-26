@@ -12,7 +12,7 @@ div.connect-container
           div.form-group
             //select.selectpicker.show-tick.form-control(multiple, title="Find your honey", data-max-options="1", data-live-search="true", data-style="btn-primary", ng-options="option.value as option.option for option in selectData.availableUsers")
             selectpicker(data-array="selectData", ng-model="myModel") {{myModel}}
-      //p If you can't locate your honey or they haven't registered with Honeydoo List, feel free to use our invitation service. All you need to include is they're email address!
+      p {{myModel}}
     div.col-md-6
       h4.text-center Invite your honey to join!
       p If you can't locate your honey or they haven't registered with Honeydoo List, feel free to use our invitation service.

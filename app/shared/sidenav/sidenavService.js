@@ -15,9 +15,15 @@
             return $firebaseObject(user);
         };
 
+        var getInvitationStatus = function(uid){
+            var invitation = firebaseDataService.users.child(uid).child('invitation');
+            return $firebaseObject(invitation);
+        };
+
         return {
             getUserAuth: getUserAuth,
-            getUserData: getUserData
+            getUserData: getUserData,
+            getInvitationStatus: getInvitationStatus
         }
     }]);
 }(angular.module('SidenavModule')));
