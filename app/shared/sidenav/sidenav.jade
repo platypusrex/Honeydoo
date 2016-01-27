@@ -13,9 +13,14 @@ div.col-md-3
           i.fa.fa-bell-o
         div.collapse#notificationWell
           div.well
-            p(ng-show="value === 'none'") You have no new notifications...
+            h6(ng-show="value === 'none'") You have no new notifications...
             div(ng-show="value === 'sent'")
-              p Your invitation has been sent!
+              h6 Your invitation has been sent to {{honeyName}}!
+            div(ng-show="value === 'received'")
+              h6 {{honeyName}} sent you an invitation to connect!
+              div.btn-group
+                button.btn.btn-primary.btn-xs accept
+                button.btn.btn-danger.btn-xs reject
     div.profile-usermenu
       div.panel.list-group
         a.list-group-item.main(href="", data-toggle="collapse" data-target="#sm" data-parent="#menu", ng-model="icon1", ng-click="iconToggle(icon1)")

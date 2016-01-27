@@ -39,7 +39,17 @@
 
             var inviteStatus = sidenavService.getInvitationStatus($scope.user.uid);
             inviteStatus.$bindTo($scope, 'status').then(function(){
-                $scope.value = $scope.status.$value;
+                $scope.value = $scope.status.status;
+
+                var honeyData = sidenavService.getUserData($scope.status.userId);
+                honeyData.$loaded(
+                    function(data){
+                        $scope.honeyName = data.firstname + ' ' + data.lastname;
+                    },
+                    function(error){
+                        console.log(error);
+                    }
+                );
             });
         }
 

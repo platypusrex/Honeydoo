@@ -14,7 +14,10 @@
                         gender: user.gender,
                         firstname: user.firstname,
                         lastname: user.lastname,
-                        invitation: 'none'
+                        invitation: {
+                            status: 'none',
+                            userId: 'none'
+                        }
                     });
 
                     return $scope.user;

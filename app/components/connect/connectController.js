@@ -43,13 +43,19 @@
                 var honeyUid = $scope.honeyUid;
 
                 ref.child(userUid).update({
-                    invitation: 'sent'
+                    invitation: {
+                        status: 'sent',
+                        userId: honeyUid
+                    }
                 }, function(){
                     alert('Yay for hamburgers!');
                 });
 
                 ref.child(honeyUid).update({
-                    invitation: 'received'
+                    invitation: {
+                        status: 'received',
+                        userId: userUid
+                    }
                 }, function(){
                     alert('Update successful!');
                 });

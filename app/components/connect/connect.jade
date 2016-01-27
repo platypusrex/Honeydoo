@@ -12,7 +12,7 @@ div.connect-container
           div.form-group
             //select.selectpicker.show-tick.form-control(multiple, title="Find your honey", data-max-options="1", data-live-search="true", data-style="btn-primary", ng-options="option.value as option.option for option in selectData.availableUsers")
             selectpicker(data-array="selectData", ng-model="myModel") {{myModel}}
-      p {{myModel}}
+      p
       div.confirm-send-container.text-center(ng-hide="!honey")
         p Confirm your request to invite {{honey}} to join you:
         button.btn.btn-warning(type="button", ng-click="setInviteStatus()") Send request!
