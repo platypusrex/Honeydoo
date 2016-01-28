@@ -13,7 +13,8 @@ div.col-md-3
           i.fa.fa-bell-o
         div.collapse#notificationWell
           div.well
-            h6(ng-show="value === 'none'") You have no new notifications...
+            div(ng-show="value === 'none'")
+              h6 You have no new notifications...
             div(ng-show="value === 'sent'")
               h6 Your invitation has been sent to {{honeyName}}!
             div(ng-show="value === 'received'")
