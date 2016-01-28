@@ -39,11 +39,13 @@
 
             var inviteStatus = sidenavService.getInvitationStatus($scope.user.uid);
             inviteStatus.$bindTo($scope, 'status').then(function(){
-                //$scope.value = $scope.status.status;
 
-                $scope.$watch('status', function(status){
-                    $scope.value = status.status;
-                    var honeyData = sidenavService.getUserData($scope.status.userId);
+                $scope.$watch('status.status', function(status){
+                    $scope.value = status;
+                });
+
+                $scope.$watch('status.userId', function(userId){
+                    var honeyData = sidenavService.getUserData(userId);
 
                     honeyData.$loaded(
                         function(data){
@@ -54,16 +56,6 @@
                         }
                     );
                 });
-
-                //var honeyData = sidenavService.getUserData($scope.status.userId);
-                //honeyData.$loaded(
-                //    function(data){
-                //        $scope.honeyName = data.firstname + ' ' + data.lastname;
-                //    },
-                //    function(error){
-                //        console.log(error);
-                //    }
-                //);
             });
         }
 
