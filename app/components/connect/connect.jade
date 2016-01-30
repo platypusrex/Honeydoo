@@ -1,32 +1,50 @@
 div.connect-container
   h3 Connect
   hr
-  div.row
-    div.col-md-6
-      h4.text-center Find your honey here!
-      p In order to get the most out of the honeydoo list, we recommend that you invite you better half to join.
-      p If your honey is already a registered user, use the search feature below, find your mate, and add them. It's that easy!
-      h6.text-center Search for you honey here:
+  div.connect-navigation
+    ul.nav.nav-tabs
+      li.active
+        a(href=".registered", data-toggle="tab", aria-expanded="true") Registered Users
+      li
+        a(href=".new", data-toggle="tab", aria-expanded="true") New Users
+  div#myTabContent.tab-content
+    div.registered.tab-pane.fade.active.in
       div.row
         div.col-md-8.col-md-offset-2
-          div.form-group
-            //select.selectpicker.show-tick.form-control(multiple, title="Find your honey", data-max-options="1", data-live-search="true", data-style="btn-primary", ng-options="option.value as option.option for option in selectData.availableUsers")
-            selectpicker(data-array="selectData", ng-model="myModel") {{myModel}}
-      p
-      div.confirm-send-container.text-center(ng-hide="!honey")
-        p Confirm your request to invite {{honey}} to join you:
-        button.btn.btn-warning(type="button", ng-click="setInviteStatus()") Send request!
-    div.col-md-6
-      h4.text-center Invite your honey to join!
-      p If you can't locate your honey or they haven't registered with Honeydoo List, feel free to use our invitation service.
-      p Just include their email address in the input below and press send. They should receive your request to join immediately!
-      h6.text-center Invite your honey to join now:
+          h4.text-center Find your honey here!
+          p In order to get the most out of the honeydoo list, we recommend that you invite you better half to join. The point here is connect, share, and help organize your life and relationship.
+          p If your honey is already a registered user, use the search feature below, find your mate, and add them. It's that easy!
       div.row
-        div.col-md-8.col-md-offset-2
-          div.input-group
-            input.form-control(type="text", placeholder="Email address")
-            span.input-group-btn
-              button.btn.btn-secondary Go!
+        div.col-md-6.col-md-offset-3
+          div.panel.panel-default
+            div.panel-heading
+              h5.text-center Search for you honey:
+            div.panel-body
+              div.row
+                div.col-md-8.col-md-offset-2
+                  div.form-group
+                    selectpicker(data-array="selectData", ng-model="myModel") {{myModel}}
+              p
+            div.panel-footer(ng-hide="!honey")
+              div.confirm-send-container.text-center
+                p Confirm your request to invite {{honey}} to join you:
+                button.btn(type="button", ng-click="setInviteStatus()") Send request!
+    div.new.tab-pane.fade
+      div.row
+        div.col-md-6.col-md-offset-3
+          h4.text-center Invite your honey to join!
+          p If you can't locate your honey or they haven't registered with Honeydoo List, feel free to use our invitation service.
+          p Just include their email address in the input below and press send. They should receive your request to join immediately!
+          div.panel.panel-default
+            div.panel-heading
+              h5.text-center Invite your honey to join now:
+            div.panel-body
+              div.row
+                div.col-md-8.col-md-offset-2
+                  div.input-group
+                    input.form-control(type="text", placeholder="Email address")
+                    span.input-group-btn
+                      button.btn.btn-secondary Go!
 
 
 

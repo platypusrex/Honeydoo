@@ -20,8 +20,10 @@ div.col-md-3
             div(ng-show="value === 'received'")
               h6 {{honeyName}} sent you an invitation to connect!
               div.btn-group
-                button.btn.btn-primary.btn-xs accept
+                button.btn.btn-primary.btn-xs(ng-click="acceptInvite()") accept
                 button.btn.btn-danger.btn-xs reject
+            div(ng-show="value === 'connected'")
+              h6 You are now connected with {{honeyName}}
     div.profile-usermenu
       div.panel.list-group
         a.list-group-item.main(href="", data-toggle="collapse" data-target="#sm" data-parent="#menu", ng-model="icon1", ng-click="iconToggle(icon1)")

@@ -36,30 +36,27 @@
         );
 
         $scope.setInviteStatus = function(){
-            console.log('howdy');
-            //if(myModel){
-                var ref = firebaseDataService.users;
-                var userUid = $scope.user.uid;
-                var honeyUid = $scope.honeyUid;
+            var ref = firebaseDataService.users;
+            var userUid = $scope.user.uid;
+            var honeyUid = $scope.honeyUid;
 
-                ref.child(userUid).update({
-                    invitation: {
-                        status: 'sent',
-                        userId: honeyUid
-                    }
-                }, function(){
-                    alert('Yay for hamburgers!');
-                });
+            ref.child(userUid).update({
+                invitation: {
+                    status: 'sent',
+                    userId: honeyUid
+                }
+            }, function(){
+                alert('Yay for hamburgers!');
+            });
 
-                ref.child(honeyUid).update({
-                    invitation: {
-                        status: 'received',
-                        userId: userUid
-                    }
-                }, function(){
-                    alert('Update successful!');
-                });
-            //}
+            ref.child(honeyUid).update({
+                invitation: {
+                    status: 'received',
+                    userId: userUid
+                }
+            }, function(){
+                alert('Update successful!');
+            });
         };
 
         $scope.$watch('myModel', function(val){

@@ -1,0 +1,49 @@
+.connect-container {
+  .connect-navigation {
+    position: absolute;
+    top: 38px;
+    right: 100px;
+  }
+
+  #myTabContent {
+    h4 {
+      margin-bottom: 25px;
+    }
+  }
+
+  .panel {
+    margin-top: 50px;
+
+    .panel-heading {
+      background: $blue1;
+
+      h5 {
+        color: #fff;
+      }
+    }
+
+    .panel-body {
+      select {
+        padding-top: 15px;
+      }
+    }
+
+    .panel-footer {
+      .btn {
+        color: $blue1;
+        border-color: #blue1;
+        background: #fff;
+        margin: 0 4px;
+        border-right: 1px solid;
+        border-bottom: 1px solid;
+
+        &:hover,
+        &:active,
+        &focus{
+          color: #fff;
+          background: $blue1;
+        }
+      }
+    }
+  }
+}

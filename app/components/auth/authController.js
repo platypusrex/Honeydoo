@@ -1,7 +1,12 @@
 (function(authModule){
     'use strict';
 
-    authModule.controller('authCtrl', ['$scope', '$state', 'authService', 'firebaseDataService', function($scope, $state, authService, firebaseDataService){
+    authModule.controller('authCtrl', [
+        '$scope',
+        '$state',
+        'authService',
+        'firebaseDataService',
+        function($scope, $state, authService, firebaseDataService){
         $scope.register = function(user){
             authService.register(user)
                 .then(function(userData){
@@ -17,6 +22,12 @@
                         invitation: {
                             status: 'none',
                             userId: 'none'
+                        },
+                        honey: {
+                            uid: 'none',
+                            firstname: 'none',
+                            lastname: 'none',
+                            username: 'none'
                         }
                     });
 
