@@ -2,7 +2,11 @@
     'use strict';
 
     angular.module('HoneydooApp', [
+        //'angular-growl',
         'ui.router',
+        'ngAnimate',
+        'ngSanitize',
+        'angular-growl',
         'firebase',
         'AuthModule',
         'NavModule',
@@ -17,7 +21,8 @@
         'AddPicModule',
         'ConnectModule'
         ])
-        .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
+        .config(['$stateProvider', '$urlRouterProvider', 'growlProvider', function($stateProvider, $urlRouterProvider, growlProvider){
+            growlProvider.globalEnableHtml(true);
             $urlRouterProvider.otherwise('/login');
         }])
         .run(['$rootScope', '$state', '$log', function($rootScope, $state, $log){

@@ -6,7 +6,8 @@
         'sidenavService',
         '$state',
         'firebaseDataService',
-        function($scope, sidenavService, $state, firebaseDataService){
+        'growl',
+        function($scope, sidenavService, $state, firebaseDataService, growl){
         $scope.user = sidenavService.getUserAuth();
         $scope.iconActive1 = false;
         $scope.iconActive2 = false;
@@ -19,6 +20,10 @@
         var honeyFirstName = null;
         var honeyLastName = null;
         var honeyUserName = null;
+
+        var growlerMessage = function(){
+            growl.warning('<strong>Congrats!&nbsp;</strong>You\'re connected to ' + honeyFirstName + ' ' + honeyLastName, {ttl: 5000})
+        };
 
         $scope.iconToggle = function(val){
             if(val === 1){
@@ -45,7 +50,7 @@
                     lastname: honeyLastName,
                     username: honeyUserName
                 }
-            });
+            }, growlerMessage());
             ref.child($scope.user.uid).child('invitation').update({
                 status: 'connected'
             });

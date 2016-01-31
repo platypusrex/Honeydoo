@@ -7,8 +7,10 @@
         '$timeout',
         'sidenavService',
         'firebaseDataService',
-        function($scope, connectService, $timeout, sidenavService, firebaseDataService){
+        'growl',
+        function($scope, connectService, $timeout, sidenavService, firebaseDataService, growl){
         $scope.user = connectService.getUserAuth();
+        $scope.honey = null;
         $scope.honeyUid = null;
         var usersData = connectService.getUsers();
 
@@ -35,6 +37,10 @@
             }
         );
 
+        var growlerMessage = function(){
+            growl.warning('<strong>Yay!&nbsp;</strong>You\'re invite has been sent to ' + $scope.honey, {ttl: 5000})
+        };
+
         $scope.setInviteStatus = function(){
             var ref = firebaseDataService.users;
             var userUid = $scope.user.uid;
@@ -45,17 +51,13 @@
                     status: 'sent',
                     userId: honeyUid
                 }
-            }, function(){
-                alert('Yay for hamburgers!');
-            });
+            }, growlerMessage());
 
             ref.child(honeyUid).update({
                 invitation: {
                     status: 'received',
                     userId: userUid
                 }
-            }, function(){
-                alert('Update successful!');
             });
         };
 
