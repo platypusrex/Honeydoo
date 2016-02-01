@@ -1,6 +1,6 @@
 .growl {
   position: fixed;
-  top: 95px;
+  top: 98px;
   right: 30px;
   float: right;
   width: 275px;
@@ -68,6 +68,13 @@
 .rollOut {
   -webkit-animation-name: rollOut;
   animation-name: rollOut;
+}
+
+.growl-item {
+  .fa {
+    font-size: 20px;
+    margin-right: 8px;
+  }
 }
 
 .growl-item.ng-enter {

@@ -21,9 +21,13 @@
         var honeyLastName = null;
         var honeyUserName = null;
 
-        var growlerMessage = function(){
-            growl.warning('<strong>Congrats!&nbsp;</strong>You\'re connected to ' + honeyFirstName + ' ' + honeyLastName, {ttl: 5000})
+        var growlerAcceptMessage = function(){
+            growl.warning('<i class="fa fa-check"></i><strong>Congrats!&nbsp;</strong>You\'re connected to ' + honeyFirstName + ' ' + honeyLastName, {ttl: 5000})
         };
+
+        var growlerRejectMessage = function(){
+            growl.warning('<i class="fa fa-times"></i><strong>You have rejected the connection with ' + honeyFirstName + ' ' + honeyLastName, {ttl: 5000})
+        }
 
         $scope.iconToggle = function(val){
             if(val === 1){
@@ -50,7 +54,7 @@
                     lastname: honeyLastName,
                     username: honeyUserName
                 }
-            }, growlerMessage());
+            }, growlerAcceptMessage());
             ref.child($scope.user.uid).child('invitation').update({
                 status: 'connected'
             });
@@ -69,7 +73,14 @@
         };
 
         $scope.rejectInvite = function(){
+            var ref = firebaseDataService.users;
+            ref.child(honeyId).child('invitation').update({
+                status: 'denied'
+            });
 
+            ref.child($scope.user.uid).child('invitation').update({
+                status: 'rejected'
+            }, growlerRejectMessage());
         };
 
         if($scope.user){

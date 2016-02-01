@@ -21,7 +21,8 @@
                         lastname: user.lastname,
                         invitation: {
                             status: 'none',
-                            userId: 'none'
+                            userId: 'none',
+                            notification: 'You have no new notifications...'
                         },
                         honey: {
                             uid: 'none',

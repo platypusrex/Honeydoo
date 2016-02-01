@@ -20,15 +20,17 @@ div.connect-container
             div.panel-heading
               h5.text-center Search for you honey:
             div.panel-body
-              div.row
+              div.row(ng-hide="disable")
                 div.col-md-8.col-md-offset-2
                   div.form-group
                     selectpicker(data-array="selectData", ng-model="myModel") {{myModel}}
-              p
+              div.text-center(ng-show="disable")
+                p You are currently connected, or having a pending connection status. Check you notifications.
+                p To disconnect with you current honey, visit your account settings.
             div.panel-footer(ng-hide="!honey")
               div.confirm-send-container.text-center
                 p Confirm your request to invite {{honey}} to join you:
-                button.btn(type="button", ng-click="setInviteStatus()") Send request!
+                button.btn(type="button", ng-click="!disable && setInviteStatus()", ng-class="{'disabled': disable}") Send request!
     div.new.tab-pane.fade
       div.row
         div.col-md-6.col-md-offset-3

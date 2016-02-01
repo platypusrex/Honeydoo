@@ -21,9 +21,13 @@ div.col-md-3
               h6 {{honeyName}} sent you an invitation to connect!
               div.btn-group
                 button.btn.btn-primary.btn-xs(ng-click="acceptInvite()") accept
-                button.btn.btn-danger.btn-xs reject
+                button.btn.btn-danger.btn-xs(ng-click="rejectInvite()") reject
             div(ng-show="value === 'connected'")
-              h6 You are now connected with {{honeyName}}
+              h6 You are now connected with {{honeyName}}!
+            div(ng-show="value === 'rejected'")
+              h6 You have rejected {{honeyName}}'s invitation.
+            div(ng-show="value === 'denied'")
+              h6 You're invitation to {{honeyName}} was denied.
     div.profile-usermenu
       div.panel.list-group
         a.list-group-item.main(href="", data-toggle="collapse" data-target="#sm" data-parent="#menu", ng-model="icon1", ng-click="iconToggle(icon1)")
