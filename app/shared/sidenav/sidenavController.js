@@ -27,7 +27,7 @@
 
         var growlerRejectMessage = function(){
             growl.warning('<i class="fa fa-times"></i><strong>You have rejected the connection with ' + honeyFirstName + ' ' + honeyLastName, {ttl: 5000})
-        }
+        };
 
         $scope.iconToggle = function(val){
             if(val === 1){
