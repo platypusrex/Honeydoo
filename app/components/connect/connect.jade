@@ -27,10 +27,10 @@ div.connect-container
               div.text-center(ng-show="disable")
                 p You are currently connected, or have a pending connection status. Check you notifications.
                 p To disconnect with you current honey, visit your account settings.
-            div.panel-footer(ng-hide="!honey")
+            div.panel-footer(ng-hide="disable || !honey")
               div.confirm-send-container.text-center
                 p Confirm your request to invite {{honey}} to join you:
-                button.btn(type="button", ng-click="!disable && setInviteStatus()", ng-class="{'disabled': disable}") Send request!
+                button.btn(type="button", ng-click="!disable && setInviteStatus()") Send request!
     div.new.tab-pane.fade
       div.row
         div.col-md-6.col-md-offset-3

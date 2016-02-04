@@ -9,11 +9,15 @@
   }
 
   .profile-usertitle {
-    margin-bottom: 35px;
+    margin-bottom: 25px;
   }
 
   .profile-userbutton {
     #notificationWell {
+      .well {
+        margin-bottom: 0;
+      }
+
       .btn {
         margin: 0 4px;
         border-right: 1px solid;
@@ -49,7 +53,7 @@
   }
 
   .profile-usermenu {
-    margin-top: 40px;
+    margin-top: 30px;
 
     .panel,
     .list-group-item {
@@ -68,11 +72,12 @@
       }
 
       &:hover {
-        background: lighten($blue1, 30%);
+        background: lighten($blue1, 20%);
+        color: #fff;
 
         &:before {
           border: solid;
-          border-color: lighten($blue1, 30%) transparent;
+          border-color: lighten($blue1, 20%) transparent;
           border-width: 0 12px 12px 12px;
           position: absolute;
           content: "";

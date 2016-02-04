@@ -20,7 +20,7 @@
                 function(data){
                     var users = [];
                     angular.forEach(data, function(val, i){
-                        if(val.$id !== $scope.user.uid && val.invitation.status !== 'connected'){
+                        if(val.$id !== $scope.user.uid && val.invitation.status !== 'connected' && val.invitation.status !== 'sent' && val.invitation.status !== 'received'){
                             this.push({option: val.firstname + ' ' + val.lastname, value: val.$id});
                         }
                     }, users);
@@ -79,6 +79,6 @@
                     console.log($scope.disable);
                 });
             });
-            //console.log($scope.disable);
+            console.log($scope.disable);
         }]);
 }(angular.module('ConnectModule')));
