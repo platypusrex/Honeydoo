@@ -16,19 +16,32 @@
     }
   }
 
-  .edit-profile-form-container {
+  .edit-profile-form-container,
+  .edit-profile-pic-container {
     border: 1px solid #ddd;
     padding: 20px 0;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+  }
 
+  .edit-profile-form-container {
     h5 {
       padding: 0;
-      margin: 0 0 6px;
+      margin: 0 0 5px;
       text-align: center;
     }
 
     .form-group {
-      margin-bottom: 25px;
+      margin-bottom: 20px;
+
+      &.text-right {
+        margin-bottom: 0;
+
+        .btn {
+          &:last-child {
+            margin-left: 8px;
+          }
+        }
+      }
     }
 
     .control-label {
@@ -39,7 +52,23 @@
     .profile-edit-password-change {
       border-top: 1px solid #ddd;
       padding-top: 20px;
-      margin-top: 20px;
+    }
+  }
+
+  .edit-profile-pic-container {
+    padding: 20px;
+    margin-top: 50px;
+
+    h5 {
+      margin: 0 0 23px 0;
+    }
+
+    .img-container {
+      margin: 0 0 25px 0;
+
+      img {
+        border: 2px solid #bbb;
+      }
     }
   }
 }
