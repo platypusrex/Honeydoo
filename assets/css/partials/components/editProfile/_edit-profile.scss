@@ -1,26 +1,45 @@
-.edit-profile-form-container {
-  border: 1px solid #ddd;
-  padding: 20px 0;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+.edit-profile-container {
 
-  h5 {
-    padding: 0;
-    margin: 0 0 6px;
-    text-align: center;
+  hr {
+    border: 1px solid #ddd;
   }
 
-  .form-group {
-    margin-bottom: 25px;
+  .edit-profile-navigation {
+    position: absolute;
+    top: 44px;
+    right: 56px;
   }
 
-  .control-label {
-    text-align: right;
-    padding-right: 0;
+  #editProfileContent {
+    h4 {
+      margin-bottom: 25px;
+    }
   }
 
-  .profile-edit-password-change {
-    border-top: 1px solid #ddd;
-    padding-top: 20px;
-    margin-top: 20px;
+  .edit-profile-form-container {
+    border: 1px solid #ddd;
+    padding: 20px 0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+
+    h5 {
+      padding: 0;
+      margin: 0 0 6px;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .control-label {
+      text-align: right;
+      padding-right: 0;
+    }
+
+    .profile-edit-password-change {
+      border-top: 1px solid #ddd;
+      padding-top: 20px;
+      margin-top: 20px;
+    }
   }
 }
