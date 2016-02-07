@@ -1,7 +1,11 @@
 .connect-container {
+  hr {
+    border: 1px solid #ddd;
+  }
+
   .connect-navigation {
     position: absolute;
-    top: 43px;
+    top: 44px;
     right: 56px;
   }
 
@@ -13,7 +17,7 @@
 
   .panel {
     margin-top: 30px;
-    box-shadow: 0 3px 4px 1px #bbb;;
+    box-shadow: 0 3px 4px 1px #bbb;
 
     .panel-heading {
       background: $blue1;

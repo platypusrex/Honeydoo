@@ -20,7 +20,7 @@ div.connect-container
             div.panel-heading
               h5.text-center Search for you honey:
             div.panel-body
-              div.row(ng-hide="disable", ng-cloak)
+              div.row(ng-cloak, ng-hide="disable")
                 div.col-md-8.col-md-offset-2
                   div.form-group
                     selectpicker(data-array="selectData", ng-model="myModel") {{myModel}}

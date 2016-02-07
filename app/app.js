@@ -2,7 +2,6 @@
     'use strict';
 
     angular.module('HoneydooApp', [
-        //'angular-growl',
         'ui.router',
         'ngAnimate',
         'ngSanitize',

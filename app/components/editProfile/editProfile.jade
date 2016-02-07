@@ -1,2 +1,37 @@
-h3 Edit Profile
-hr
+div.edit-profile-container
+  h3 Edit Profile
+  hr
+  div.row
+    div.col-lg-10.col-lg-offset-1
+      div.edit-profile-form-container
+        form.form-horizontal
+          fieldset
+            div.profile-edit-general-settings
+              h5 General Settings
+              div.form-group
+                label.col-lg-2.control-label(for="firstName") First Name
+                div.col-lg-9
+                  input#firstName.form-control(placeholder="First Name")
+              div.form-group
+                label.col-lg-2.control-label(for="firstName") Last Name
+                div.col-lg-9
+                  input#lastName.form-control(placeholder="Last Name")
+              div.form-group
+                label.col-lg-2.control-label(for="userName") Username
+                div.col-lg-9
+                  input#userName.form-control(placeholder="Username")
+              div.form-group
+                label.col-lg-2.control-label(for="gender") Gender
+                div.col-lg-9
+                  input#gender.form-control(placeholder="Gender")
+            div.profile-edit-password-change
+              h5 Change Password
+              div.form-group
+                label.col-lg-2.control-label(for="password") Password
+                div.col-lg-9
+                  input#password.form-control(placeholder="Password")
+              div.form-group
+                label.col-lg-2.control-label(for="passwordConfirm") Confirm
+                div.col-lg-9
+                  input#passwordConfirm.form-control(placeholder="Confirm Password")
+
