@@ -22,33 +22,37 @@ div.edit-profile-container
                   div.form-group
                     label.col-lg-2.control-label(for="firstName") First Name
                     div.col-lg-9
-                      input#firstName.form-control(placeholder="First Name")
+                      input#firstName.form-control(type="text", ng-model="u.fname" placeholder="{{firstName}}")
                   div.form-group
                     label.col-lg-2.control-label(for="firstName") Last Name
                     div.col-lg-9
-                      input#lastName.form-control(placeholder="Last Name")
+                      input#lastName.form-control(type="text", ng-model="u.lname", placeholder="{{lastName}}")
                   div.form-group
                     label.col-lg-2.control-label(for="userName") Username
                     div.col-lg-9
-                      input#userName.form-control(placeholder="Username")
+                      input#userName.form-control(type="text", ng-model="u.uname", placeholder="{{userName}}")
                   div.form-group
                     label.col-lg-2.control-label(for="gender") Gender
-                    div.col-lg-9
-                      input#gender.form-control(placeholder="Gender")
+                    label.radio-inline
+                      input(type="radio", name="gender", value="his", ng-model="u.gen", ng-checked="his")
+                      | Male &nbsp;
+                    label.radio-inline
+                      input(type="radio", name="gender", value="hers", ng-model="u.gen", ng-checked="hers")
+                      | Female &nbsp;
                 div.profile-edit-password-change
                   h5 Change Password
                   div.form-group
                     label.col-lg-2.control-label(for="password") Password
                     div.col-lg-9
-                      input#password.form-control(placeholder="Password")
+                      input#password.form-control(type="password", ng-model="u.newEmail", placeholder="Password")
                   div.form-group
                     label.col-lg-2.control-label(for="passwordConfirm") Confirm
                     div.col-lg-9
-                      input#passwordConfirm.form-control(placeholder="Confirm Password")
+                      input#passwordConfirm.form-control(type="password", ng-model="u.confirmEmail", placeholder="Confirm Password")
                   div.form-group.text-right
                     div.col-lg-10.col-lg-offset-1
-                      button.btn.btn-default(type="reset") Cancel
-                      button.btn.btn-primary(type="submit") Submit Changes
+                      button.btn.btn-danger.btn-sm(type="reset") Cancel
+                      button.btn.btn-primary.btn-sm(type="submit", ng-click="submitUpdate({u: u})") Submit Changes
     div.pic.tab-pane.fade
       div.row
         div.col-lg-10.col-lg-offset-1
