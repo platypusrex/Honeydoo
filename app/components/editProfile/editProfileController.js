@@ -5,13 +5,70 @@
         '$scope',
         'editProfileService',
         'firebaseDataService',
-        function($scope, editProfileService, firebaseDataService){
+        'growl',
+        function($scope, editProfileService, firebaseDataService, growl){
             var honeyUid = null;
             $scope.firstName = null;
             $scope.lastName = null;
             $scope.userName = null;
             $scope.gender = null;
             $scope.user = editProfileService.getUserAuth();
+
+            var growlerSuccess = function(){
+                growl.success('<i class="fa fa-check"></i><strong>Alright!&nbsp;</strong>You\'re account changes have been saved successfully', {ttl: 5000});
+            };
+
+            var growlerError = function(err){
+                growl.error('<strong>Oh shizzle, my nizzle!</strong>&nbsp;' + err, {ttl: 5000});
+            };
+
+            var saveUserData = function(userObj){
+                var ref = firebaseDataService.users;
+
+                ref.child(userObj.uuid).update({
+                    firstname: (userObj.first) ? userObj.first : $scope.firstName,
+                    lastname: (userObj.last) ? userObj.last : $scope.lastName,
+                    username: (userObj.un) ? userObj.un : $scope.userName,
+                    gender: (userObj.gender) ? userObj.gender : $scope.gender
+                }, growlerSuccess());
+
+                ref.child(userObj.huid).update({
+                    honey: {
+                        firstname: (userObj.first) ? userObj.first : $scope.firstName,
+                        lastname: (userObj.last) ? userObj.last : $scope.lastName,
+                        uid: userObj.uuid,
+                        username: (userObj.un) ? userObj.un : $scope.userName
+                    }
+                });
+            };
+
+            $scope.submitUpdate = function(u){
+                var userObj = {
+                    uuid: $scope.user.uid,
+                    huid: honeyUid,
+                    first: u.u.fname,
+                    last: u.u.lname,
+                    un: u.u.uname,
+                    gender: u.u.gen
+                };
+                var userPasswordObj = {
+                    email: $scope.user.password.email,
+                    oldPassword: u.u.oldPassword,
+                    newPassword: u.u.newPassword
+                };
+
+                if(u.u.newEmail){
+                    editProfileService.changePassword(userPasswordObj)
+                        .then(function(){
+                            saveUserData(userObj);
+                        })
+                        .catch(function(error){
+                            growlerError(error);
+                        });
+                }else {
+                    saveUserData(userObj);
+                }
+            };
 
             if($scope.user){
                 var userData = editProfileService.getUserData($scope.user.uid);
@@ -36,37 +93,6 @@
                     }
                 );
             }
-
-            $scope.submitUpdate = function(u){
-                var ref = firebaseDataService.users;
-                var userUid = $scope.user.uid;
-
-                if(u.u.newEmail){
-                    if(u.u.newEmail === u.u.confirmEmail){
-                        ref.child(userUid).update({
-                            firstname: (u.u.fname) ? u.u.fname : $scope.firstName,
-                            lastname: (u.u.lname) ? u.u.lname : $scope.lname,
-                            username: (u.u.uname) ? u.u.uname : $scope.userName,
-                            gender: (u.u.gen) ? u.u.gen : $scope.gender
-                        });
-
-                        ref.child(honeyUid).update({
-                            honey: {
-                                firstname: (u.u.fname) ? u.u.fname : $scope.firstName,
-                                lastname: (u.u.lname) ? u.u.lname : $scope.lastName,
-                                username: (u.u.uname) ? u.u.uname : $scope.userName
-                            }
-                        });
-                    }
-                }
-
-                //ref.child(userUid).$update({
-                //    firstname: (user.fname) ? user.fname : $scope.firstName,
-                //    lastname: (user.lname) ? user.lname : $scope.lname,
-                //    username: (user.uname) ? user.uname : $scope.userName,
-                //    gender: (user.gen) ? user.gen : $scope.gender
-                //});
-            };
 
     }]);
 }(angular.module('EditProfileModule')));

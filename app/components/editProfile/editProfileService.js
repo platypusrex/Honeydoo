@@ -15,9 +15,14 @@
                 return $firebaseObject(user);
             };
 
+            var changePassword = function(userObj){
+                return authService.firebaseAuthObject.$changePassword(userObj);
+            };
+
             return {
                 getUserAuth: getUserAuth,
-                getUserData: getUserData
+                getUserData: getUserData,
+                changePassword: changePassword
             }
     }]);
 }(angular.module('EditProfileModule')));

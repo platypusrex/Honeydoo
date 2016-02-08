@@ -45,7 +45,7 @@
              $scope.login = function(user){
                  return authService.login(user)
                     .then(function(res){
-                        $state.go('home');
+                        $state.go('home.connect');
                         return res;
                     })
                     .catch(function(error){

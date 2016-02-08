@@ -40,7 +40,7 @@
             );
 
             var growlerMessage = function(){
-                growl.warning('<i class="fa fa-check"></i><strong>Yay!&nbsp;</strong>You\'re invite has been sent to ' + $scope.honey, {ttl: 5000})
+                growl.success('<i class="fa fa-check"></i><strong>Yay!&nbsp;</strong>You\'re invite has been sent to ' + $scope.honey, {ttl: 5000});
             };
 
             $scope.setInviteStatus = function(){

@@ -44,11 +44,11 @@ div.edit-profile-container
                   div.form-group
                     label.col-lg-2.control-label(for="password") Password
                     div.col-lg-9
-                      input#password.form-control(type="password", ng-model="u.newEmail", placeholder="Password")
+                      input#password.form-control(type="password", ng-model="u.oldPassword", placeholder="Old Password")
                   div.form-group
                     label.col-lg-2.control-label(for="passwordConfirm") Confirm
                     div.col-lg-9
-                      input#passwordConfirm.form-control(type="password", ng-model="u.confirmEmail", placeholder="Confirm Password")
+                      input#passwordConfirm.form-control(type="password", ng-model="u.newPassword", placeholder="New Password")
                   div.form-group.text-right
                     div.col-lg-10.col-lg-offset-1
                       button.btn.btn-danger.btn-sm(type="reset") Cancel
@@ -69,6 +69,7 @@ div.edit-profile-container
                 p An "avatar" is an image that represents you online—a little picture that appears next to your name when you interact with websites.
                 p A Gravatar is a Globally Recognized Avatar. You upload it and create your profile just once, and then when you participate in any Gravatar-enabled site your Gravatar image will automatically follow you there.
                 p Gravatar is a free service for site owners, developers, and users. It is automatically included in every WordPress.com account and is run and supported by Automattic.
+                p Remember to use the same email address when you sign up with Gravatar. Your profile pic will appear as soon as you save an image to Gravatar!
     div.disconnect.tab-pane.fade
       p.lead This is where you disconnect from you current partner
 
