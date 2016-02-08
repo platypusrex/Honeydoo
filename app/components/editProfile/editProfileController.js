@@ -13,7 +13,7 @@
             $scope.userName = null;
             $scope.gender = null;
             $scope.user = editProfileService.getUserAuth();
-
+            console.log($scope.user);
             var growlerSuccess = function(){
                 growl.warning('<i class="fa fa-check"></i><strong>Alright!&nbsp;</strong>You\'re account changes have been saved successfully', {ttl: 5000});
             };
