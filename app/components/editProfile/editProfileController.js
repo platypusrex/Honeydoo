@@ -62,6 +62,11 @@
                         .then(function(){
                             saveUserData(userObj);
                         })
+                        .then(function(){
+                            $scope.u = {};
+                            $scope.updateForm.$setPristine();
+                            $scope.updateForm.$setUntouched();
+                        })
                         .catch(function(error){
                             growlerError(error);
                         });
