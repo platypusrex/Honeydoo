@@ -16,7 +16,11 @@
             };
 
             var changePassword = function(userObj){
-                return authService.firebaseAuthObject.$changePassword(userObj);
+                return authService.firebaseAuthObject.$changePassword({
+                    email: userObj.email,
+                    oldPassword: userObj.oldPassword,
+                    newPassword: userObj.newPassword
+                });
             };
 
             return {

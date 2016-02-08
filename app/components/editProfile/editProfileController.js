@@ -15,7 +15,7 @@
             $scope.user = editProfileService.getUserAuth();
 
             var growlerSuccess = function(){
-                growl.success('<i class="fa fa-check"></i><strong>Alright!&nbsp;</strong>You\'re account changes have been saved successfully', {ttl: 5000});
+                growl.warning('<i class="fa fa-check"></i><strong>Alright!&nbsp;</strong>You\'re account changes have been saved successfully', {ttl: 5000});
             };
 
             var growlerError = function(err){
@@ -56,8 +56,9 @@
                     oldPassword: u.u.oldPassword,
                     newPassword: u.u.newPassword
                 };
+                console.log(userPasswordObj);
 
-                if(u.u.newEmail){
+                if(u.u.newPassword){
                     editProfileService.changePassword(userPasswordObj)
                         .then(function(){
                             saveUserData(userObj);
@@ -72,6 +73,9 @@
                         });
                 }else {
                     saveUserData(userObj);
+                    $scope.u = {};
+                    $scope.updateForm.$setPristine();
+                    $scope.updateForm.$setUntouched();
                 }
             };
 
