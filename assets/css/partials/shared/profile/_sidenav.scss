@@ -1,9 +1,8 @@
 .profile-sidebar {
-  height: calc(100vh - 85px);
+  min-height: calc(100vh - 70px);
   padding-top: 15px;
-  border-radius: 3px;
+  border-radius: 2px;
   background: #fff;
-  //overflow-y: auto;
 
   .profile-userpic {
 

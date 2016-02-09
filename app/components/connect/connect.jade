@@ -26,27 +26,34 @@ div.connect-container
                     selectpicker(data-array="selectData", ng-model="myModel") {{myModel}}
               div.text-center(ng-show="disable")
                 p You are currently connected, or have a pending connection status. Check you notifications.
-                p To disconnect with you current honey, visit your account settings.
+                p To disconnect with you current honey, visit your account settings
+                  a(ui-sref="home.edit_profile") &nbsp;here.
             div.panel-footer(ng-hide="disable || !honey")
               div.confirm-send-container.text-center
                 p Confirm your request to invite {{honey}} to join you:
                 button.btn(type="button", ng-click="!disable && setInviteStatus()") Send request!
     div.new.tab-pane.fade
       div.row
-        div.col-md-6.col-md-offset-3
+        div.col-md-8.col-md-offset-2
           h4.text-center Invite your honey to join!
           p If you can't locate your honey or they haven't registered with Honeydoo List, feel free to use our invitation service.
           p Just include their email address in the input below and press send. They should receive your request to join immediately!
+      div.row
+        div.col-md-6.col-md-offset-3
           div.panel.panel-default
             div.panel-heading
               h5.text-center Invite your honey to join now:
             div.panel-body
+              div.text-center(ng-show="disable")
+                p You are currently connected, or have a pending connection status. Check you notifications.
+                p To disconnect with you current honey, visit your account settings
+                  a(ui-sref="home.edit_profile") &nbsp;here.
               div.row
                 div.col-md-8.col-md-offset-2
                   div.input-group
-                    input.form-control(type="text", placeholder="Email address")
+                    input.form-control(type="text", placeholder="Email address", ng-disabled="{'disable': disable}")
                     span.input-group-btn
-                      button.btn.btn-secondary Go!
+                      button.btn.btn-secondary(type="submit", ng-disabled="{'disable': disable}") Go!
 
 
 
