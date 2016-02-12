@@ -31,6 +31,19 @@
       select {
         padding-top: 15px;
       }
+
+      .btn-secondary {
+        color: $blue1;
+        background: #fff;
+        border: 1px solid $blue1;
+
+        &:hover,
+        &:focus,
+        &:active {
+          color: #fff;
+          background: $blue1;
+        }
+      }
     }
 
     .panel-footer {
