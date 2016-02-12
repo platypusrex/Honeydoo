@@ -1,18 +1,29 @@
 (function(connectModule){
     'use strict';
 
-    connectModule.directive('selectpicker', function(){
+    connectModule.directive('selectpicker', ['$timeout', function($timeout){
         return {
             restrict: 'E',
             scope: {
                 array: '=',
-                model: '='
+                model: '=',
+                disable: '=',
+                changeDisable: '&'
             },
             template: '<select class="selectpicker form-control show-tick" multiple title="Honey search" data-max-options="1" data-live-search="true" ng-options="o.option for o in array.availableUsers track by o.value"></select>',
             replace: true,
             link: function(scope, element, attrs){
                 $(element).selectpicker();
+
+                $timeout(function(){
+                    scope.disable = scope.changeDisable();
+                });
+
+                scope.$watch('disable', function(changeValue){
+                    console.log(changeValue + '\n' + 'change detected');
+                    $(element).prop('disabled', changeValue);
+                });
             }
         }
-    });
+    }]);
 }(angular.module('ConnectModule')));

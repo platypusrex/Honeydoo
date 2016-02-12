@@ -20,14 +20,14 @@ div.connect-container
             div.panel-heading
               h5.text-center Search for you honey:
             div.panel-body
-              div.row(ng-cloak, ng-hide="disable")
-                div.col-md-8.col-md-offset-2
-                  div.form-group
-                    selectpicker(data-array="selectData", ng-model="myModel") {{myModel}}
               div.text-center(ng-show="disable")
                 p You are currently connected, or have a pending connection status. Check you notifications.
                 p To disconnect with you current honey, visit your account settings
                   a(ui-sref="home.edit_profile") &nbsp;here.
+              div.row()
+                div.col-md-8.col-md-offset-2
+                  div.form-group
+                    selectpicker(data-array="selectData", data-disable="disable", change-disable="changeDisable()", ng-model="myModel") {{myModel}}
             div.panel-footer(ng-hide="disable || !honey")
               div.confirm-send-container.text-center
                 p Confirm your request to invite {{honey}} to join you:
@@ -51,9 +51,9 @@ div.connect-container
               div.row
                 div.col-md-8.col-md-offset-2
                   div.input-group
-                    input.form-control(type="text", placeholder="Email address", ng-disabled="{'disable': disable}")
+                    input.form-control(type="text", placeholder="Email address", ng-disabled="disable")
                     span.input-group-btn
-                      button.btn.btn-secondary(type="submit", ng-disabled="{'disable': disable}") Go!
+                      button.btn.btn-secondary(type="submit", ng-disabled="disable") Go!
 
 
 

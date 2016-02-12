@@ -40,7 +40,7 @@
             );
 
             var growlerMessage = function(){
-                growl.success('<i class="fa fa-check"></i><strong>Yay!&nbsp;</strong>You\'re invite has been sent to ' + $scope.honey, {ttl: 5000});
+                growl.warning('<i class="fa fa-check"></i><strong>Yay!&nbsp;</strong>You\'re invite has been sent to ' + $scope.honey, {ttl: 5000});
             };
 
             $scope.setInviteStatus = function(){
@@ -65,10 +65,13 @@
                 });
             };
 
+            $scope.changeDisable = function(){
+                return $scope.disable;
+            };
+
             $scope.$watch('myModel', function(val){
                 $scope.honey = (val) ? val[0].option : null;
                 $scope.honeyUid = (val) ? val[0].value : null;
-                console.log($scope.honeyUid);
             });
 
             inviteStatus.$bindTo($scope, 'status').then(function(){
@@ -76,9 +79,10 @@
                     if(status === 'sent' || status === 'received' || status === 'connected'){
                         $scope.disable = true;
                     }
-                    console.log($scope.disable);
+                    if(status === 'denied' || status === 'rejected'){
+                        $scope.disable = false;
+                    }
                 });
             });
-            console.log($scope.disable);
         }]);
 }(angular.module('ConnectModule')));
