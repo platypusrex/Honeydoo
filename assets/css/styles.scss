@@ -10,7 +10,20 @@
 @import 'partials/shared/nav/nav';
 @import 'partials/shared/profile/profile';
 @import 'partials/shared/growler/angular-growl';
+@import 'partials/shared/angucomplete/angucomplete-alt';
 
 body {
   font-family: 'Raleway', sans-serif;
+  //font-family: 'Cabin', sans-serif;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    //font-family: 'Clicker Script', cursive;
+    //font-family: 'Ubuntu', sans-serif;
+    //color: #555;
+  }
 }

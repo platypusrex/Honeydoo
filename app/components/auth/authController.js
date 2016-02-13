@@ -7,10 +7,11 @@
         'authService',
         'firebaseDataService',
         function($scope, $state, authService, firebaseDataService){
+            var ref = firebaseDataService.users;
+
             $scope.register = function(user){
                 authService.register(user)
                     .then(function(userData){
-                        var ref = firebaseDataService.users;
                         var uid = userData.uid;
 
                         ref.child(uid).set({
@@ -44,12 +45,20 @@
 
              $scope.login = function(user){
                  return authService.login(user)
-                    .then(function(res){
-                        $state.go('home.connect');
-                        return res;
+                    .then(function(authData){
+                         var uid = authData.uid;
+
+                         ref.child(uid).update({
+                             image: authData.password.profileImageURL
+                         });
+
+                         return authData;
                     })
+                    .then(function(){
+                         $state.go('home.connect');
+                     })
                     .catch(function(error){
-                        $scope.error = error;
+                         $scope.error = error;
                     });
              };
         }

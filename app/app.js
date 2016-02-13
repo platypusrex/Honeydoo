@@ -6,6 +6,7 @@
         'ngAnimate',
         'ngSanitize',
         'angular-growl',
+        'angucomplete-alt',
         'firebase',
         'AuthModule',
         'NavModule',
