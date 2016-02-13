@@ -50,25 +50,25 @@
                     url: '/connect',
                     views: {
                         'connect': {
-                            templateUrl: 'app/components/connect/connect.html',
+                            templateUrl: 'app/components/connect/templates/connect.html',
                             controller: 'connectCtrl'
                         }
                     }
                 })
-                .state('home.add_pic', {
-                    url: '/add_pic',
-                    views: {
-                        'add-pic': {
-                            templateUrl: 'app/components/addPic/addPic.html',
-                            controller: 'addPicCtrl'
-                        }
-                    }
-                })
+                //.state('home.add_pic', {
+                //    url: '/add_pic',
+                //    views: {
+                //        'add-pic': {
+                //            templateUrl: 'app/components/addPic/addPic.html',
+                //            controller: 'addPicCtrl'
+                //        }
+                //    }
+                //})
                 .state('home.edit_profile', {
                     url: '/edit_profile',
                     views: {
                         'edit-profile': {
-                            templateUrl: 'app/components/editProfile/editProfile.html',
+                            templateUrl: 'app/components/editProfile/templates/editProfile.html',
                             controller: 'editProfileCtrl'
                         }
                     }

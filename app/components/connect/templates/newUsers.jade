@@ -1,0 +1,29 @@
+div.row
+  div.col-md-12.connect-helper
+    div.row
+      div.col-md-12
+        h4.text-left Invite your Honey
+        p In order to get the most out of the honeydoo list, invite your better half to join.
+    div.row
+      div.col-md-6
+        h5.text-left Not Registered?
+        p If you can't locate your honey or they haven't registered with Honeydoo List, feel free to use our invitation service.
+      div.col-md-6
+        h5.text-left Send Invitation Email
+        p Just include their email address below and press send. They should receive your request to join immediately!
+div.row
+  div.col-md-8.col-md-offset-2.panel-container
+    div.panel.panel-default
+      div.panel-heading
+        h5.text-center Invite your honey
+      div.panel-body
+        div.text-center(ng-show="disable")
+          p You are currently connected, or have a pending connection status. Check you notifications.
+          p To disconnect with you current honey, visit your account settings
+            a(ui-sref="home.edit_profile") &nbsp;here.
+        div.row
+          div.col-md-6.col-md-offset-3
+            div.input-group
+              input.form-control(type="text", placeholder="Email address", ng-disabled="disable")
+              span.input-group-btn
+                button.btn.btn-secondary(type="submit", ng-disabled="disable") Go!

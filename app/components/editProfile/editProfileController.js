@@ -13,7 +13,7 @@
             $scope.userName = null;
             $scope.gender = null;
             $scope.user = editProfileService.getUserAuth();
-            console.log($scope.user);
+
             var growlerSuccess = function(){
                 growl.warning('<i class="fa fa-check"></i><strong>Alright!&nbsp;</strong>You\'re account changes have been saved successfully', {ttl: 5000});
             };
@@ -56,7 +56,6 @@
                     oldPassword: u.u.oldPassword,
                     newPassword: u.u.newPassword
                 };
-                console.log(userPasswordObj);
 
                 if(u.u.newPassword){
                     editProfileService.changePassword(userPasswordObj)

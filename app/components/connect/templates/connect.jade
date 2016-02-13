@@ -1,0 +1,18 @@
+div.connect-container
+  h3 Connect
+  hr
+  div.connect-navigation
+    ul.nav.nav-tabs
+      li.active
+        a(href=".registered", data-toggle="tab", aria-expanded="true") Registered Users
+      li
+        a(href=".new", data-toggle="tab", aria-expanded="true") New Users
+  div#connectContent.tab-content
+    div.registered.tab-pane.fade.active.in(registered-users)
+    div.new.tab-pane.fade(new-users)
+
+
+
+
+
+

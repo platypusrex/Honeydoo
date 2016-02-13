@@ -66,7 +66,7 @@
     .panel-body {
       select,
       .input-group {
-        padding-top: 15px;
+        margin-bottom: 14px;
       }
 
 
@@ -107,10 +107,10 @@
         animation: .8s zoomInUp;
       }
 
-      &.ng-hide-add {
-        -webkit-animation: .8s zoomOutDown;
-        animation: .8s zoomOutDown;
-      }
+      //&.ng-hide-add {
+      //  -webkit-animation: .8s zoomOutDown;
+      //  animation: .8s zoomOutDown;
+      //}
     }
   }
 }
