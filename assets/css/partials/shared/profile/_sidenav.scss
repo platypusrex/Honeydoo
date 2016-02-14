@@ -117,8 +117,29 @@
       }
     }
 
-    .fa,
-    span {
+    .panel-icon {
+      transition: transform 0.3s;
+      -webkit-transition: transform 0.3s;
+      transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
+      padding: 3px;
+    }
+
+    .open-panel-icon {
+      transform: rotate(180deg);
+      -webkit-transform: rotate(180deg);
+    }
+
+    span,
+    .fa-database,
+    .fa-caret-right,
+    .fa-male,
+    .fa-female,
+    .fa-plus-circle,
+    .fa-link,
+    .fa-comments-o,
+    .fa-cog,
+    .fa-user {
       position: relative;
       top: 50%;
       transform: translateY(-50%);
@@ -127,12 +148,16 @@
     .fa {
       font-size: 20px;
       color: $green2;
+      display: inline-block;
     }
 
     .fa-caret-right,
-    .fa-angle-down,
-    .fa-angle-up {
+    .fa-angle-down, {
       color: #444;
+    }
+
+    .fa-angle-down {
+      padding: 3px
     }
 
     .sub-icon {
@@ -156,10 +181,6 @@
     }
 
     .sub {
-      font-size: 12px;
-    }
-
-    .fa-plus {
       font-size: 12px;
     }
   }

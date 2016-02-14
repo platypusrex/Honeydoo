@@ -25,9 +25,9 @@ div.row
           div.col-md-6.col-md-offset-3
             //div.form-group
             //  selectpicker(data-array="selectData", data-disable="disable", change-disable="changeDisable()", ng-model="myModel") {{myModel}}
-            angucomplete-alt(id="searchHoney", placeholder="Honey Search", pause="200", selected-object="selectedUser", title-field="firstname,lastname", image-field="img", description-field="un", local-data="users", local-search="honeySearch", minlength="0", input-class="form-control", disable-input="disable")
+            angucomplete-alt(id="searchHoney", placeholder="Honey Search", pause="200", selected-object="selectedUser", title-field="firstname,lastname", image-field="img", description-field="un", local-data="users", local-search="honeySearch", minlength="1", input-class="form-control", disable-input="disable")
             p {{selectedUser.description}}
       div.panel-footer(ng-cloak ng-hide="disable || !honey", ng-class="{'connected': !disable}")
         div.confirm-send-container.text-center
-          p Confirm your request to invite {{honey}} to join you:
+          p Confirm your invite to {{honey}}:
           button.btn(type="button", ng-click="!disable && setInviteStatus()") Send request!

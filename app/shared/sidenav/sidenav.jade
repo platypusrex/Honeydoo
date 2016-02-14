@@ -33,7 +33,7 @@ div.col-md-3
         a.list-group-item.main(href="", data-toggle="collapse" data-target="#sm" data-parent="#menu", ng-model="icon1", ng-click="iconToggle(icon1)")
           span Honeydoo's
           i.fa.fa-database.pull-left.list-icon
-          i.fa.pull-right(ng-class="{'fa-angle-down': !iconActive1, 'fa-angle-up': iconActive1}")
+          i.fa.fa-angle-down.pull-right.panel-icon(ng-class="{'open-panel-icon': iconActive1}")
         div#sm.sublinks.collapse
           a.list-group-item.small(ui-sref="home.add")
             span.sub Add Honeydoo
@@ -47,19 +47,15 @@ div.col-md-3
             span.sub Your Honey's List
             i.fa.pull-right.sub-icon(ng-class="{'fa-male': !userIcon, 'fa-female': userIcon}")
             i.fa.fa-caret-right.pull-left
-        a.list-group-item.main(href="", data-toggle="collapse", data-target="#sl", data-parent="#menu", ng-model="icon2", ng-click="iconToggle(icon2)")
+        a.list-group-item.main(href="", data-toggle="collapse", data-target="#sl", data-parent="#menu", ng-model="2", ng-click="iconToggle(icon2)")
           span Account Settings
           i.fa.fa-user.pull-left.list-icon
-          i.fa.pull-right(ng-class="{'fa-angle-down': !iconActive2, 'fa-angle-up': iconActive2}")
+          i.fa.fa-angle-down.panel-icon.pull-right(ng-class="{'open-panel-icon': iconActive2}")
         div#sl.sublinks.collapse
           a.list-group-item.small(ui-sref="home.edit_profile")
             span.sub Edit Profile
             i.fa.fa-cog.pull-right.sub-icon
             i.fa.fa-caret-right.pull-left
-          //a.list-group-item.small(ui-sref="home.add_pic")
-          //  span.sub Add Profile Pic
-          //  i.fa.fa-image.pull-right.sub-icon
-          //  i.fa.fa-caret-right.pull-left
           a.list-group-item.small(ui-sref="home.connect")
             span.sub Connect with your Honey
             i.fa.fa-link.pull-right.sub-icon

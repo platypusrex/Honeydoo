@@ -39,7 +39,6 @@
             };
 
             $scope.changeContent = function(val){
-                console.log(val);
                 if(val === 1){
                     $state.go('connect');
                 }

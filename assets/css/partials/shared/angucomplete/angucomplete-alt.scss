@@ -37,7 +37,7 @@
 }
 
 .angucomplete-selected-row {
-  background-color: $green2;
+  background-color: lighten($blue1, 10%);
   color: #ffffff;
 }
 

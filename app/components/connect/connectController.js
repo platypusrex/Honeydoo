@@ -13,6 +13,7 @@
             $scope.honey = null;
             $scope.honeyUid = null;
             $scope.disable = false;
+            $scope.users = null;
             var usersData = connectService.getUsers();
             var inviteStatus = sidenavService.getInvitationStatus($scope.user.uid);
 
@@ -25,21 +26,6 @@
                             this.push({firstname: val.firstname, lastname: val.lastname, value: val.$id, un: val.username, img: val.image});
                         }
                     }, $scope.users);
-
-                    $scope.honeySearch = function(str){
-                        var matches = [];
-                        $scope.users.forEach(function(user){
-                            var fullname = user.firstname + ' ' + user.lastname;
-                            if ((user.firstname.toLowerCase().indexOf(str.toString().toLowerCase()) >= 0) ||
-                                (user.lastname.toLowerCase().indexOf(str.toString().toLowerCase()) >= 0) ||
-                                (fullname.toLowerCase().indexOf(str.toString().toLowerCase()) >= 0))
-                            {
-                                matches.push(user);
-                            }
-                            console.log(matches);
-                        });
-                        return matches;
-                    };
 
                     //$timeout(function(){
                     //    $scope.selectData = {
@@ -54,6 +40,20 @@
                     console.log(error);
                 }
             );
+
+            $scope.honeySearch = function(str){
+                var matches = [];
+                $scope.users.forEach(function(user){
+                    var fullname = user.firstname + ' ' + user.lastname;
+                    if ((user.firstname.toLowerCase().indexOf(str.toString().toLowerCase()) >= 0) ||
+                        (user.lastname.toLowerCase().indexOf(str.toString().toLowerCase()) >= 0) ||
+                        (fullname.toLowerCase().indexOf(str.toString().toLowerCase()) >= 0))
+                    {
+                        matches.push(user);
+                    }
+                });
+                return matches;
+            };
 
             var growlerMessage = function(){
                 growl.warning('<i class="fa fa-check"></i><strong>Yay!&nbsp;</strong>You\'re invite has been sent to ' + $scope.honey, {ttl: 5000});
