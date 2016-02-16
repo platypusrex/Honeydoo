@@ -40,16 +40,17 @@
   }
 
   #editProfileContent {
-    h4 {
-      margin-bottom: 25px;
-    }
+    //h4 {
+    //  margin-bottom: 25px;
+    //}
   }
 
   .edit-profile-form-container,
-  .edit-profile-pic-container {
+  .edit-profile-pic-container,
+  .edit-profile-disconnect-container {
     border: 1px solid #ddd;
     padding: 20px 0;
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   }
 
   .edit-profile-form-container {
@@ -120,8 +121,117 @@
       margin: 0 0 25px 0;
 
       img {
-        border: 2px solid #bbb;
+        border: 1px solid #bbb;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
       }
+    }
+  }
+
+  .card-container {
+    &:first-child {
+      margin-bottom: 15px;
+    }
+  }
+
+  .edit-profile-disconnect-container {
+    padding: 0 25px 25px 25px;
+
+    .profile-img-container {
+      padding: 20px;
+      text-align: center;
+      background: $green3;
+      border-radius: 2px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+      transition: box-shadow .3s ease-in-out;
+
+      &:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+      }
+    }
+
+    .name-details {
+      display: inline-block;
+      padding-left: 8px;
+    }
+
+    .email-details {
+      p {
+        display: inline-block
+      }
+    }
+
+    .badge {
+      position: absolute;
+      top: 10%;
+      right: -2%;
+      background: #fff;
+      border: 1px solid #ddd;
+      color: #777;
+      border-radius: 2px;
+      padding: 8px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+      width: 80px;
+    }
+
+    img {
+      height: 120px;
+      width: 120px;
+      border: 2px solid #ddd;
+    }
+
+    h4 {
+      margin: 14px 0;
+    }
+
+    h6 {
+      margin: 0;
+    }
+
+    hr {
+      margin-bottom: 0;
+    }
+
+    .lead {
+      margin: 0;
+    }
+
+    .reminder {
+      margin-bottom: 7px;
+    }
+
+    .fa-close {
+      font-size: 24px;
+      position: absolute;
+      top: 5%;
+      right: 0;
+    }
+
+    .fa-male,
+    .fa-female {
+      font-size: 38px;
+      position: relative;
+      top: -5px;
+    }
+
+    .fa-exchange {
+      font-size: 28px;
+      position: relative;
+      top: 10px;
+    }
+
+    .fa-question-circle {
+      font-size: 120px;
+      color: #fff;
+    }
+
+    .fa-question {
+      font-size: 50px;
+    }
+
+    .account-info {
+      border: 1px solid #ddd;
+      padding: 12px;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
     }
   }
 }

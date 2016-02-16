@@ -6,13 +6,17 @@
         'editProfileService',
         'firebaseDataService',
         'growl',
-        function($scope, editProfileService, firebaseDataService, growl){
+        '$timeout',
+        function($scope, editProfileService, firebaseDataService, growl, $timeout){
             var honeyUid = null;
             $scope.firstName = null;
             $scope.lastName = null;
             $scope.userName = null;
             $scope.gender = null;
+            $scope.userObject = {};
+            $scope.honeyObject = null;
             $scope.user = editProfileService.getUserAuth();
+            $scope.disable = false;
 
             var growlerSuccess = function(){
                 growl.warning('<i class="fa fa-check"></i><strong>Alright!&nbsp;</strong>You\'re account changes have been saved successfully', {ttl: 5000});
@@ -43,7 +47,7 @@
             };
 
             $scope.submitUpdate = function(u){
-                var userObj = {
+                var newUserObj = {
                     uuid: $scope.user.uid,
                     huid: honeyUid,
                     first: u.u.fname,
@@ -60,7 +64,7 @@
                 if(u.u.newPassword){
                     editProfileService.changePassword(userPasswordObj)
                         .then(function(){
-                            saveUserData(userObj);
+                            saveUserData(newUserObj);
                         })
                         .then(function(){
                             $scope.u = {};
@@ -71,7 +75,7 @@
                             growlerError(error);
                         });
                 }else {
-                    saveUserData(userObj);
+                    saveUserData(newUserObj);
                     $scope.u = {};
                     $scope.updateForm.$setPristine();
                     $scope.updateForm.$setUntouched();
@@ -87,6 +91,7 @@
                         $scope.lastName = data.lastname;
                         $scope.userName = data.username;
                         $scope.gender = data.gender;
+                        $scope.userObject = data;
                         honeyUid = data.honey.uid;
 
                         if(data.gender === 'his'){
@@ -95,6 +100,23 @@
                         if(data.gender === 'hers'){
                             $scope.hers = true;
                         }
+
+                        $timeout(function(){
+                            if($scope.userObject.invitation.status === 'connected'){
+                                var honeyData = editProfileService.getUserData(honeyUid);
+                                console.log(honeyData);
+                                honeyData.$loaded(
+                                    function(data){
+                                        $scope.honeyObject = data;
+                                    },
+                                    function(error){
+                                        console.log(error);
+                                        growlerError(error);
+                                    }
+                                )
+                            }
+                        });
+
                     },
                     function(error){
                         console.log(error);
@@ -102,5 +124,9 @@
                 );
             }
 
+            if(!$scope.honeyObject){
+                $scope.disable = true;
+            }
+            console.log($scope.disable);
     }]);
 }(angular.module('EditProfileModule')));

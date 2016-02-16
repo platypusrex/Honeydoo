@@ -1,1 +1,66 @@
-p.lead This is where you disconnect from you current partner
+div.row
+  div.col-lg-10.col-lg-offset-1.card-container
+    div.edit-profile-disconnect-container
+      div.row
+        div.col-lg-12
+          h4 Your Account
+          div.row
+            div.col-lg-4
+              div.profile-img-container
+                div.badge {{userObject.invitation.status}}
+                img.img-circle(ng-src="{{user.password.profileImageURL}}")
+            div.col-lg-8
+              div.account-info
+                div.row
+                  div.col-lg-5.text-right
+                    i.fa(ng-class="his ? 'fa-male' : 'fa-female'")
+                    div.name-details
+                      p.lead {{userObject.firstname}}&nbsp;{{userObject.lastname}}
+                      p.small.text-left {{userObject.username}}
+                  div.col-lg-2.text-center
+                    i.fa.fa-exchange
+                  div.col-lg-5.text-left
+                    i.fa(ng-class="(userObject.gender === 'his') ? 'fa-female' : 'fa-male'", ng-hide="userObject.honey.uid === 'none'")
+                    div.text-center(ng-show="userObject.honey.uid === 'none'")
+                      i.fa.fa-question
+                    div.name-details(ng-hide="userObject.honey.uid === 'none'")
+                      p.lead {{honeyObject.firstname}}&nbsp;{{honeyObject.lastname}}
+                      p.small {{honeyObject.username}}
+                div.row
+                  div.col-lg-12
+                    h6 Remember:
+                    p.reminder Removing your account is permanent. All account data will be lost.
+                    button.btn-btn-default() Remove Account
+      hr
+      div.row
+        div.col-lg-12
+          h4 Your Honey
+          div.row
+            div.col-lg-4
+              div.profile-img-container
+                div.badge {{honeyObject.invitation.status}}
+                img.img-circle(ng-src="{{honeyObject.image}}" ng-hide="userObject.honey.uid === 'none'")
+                i.fa.fa-question-circle(ng-show="userObject.honey.uid === 'none'")
+            div.col-lg-8
+              div.account-info
+                div.row
+                  div.col-lg-5.text-right
+                    i.fa(ng-class="(honeyObject.gender === 'hers') ? 'fa-female' : 'fa-male'", ng-hide="userObject.honey.uid === 'none'")
+                    div.text-center(ng-show="userObject.honey.uid === 'none'")
+                      i.fa.fa-question
+                    div.name-details(ng-hide="userObject.honey.uid === 'none'")
+                      p.lead {{honeyObject.firstname}}&nbsp;{{honeyObject.lastname}}
+                      p.small.text-left {{honeyObject.username}}
+                  div.col-lg-2.text-center
+                    i.fa.fa-exchange
+                  div.col-lg-5.text-left
+                    i.fa(ng-class="(honeyObject.gender === 'hers') ? 'fa-male' : 'fa-female'")
+                    div.name-details
+                      p.lead {{userObject.firstname}}&nbsp;{{userObject.lastname}}
+                      p.small {{userObject.username}}
+                div.row
+                  div.col-lg-12
+                    h6 Remember:
+                    p.reminder(ng-hide="userObject.honey.uid === 'none'") Disconnecting from your honey will cause all shared data to be lost.
+                    p.reminder(ng-show="userObject.honey.uid === 'none'") You have to connect with someone before you can disconnect. ;)
+                    button.btn-btn-default(type="button", ng-disabled="honeyObject === null") Remove Account

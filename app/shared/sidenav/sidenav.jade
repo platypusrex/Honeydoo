@@ -5,9 +5,9 @@ div.col-md-3
         img.img-circle(ng-src="{{user.password.profileImageURL}}")
       div.profile-usertitle
         div.usertitle-name
-          h5 {{username}}
+          h5(ng-bind="firstLastName")
         div.usertitle-email
-          p {{firstLastName}}
+          p(ng-bind="username")
       div.profile-userbutton
         button.btn.btn-warning.btn-block(type="button", data-toggle="collapse", data-target="#notificationWell", aria-expanded="false", aria-controls="notificationWell") Notifications &nbsp;
           i.fa.fa-bell-o
