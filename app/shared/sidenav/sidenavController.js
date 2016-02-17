@@ -11,8 +11,6 @@
             $scope.user = sidenavService.getUserAuth();
             $scope.iconActive1 = false;
             $scope.iconActive2 = false;
-            $scope.icon1 = 1;
-            $scope.icon2 = 2;
             $scope.username = null;
             var firstName = null;
             var lastName = null;

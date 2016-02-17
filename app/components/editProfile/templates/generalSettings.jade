@@ -9,15 +9,15 @@ div.row
             div.form-group
               label.col-lg-2.control-label(for="firstName") First Name
               div.col-lg-9
-                input#firstName.form-control(type="text", ng-model="u.fname" placeholder="{{firstName}}")
+                input#firstName.form-control(type="text", ng-model="u.fname" placeholder="{{userObject.firstname}}")
             div.form-group
               label.col-lg-2.control-label(for="firstName") Last Name
               div.col-lg-9
-                input#lastName.form-control(type="text", ng-model="u.lname", placeholder="{{lastName}}")
+                input#lastName.form-control(type="text", ng-model="u.lname", placeholder="{{userObject.lastname}}")
             div.form-group
               label.col-lg-2.control-label(for="userName") Username
               div.col-lg-9
-                input#userName.form-control(type="text", ng-model="u.uname", placeholder="{{userName}}")
+                input#userName.form-control(type="text", ng-model="u.uname", placeholder="{{userObject.username}}")
             div.form-group
               label.col-lg-2.control-label(for="gender") Gender
               label.radio-inline

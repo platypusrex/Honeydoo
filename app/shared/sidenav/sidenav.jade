@@ -5,9 +5,9 @@ div.col-md-3
         img.img-circle(ng-src="{{user.password.profileImageURL}}")
       div.profile-usertitle
         div.usertitle-name
-          h5(ng-bind="firstLastName")
+          h5(ng-bind="username")
         div.usertitle-email
-          p(ng-bind="username")
+          p(ng-bind="firstLastName")
       div.profile-userbutton
         button.btn.btn-warning.btn-block(type="button", data-toggle="collapse", data-target="#notificationWell", aria-expanded="false", aria-controls="notificationWell") Notifications &nbsp;
           i.fa.fa-bell-o
@@ -30,7 +30,7 @@ div.col-md-3
               h6 You're invitation to {{honeyName}} was denied.
     div.profile-usermenu
       div.panel.list-group
-        a.list-group-item.main(href="", data-toggle="collapse" data-target="#sm" data-parent="#menu", ng-model="icon1", ng-click="iconToggle(icon1)")
+        a.list-group-item.main(href="", data-toggle="collapse" data-target="#sm" data-parent="#menu", ng-click="iconToggle(1)")
           span Honeydoo's
           i.fa.fa-database.pull-left.list-icon
           i.fa.fa-angle-down.pull-right.panel-icon(ng-class="{'open-panel-icon': iconActive1}")
@@ -47,7 +47,7 @@ div.col-md-3
             span.sub Your Honey's List
             i.fa.pull-right.sub-icon(ng-class="{'fa-male': !userIcon, 'fa-female': userIcon}")
             i.fa.fa-caret-right.pull-left
-        a.list-group-item.main(href="", data-toggle="collapse", data-target="#sl", data-parent="#menu", ng-model="2", ng-click="iconToggle(icon2)")
+        a.list-group-item.main(href="", data-toggle="collapse", data-target="#sl", data-parent="#menu", ng-click="iconToggle(2)")
           span Account Settings
           i.fa.fa-user.pull-left.list-icon
           i.fa.fa-angle-down.panel-icon.pull-right(ng-class="{'open-panel-icon': iconActive2}")
