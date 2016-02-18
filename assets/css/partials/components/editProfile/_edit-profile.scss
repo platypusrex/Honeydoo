@@ -143,6 +143,7 @@
       border-radius: 2px;
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
       transition: box-shadow .3s ease-in-out;
+      height: 160px;
 
       &:hover {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
@@ -183,16 +184,17 @@
       margin: 14px 0;
     }
 
-    h6 {
-      margin: 0;
-    }
-
     hr {
       margin-bottom: 0;
     }
 
-    .lead {
+    h6 {
+      padding: 0;
       margin: 0;
+    }
+
+    .small {
+      margin-bottom: 0;
     }
 
     .reminder {
@@ -208,15 +210,15 @@
 
     .fa-male,
     .fa-female {
-      font-size: 38px;
+      font-size: 28px;
       position: relative;
-      top: -5px;
+      top: -3px;
     }
 
     .fa-exchange {
       font-size: 28px;
       position: relative;
-      top: 10px;
+      top: 5px;
     }
 
     .fa-question-circle {
@@ -232,6 +234,16 @@
       border: 1px solid #ddd;
       padding: 12px;
       box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+      height: 160px;
+
+      .connection-container {
+        margin-bottom: 20px;
+      }
+
+      .form-control {
+        height: 30px;
+        text-align: center;
+      }
     }
   }
 }

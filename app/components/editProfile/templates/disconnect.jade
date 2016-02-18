@@ -11,26 +11,33 @@ div.row
                 img.img-circle(ng-src="{{user.password.profileImageURL}}")
             div.col-lg-8
               div.account-info
-                div.row
+                div.row.connection-container
                   div.col-lg-5.text-right
                     i.fa(ng-class="(userObject.gender === 'his') ? 'fa-male' : 'fa-female'")
                     div.name-details
-                      p.lead(ng-bind="userObject.firstname + ' ' + userObject.lastname")
+                      h6(ng-bind="userObject.firstname + ' ' + userObject.lastname")
                       p.small.text-left(ng-bind="userObject.username")
                   div.col-lg-2.text-center
                     i.fa.fa-exchange
                   div.col-lg-5.text-left
-                    i.fa(ng-class="(honeyObject.gender === 'his') ? 'fa-male' : 'fa-female'", ng-hide="userObject.honey.uid === 'none'")
+                    i.fa(ng-class="(honeyGender === 'his') ? 'fa-male' : 'fa-female'", ng-hide="userObject.honey.uid === 'none'")
                     div.text-center(ng-show="disable")
                       i.fa.fa-question
                     div.name-details(ng-hide="disable")
-                      p.lead() {{honeyObject.firstname}}&nbsp;{{honeyObject.lastname}}
-                      p.small() {{honeyObject.username}}
+                      h6(ng-bind="honeyName")
+                      p.small(ng-bind="honeyUsername")
                 div.row
-                  div.col-lg-12
+                  div.col-lg-12.reminder-container
                     h6 Remember:
                     p.reminder Removing your account is permanent. All account data will be lost.
-                    button.btn-btn-default() Remove Account
+                    button.btn-btn-default(ng-show="!deleteUser", ng-click="deleteAccount()") Remove Account
+                  div.col-lg-12.user-password-container(ng-show="deleteUser")
+                    div.input-group
+                      span.input-group-btn
+                        button.btn.btn-secondary.btn-sm(type="submit") Cancel
+                      input.form-control(type="password", placeholder="Password")
+                      span.input-group-btn
+                        button.btn.btn-secondary.btn-sm(type="submit") Delete
       hr
       div.row
         div.col-lg-12
@@ -38,28 +45,28 @@ div.row
           div.row
             div.col-lg-4
               div.profile-img-container
-                div.badge(ng-bind="honeyObject.invitation.status")
-                img.img-circle(ng-src="{{honeyObject.image}}", ng-show="!disable")
+                div.badge(ng-bind="honeyStatus")
+                img.img-circle(ng-show="!disable", ng-src="{{honeyImg}}")
                 i.fa.fa-question-circle(ng-hide="!disable")
             div.col-lg-8
               div.account-info
-                div.row
+                div.row.connection-container
                   div.col-lg-5.text-right
-                    i.fa(ng-class="(honeyObject.gender === 'his') ? 'fa-male' : 'fa-female'", ng-hide="disable")
+                    i.fa(ng-class="(honeyGender === 'his') ? 'fa-male' : 'fa-female'", ng-hide="disable")
                     div.text-center(ng-show="disable")
                       i.fa.fa-question
                     div.name-details(ng-hide="disable")
-                      p.lead(ng-bind="honeyObject.firstname + ' ' + honeyObject.lastname")
-                      p.small.text-left(ng-bind="honeyObject.username")
+                      h6(ng-bind="honeyName")
+                      p.small.text-left(ng-bind="honeyUsername")
                   div.col-lg-2.text-center
                     i.fa.fa-exchange
                   div.col-lg-5.text-left
                     i.fa(ng-class="(userObject.gender === 'his') ? 'fa-male' : 'fa-female'")
                     div.name-details
-                      p.lead(ng-bind="userObject.firstname + ' ' + userObject.lastname")
+                      h6(ng-bind="userObject.firstname + ' ' + userObject.lastname")
                       p.small(ng-bind="userObject.username")
                 div.row
-                  div.col-lg-12
+                  div.col-lg-12.reminder-container
                     h6 Remember:
                     p.reminder(ng-hide="disable") Disconnecting from your honey will cause all shared data to be lost.
                     p.reminder(ng-show="disable") You have to connect with someone before you can disconnect. ;)

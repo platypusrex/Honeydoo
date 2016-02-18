@@ -14,7 +14,7 @@
             $scope.honeyUid = null;
             $scope.disable = false;
             $scope.users = null;
-            var placeholder = 'http://img.photobucket.com/albums/v219/CaptApril/Star%20Trek%20Concordance/Placeholder.jpg';
+            var placeholder = 'http://www.disruptorbeam.com/assets/uploaded/news-thumbnails/Spock_final_thumb.png';//http://img.photobucket.com/albums/v219/CaptApril/Star%20Trek%20Concordance/Placeholder.jpg';
             var usersData = connectService.getUsers();
             var inviteStatus = sidenavService.getInvitationStatus($scope.user.uid);
             console.log()

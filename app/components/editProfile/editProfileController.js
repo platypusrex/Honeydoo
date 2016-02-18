@@ -11,9 +11,9 @@
         function($scope, editProfileService, firebaseDataService, sidenavService, growl, $timeout){
             var honeyUid = null;
             $scope.userObject = null;
-            $scope.honeyObject = null;
             $scope.disable = true;
             $scope.user = editProfileService.getUserAuth();
+            $scope.deleteUser = false;
             var inviteStatus = sidenavService.getInvitationStatus($scope.user.uid);
             var userData = editProfileService.getUserData($scope.user.uid);
 
@@ -29,54 +29,38 @@
                         $scope.hers = true;
                     }
 
-                    //if(honeyUid){
-                    //    var honeyData = editProfileService.getUserData(honeyUid);
-                    //
-                    //    honeyData.$loaded(
-                    //        function(data){
-                    //            $scope.honeyObject = data;
-                    //
-                    //        },
-                    //        function(error){
-                    //            console.log(error);
-                    //            growlerError(error);
-                    //        }
-                    //    );
-                    //
-                    //    honeyData.$bindTo($scope, 'honeyObject').then(function(){
-                    //        $scope.$watch('honeyObject', function(obj){
-                    //            $scope.honeyObject = obj;
-                    //        });
-                    //    });
-                    //}
+                    inviteStatus.$bindTo($scope, 'status').then(function(){
+                        $scope.$watch('status.status', function(status){
+                            if(status === 'connected'){
+                                $scope.disable = false;
+                            }
+                            if(status === 'denied' || status === 'rejected' || status === 'sent' || status === 'received'){
+                                $scope.disable = true;
+                            }
+                        });
+
+                        $scope.$watch('status.userId', function(userId){
+                            var honeyData = sidenavService.getUserData(userId);
+
+                            honeyData.$loaded(
+                                function(data){
+                                    $scope.honeyUsername = data.username;
+                                    $scope.honeyName = data.firstname + ' ' + data.lastname;
+                                    $scope.honeyImg = data.image;
+                                    $scope.honeyGender = data.gender;
+                                    $scope.honeyStatus = data.invitation.status;
+                                },
+                                function(error){
+                                    growlerError(error);
+                                }
+                            );
+                        });
+                    });
                 },
                 function(error){
                     growlerError(error);
                 }
             );
-
-            inviteStatus.$bindTo($scope, 'status').then(function(){
-                $scope.$watch('status.status', function(status){
-                    if(status === 'connected'){
-                        $scope.disable = false;
-                    }
-                    if(status === 'denied' || status === 'rejected' || status === 'sent' || status === 'received'){
-                        $scope.disable = true;
-                    }
-                });
-            });
-
-            $timeout(function(){
-                if(honeyUid){
-                    var honeyData = editProfileService.getUserData(honeyUid);
-                    honeyData.$bindTo($scope, 'honeyObject').then(function(){
-                        $scope.$watch('honeyObject', function(obj){
-                            $scope.honeyObject = obj;
-                        });
-                    });
-                    console.log($scope.honeyObject);
-                }
-            }, 1000);
 
             var growlerSuccess = function(){
                 growl.warning('<i class="fa fa-check"></i><strong>Alright!&nbsp;</strong>You\'re account changes have been saved successfully', {ttl: 5000});
@@ -142,6 +126,10 @@
                     $scope.updateForm.$setPristine();
                     $scope.updateForm.$setUntouched();
                 }
+            };
+
+            $scope.deleteAccount = function(){
+                $scope.deleteUser = true;
             };
     }]);
 }(angular.module('EditProfileModule')));

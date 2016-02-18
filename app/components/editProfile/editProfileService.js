@@ -23,6 +23,13 @@
                 });
             };
 
+            var deleteAccount = function(userObj){
+                return authService.firebaseAuthObject.$removeUser({
+                    email: userObj.email,
+                    password: userObj.password
+                });
+            };
+
             return {
                 getUserAuth: getUserAuth,
                 getUserData: getUserData,
