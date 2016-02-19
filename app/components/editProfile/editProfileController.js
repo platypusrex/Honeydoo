@@ -8,7 +8,8 @@
         'sidenavService',
         'growl',
         '$timeout',
-        function($scope, editProfileService, firebaseDataService, sidenavService, growl, $timeout){
+        '$state',
+        function($scope, editProfileService, firebaseDataService, sidenavService, growl, $timeout, $state){
             var honeyUid = null;
             $scope.userObject = null;
             $scope.disable = true;
@@ -42,18 +43,23 @@
                         $scope.$watch('status.userId', function(userId){
                             var honeyData = sidenavService.getUserData(userId);
 
+                            if(!honeyUid){
+                                honeyUid = userId;
+                            }
+
                             honeyData.$loaded(
-                                function(data){
+                                function (data) {
                                     $scope.honeyUsername = data.username;
                                     $scope.honeyName = data.firstname + ' ' + data.lastname;
                                     $scope.honeyImg = data.image;
                                     $scope.honeyGender = data.gender;
                                     $scope.honeyStatus = data.invitation.status;
                                 },
-                                function(error){
+                                function (error) {
                                     growlerError(error);
                                 }
                             );
+
                         });
                     });
                 },
@@ -128,8 +134,56 @@
                 }
             };
 
-            $scope.deleteAccount = function(){
+            $scope.initDelete = function(){
                 $scope.deleteUser = true;
             };
+
+            $scope.cancelDelete = function(){
+                $scope.deleteUser = false;
+            };
+
+            $scope.deleteAcct = function(password){
+                var ref = firebaseDataService.users;
+                var userUid = $scope.user.uid;
+                var userObj = {
+                    email: $scope.user.password.email,
+                    password: password
+                };
+
+                if(honeyUid){
+                    ref.child(honeyUid).update({
+                        honey: {
+                            firstname: 'none',
+                            lastname: 'none',
+                            uid: 'none',
+                            username: 'none'
+                        },
+                        invitation: {
+                            notification: 'none',
+                            status: 'none',
+                            userId: 'none'
+                        }
+                    })
+                }
+
+                var onComplete = function(error) {
+                    if (error) {
+                        console.log('Synchronization failed');
+                    } else {
+                        console.log('Synchronization succeeded');
+                    }
+                };
+
+                editProfileService.deleteAccount(userObj)
+                    .then(function(){
+                        console.log('they gone');
+                        ref.child(userUid).remove(onComplete);
+                        $state.go('login');
+                    })
+                    .catch(function(err){
+                        growlerError(err);
+                    });
+            };
+            console.log(honeyUid);
     }]);
 }(angular.module('EditProfileModule')));

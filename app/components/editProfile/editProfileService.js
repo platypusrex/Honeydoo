@@ -25,15 +25,16 @@
 
             var deleteAccount = function(userObj){
                 return authService.firebaseAuthObject.$removeUser({
-                    email: userObj.email,
-                    password: userObj.password
+                    password: userObj.password,
+                    email: userObj.email
                 });
             };
 
             return {
                 getUserAuth: getUserAuth,
                 getUserData: getUserData,
-                changePassword: changePassword
+                changePassword: changePassword,
+                deleteAccount: deleteAccount
             }
     }]);
 }(angular.module('EditProfileModule')));
