@@ -30,14 +30,14 @@ div.row
                   div.col-lg-12.reminder-container
                     h6 Remember:
                     p.reminder Removing your account is permanent. All account data will be lost.
-                    button.btn-btn-default(ng-show="!deleteUser", ng-click="initDelete()") Remove Account
+                    button.btn.btn-default.btn-sm(ng-show="!deleteUser", ng-click="initDelete()") Remove Account
                   div.col-lg-12.user-password-container(ng-show="deleteUser")
                     div.input-group
                       span.input-group-btn
-                        button.btn.btn-secondary.btn-sm(type="submit", ng-click="cancelDelete()") Cancel
+                        button.btn.btn-default.btn-sm(type="submit", ng-click="cancelDelete()") Cancel
                       input.form-control(type="password", placeholder="Password", ng-model="pword")
                       span.input-group-btn
-                        button.btn.btn-secondary.btn-sm(type="submit", ng-click="deleteAcct(pword)") Delete
+                        button.btn.btn-default.btn-sm(type="submit", ng-click="deleteAcct(pword)") Delete
       hr
       div.row
         div.col-lg-12
@@ -70,4 +70,4 @@ div.row
                     h6 Remember:
                     p.reminder(ng-hide="disable") Disconnecting from your honey will cause all shared data to be lost.
                     p.reminder(ng-show="disable") You have to connect with someone before you can disconnect. ;)
-                    button.btn-btn-default(type="button", ng-disabled="disable") Remove Account
+                    button.btn.btn-default.btn-sm(type="button", ng-class="{'disabled': disable}", ng-click="disconnectHoney()") Remove Account

@@ -7,6 +7,7 @@
         'ngSanitize',
         'angular-growl',
         'angucomplete-alt',
+        'ModalModule',
         'firebase',
         'AuthModule',
         'NavModule',
@@ -19,7 +20,8 @@
         'PartnerListModule',
         'EditProfileModule',
         'AddPicModule',
-        'ConnectModule'
+        'ConnectModule',
+        'HoneyChatModule',
         ])
         .config(['$stateProvider', '$urlRouterProvider', 'growlProvider', function($stateProvider, $urlRouterProvider, growlProvider){
             growlProvider.globalEnableHtml(true);

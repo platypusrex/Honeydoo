@@ -1,0 +1,26 @@
+div.modal.fade.honey-chat-container
+  div.modal-dialog
+    div.modal-content
+      div.modal-header
+        button.close(type="button", ng-click="close(false)", data-dismiss="modal", aria-hidden="true")&times;
+        h5 Honeychat
+      div.modal-body
+        ul.list-group
+          li.list-group-item
+            div.row
+              div.col-lg-2
+                h6.modal-title p_rex
+                img.img-circle(ng-src="{{user.password.profileImageURL}}")
+              div.col-lg-9.chat-content-container
+                p this is a new chat message....so suck it.
+          li.list-group-item
+            div.row
+              div.col-lg-2
+                h6 baby_girl
+                img.img-circle(ng-src="{{user.password.profileImageURL}}")
+              div.col-lg-9.chat-content-container
+                p this is my new chat message...and I'm just a little chatty Cathy. Blah..blah..blah....turkey butt.
+      div.modal-footer
+        button.btn.btn-default(type="button", ng-click="close(false)", data-dismiss="modal") Close
+
+

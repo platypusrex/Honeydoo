@@ -55,15 +55,6 @@
                         }
                     }
                 })
-                //.state('home.add_pic', {
-                //    url: '/add_pic',
-                //    views: {
-                //        'add-pic': {
-                //            templateUrl: 'app/components/addPic/addPic.html',
-                //            controller: 'addPicCtrl'
-                //        }
-                //    }
-                //})
                 .state('home.edit_profile', {
                     url: '/edit_profile',
                     views: {

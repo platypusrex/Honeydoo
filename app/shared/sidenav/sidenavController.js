@@ -7,7 +7,8 @@
         '$state',
         'firebaseDataService',
         'growl',
-        function($scope, sidenavService, $state, firebaseDataService, growl){
+        'ModalService',
+        function($scope, sidenavService, $state, firebaseDataService, growl, ModalService){
             $scope.user = sidenavService.getUserAuth();
             $scope.iconActive1 = false;
             $scope.iconActive2 = false;
@@ -78,6 +79,18 @@
                 ref.child($scope.user.uid).child('invitation').update({
                     status: 'rejected'
                 }, growlerRejectMessage());
+            };
+
+            $scope.showHoneyChat = function() {
+                ModalService.showModal({
+                    templateUrl: "app/components/honeyChat/honeyChat.html",
+                    controller: "honeyChatCtrl"
+                }).then(function(modal) {
+                    modal.element.modal();
+                    modal.close.then(function(result) {
+                        console.log('hey dude')
+                    });
+                });
             };
 
             if($scope.user){

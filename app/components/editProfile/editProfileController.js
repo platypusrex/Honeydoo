@@ -10,13 +10,14 @@
         '$timeout',
         '$state',
         function($scope, editProfileService, firebaseDataService, sidenavService, growl, $timeout, $state){
-            var honeyUid = null;
             $scope.userObject = null;
             $scope.disable = true;
             $scope.user = editProfileService.getUserAuth();
             $scope.deleteUser = false;
+            var honeyUid = null;
             var inviteStatus = sidenavService.getInvitationStatus($scope.user.uid);
             var userData = editProfileService.getUserData($scope.user.uid);
+            var basicRef = firebaseDataService.users;
 
             userData.$loaded(
                 function(data){
@@ -32,6 +33,7 @@
 
                     inviteStatus.$bindTo($scope, 'status').then(function(){
                         $scope.$watch('status.status', function(status){
+                            $scope.honeyStatus = status;
                             if(status === 'connected'){
                                 $scope.disable = false;
                             }
@@ -77,9 +79,7 @@
             };
 
             var saveUserData = function(userObj){
-                var ref = firebaseDataService.users;
-
-                ref.child(userObj.uuid).update({
+                basicRef.child(userObj.uuid).update({
                     firstname: (userObj.first) ? userObj.first : $scope.userObject.firstname,
                     lastname: (userObj.last) ? userObj.last : $scope.userObject.lastname,
                     username: (userObj.un) ? userObj.un : $scope.userObject.username,
@@ -87,7 +87,7 @@
                 }, growlerSuccess());
 
                 if(userObj.huid){
-                    ref.child(userObj.huid).update({
+                    basicRef.child(userObj.huid).update({
                         honey: {
                             firstname: (userObj.first) ? userObj.first : $scope.userObject.firstname,
                             lastname: (userObj.last) ? userObj.last : $scope.userObject.lastname,
@@ -143,28 +143,27 @@
             };
 
             $scope.deleteAcct = function(password){
-                var ref = firebaseDataService.users;
                 var userUid = $scope.user.uid;
                 var userObj = {
                     email: $scope.user.password.email,
                     password: password
                 };
 
-                if(honeyUid){
-                    ref.child(honeyUid).update({
-                        honey: {
-                            firstname: 'none',
-                            lastname: 'none',
-                            uid: 'none',
-                            username: 'none'
-                        },
-                        invitation: {
-                            notification: 'none',
-                            status: 'none',
-                            userId: 'none'
-                        }
-                    })
-                }
+                //if(honeyUid){
+                basicRef.child(honeyUid).update({
+                    honey: {
+                        firstname: 'none',
+                        lastname: 'none',
+                        uid: 'none',
+                        username: 'none'
+                    },
+                    invitation: {
+                        notification: 'none',
+                        status: 'none',
+                        userId: 'none'
+                    }
+                });
+                //}
 
                 var onComplete = function(error) {
                     if (error) {
@@ -176,14 +175,44 @@
 
                 editProfileService.deleteAccount(userObj)
                     .then(function(){
-                        console.log('they gone');
-                        ref.child(userUid).remove(onComplete);
+                        basicRef.child(userUid).remove(onComplete);
                         $state.go('login');
                     })
                     .catch(function(err){
                         growlerError(err);
                     });
             };
-            console.log(honeyUid);
+
+            $scope.disconnectHoney = function(){
+                $scope.disable = true;
+
+                basicRef.child($scope.user.uid).update({
+                    honey: {
+                        firstname: 'none',
+                        lastname: 'none',
+                        uid: 'none',
+                        username: 'none'
+                    },
+                    invitation: {
+                        notification: 'none',
+                        status: 'none',
+                        userId: 'none'
+                    }
+                });
+
+                basicRef.child(honeyUid).update({
+                    honey: {
+                        firstname: 'none',
+                        lastname: 'none',
+                        uid: 'none',
+                        username: 'none'
+                    },
+                    invitation: {
+                        notification: 'none',
+                        status: 'none',
+                        userId: 'none'
+                    }
+                });
+            };
     }]);
 }(angular.module('EditProfileModule')));

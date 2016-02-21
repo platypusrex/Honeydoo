@@ -1,0 +1,68 @@
+.honey-chat-container {
+  .modal-dialog {
+    width: 450px;
+  }
+
+  .modal-header {
+    background: $green2;
+
+    h5 {
+      color: #fff;
+    }
+  }
+
+  .modal-body {
+    padding: 0;
+    margin: 0;
+
+    .col-lg-2 {
+      margin-right: 10px;
+      text-align: center
+    }
+
+    .col-lg-9 {
+      //margin-left: 0;
+    }
+  }
+
+  .list-group {
+    padding: 0; //10px 0 0;
+    margin: 0;
+  }
+
+  .list-group-item {
+    border: none;
+    background: $green1;
+
+    img {
+      //display: inline;
+      width: 50px;
+      height: 50px;
+      margin-right: 8px;
+    }
+
+    h6 {
+      //display: inline-block;
+      margin-top: 0;
+    }
+  }
+
+  .chat-content-container {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 20px;
+    background: #fff;
+
+    &:before {
+      border: solid;
+      border-color: #fff transparent;
+      border-width: 10px 10px 0 10px;
+      top: 35%;
+      content: "";
+      left: -14px;
+      position: absolute;
+      z-index: 99;
+      transform: rotate(90deg);
+    }
+  }
+}
