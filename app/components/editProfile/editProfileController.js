@@ -197,7 +197,8 @@
                         notification: 'none',
                         status: 'none',
                         userId: 'none'
-                    }
+                    },
+                    chatId: null
                 });
 
                 basicRef.child(honeyUid).update({
@@ -211,7 +212,8 @@
                         notification: 'none',
                         status: 'none',
                         userId: 'none'
-                    }
+                    },
+                    chatId: null
                 });
             };
     }]);

@@ -45,13 +45,16 @@
 
             $scope.acceptInvite = function(){
                 var ref = firebaseDataService.users;
+                var chatId = sidenavService.getId();
+
                 ref.child($scope.user.uid).update({
                     honey: {
                         uid: honeyId,
                         firstname: honeyFirstName,
                         lastname: honeyLastName,
                         username: honeyUserName
-                    }
+                    },
+                    chatId: chatId
                 }, growlerAcceptMessage());
                 ref.child($scope.user.uid).child('invitation').update({
                     status: 'connected'
@@ -63,7 +66,8 @@
                         firstname: firstName,
                         lastname: lastName,
                         username: $scope.username
-                    }
+                    },
+                    chatId: chatId
                 });
                 ref.child(honeyId).child('invitation').update({
                     status: 'connected'

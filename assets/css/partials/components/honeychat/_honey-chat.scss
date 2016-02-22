@@ -1,6 +1,6 @@
 .honey-chat-container {
   .modal-dialog {
-    width: 450px;
+    width: 420px;
   }
 
   .modal-header {
@@ -15,12 +15,12 @@
     padding: 0;
     margin: 0;
 
-    .col-lg-2 {
-      margin-right: 10px;
+    .col-lg-3 {
+      //margin-right: 10px;
       text-align: center
     }
 
-    .col-lg-9 {
+    .col-lg-8 {
       //margin-left: 0;
     }
   }
@@ -50,7 +50,7 @@
   .chat-content-container {
     border: 1px solid #ddd;
     padding: 10px;
-    border-radius: 20px;
+    border-radius: 10px;
     background: #fff;
 
     &:before {
