@@ -9,11 +9,17 @@
     h5 {
       color: #fff;
     }
+
+    .close {
+      color: #fff;
+    }
   }
 
   .modal-body {
     padding: 0;
     margin: 0;
+    max-height: 400px;
+    overflow-y: auto;
 
     .col-lg-3 {
       //margin-right: 10px;
@@ -26,7 +32,7 @@
   }
 
   .list-group {
-    padding: 0; //10px 0 0;
+    padding: 0;
     margin: 0;
   }
 
@@ -44,6 +50,10 @@
     h6 {
       //display: inline-block;
       margin-top: 0;
+    }
+
+    .small {
+      margin-bottom: 0;
     }
   }
 
