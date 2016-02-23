@@ -54,12 +54,27 @@
 
     .small {
       margin-bottom: 0;
+      color: lighten(#aaa, 10%);
+    }
+  }
+
+  .chat-helper {
+    padding: 12px;
+
+    h6 {
+      display: inline;
+    }
+
+    .fa {
+      font-size: 16px;
+      color: lighten(red, 10%);
+      padding-right: 5px;
     }
   }
 
   .chat-content-container {
     border: 1px solid #ddd;
-    padding: 10px;
+    padding: 4px 10px 10px;
     border-radius: 10px;
     background: #fff;
 
@@ -67,7 +82,7 @@
       border: solid;
       border-color: #fff transparent;
       border-width: 10px 10px 0 10px;
-      top: 35%;
+      top: 43%;
       content: "";
       left: -14px;
       position: absolute;

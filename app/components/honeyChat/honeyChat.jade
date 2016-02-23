@@ -5,7 +5,9 @@ div.modal.fade.honey-chat-container
         button.close(type="button", ng-click="close(false)", data-dismiss="modal", aria-hidden="true")&times;
         h5.modal-title Honeychat
       div.modal-body
-        h5.text-center(ng-show="!showModalBody") You need to connect with someone before using honeychat
+        div.chat-helper.text-center(ng-show="!showModalBody")
+          i.fa.fa-exclamation-triangle
+          h6 You need to connect with someone before using honeychat.
         ul.list-group(ng-show="showModalBody")
           li.list-group-item(ng-repeat="message in messages")
             div.row
@@ -13,7 +15,7 @@ div.modal.fade.honey-chat-container
                 h6 {{message.user}}
                 img.img-circle(ng-src="{{message.img}}")
               div.col-lg-8.chat-content-container
-                p.small {{message.timestamp | date:'medium'}}
+                p.small {{message.timestamp | date:'MMM d, y h:mm a'}}
                 p {{message.text}}
       div.modal-footer
         div.input-group
