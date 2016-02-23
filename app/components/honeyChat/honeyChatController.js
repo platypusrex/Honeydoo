@@ -13,11 +13,10 @@
             $scope.userData = null;
             $scope.honeyData = null;
             $scope.showModalBody = false;
-            //$scope.messages = [
-            //    'this is a message',
-            //    'hey baby girl. Just reminding you to pick up dog food',
-            //    'ok. I\'ll stop by the store on the way home'
-            //];
+
+            $scope.close = function(result) {
+                close(result, 500);
+            };
 
             var growlerError = function(err){
                 growl.warning('<i class="fa fa-times"></i><strong>Oh shizzle my nizzle ' + err, {ttl: 5000})
@@ -60,9 +59,5 @@
                     }
                 );
             }
-
-            $scope.close = function(result) {
-                close(result, 500);
-            };
     }]);
 }(angular.module('HoneyChatModule')));
