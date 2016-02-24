@@ -2,9 +2,9 @@ div.row
   div.col-lg-10.col-lg-offset-1
     div.edit-profile-pic-container
       div.row.img-container
-        div.col-lg-2
-          img.img-responsive(ng-src="{{user.password.profileImageURL}}")
-        div.col-lg-10
+        div.col-lg-2.col-md-2.col-sm-3.col-xs-12
+          img(ng-src="{{user.password.profileImageURL}}")
+        div.col-lg-10.col-md-10.col-sm-9
           h5 Avatar managed by Gravatar
           a.btn.btn-primary(role="button", href="http://en.gravatar.com", target="_blank") Change Image
       div.row.gravatar-info

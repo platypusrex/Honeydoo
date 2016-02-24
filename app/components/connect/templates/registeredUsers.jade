@@ -12,7 +12,7 @@ div.row
         h5.text-left Search and get started
         p If your honey is already a registered user, use the search feature below. Find your significant other, and add them. It's that easy!
 div.row
-  div.col-md-8.col-md-offset-2.panel-container
+  div.col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1.col-xs-12.panel-container
     div.panel.panel-default
       div.panel-heading
         h5.text-center Search for your honey
@@ -22,7 +22,7 @@ div.row
           p To disconnect with you current honey, visit your account settings
             a(ui-sref="home.edit_profile") &nbsp;here.
         div.row()
-          div.col-md-6.col-md-offset-3
+          div.col-lg-6.col-lg-offset-3.col-md-8.col-md-offset-2.col-xs-12
             //div.form-group
             //  selectpicker(data-array="selectData", data-disable="disable", change-disable="changeDisable()", ng-model="myModel") {{myModel}}
             angucomplete-alt(id="searchHoney", placeholder="Honey Search", pause="200", selected-object="selectedUser", title-field="firstname,lastname", image-field="img", description-field="un", local-data="users", local-search="honeySearch", minlength="1", input-class="form-control", disable-input="disable")

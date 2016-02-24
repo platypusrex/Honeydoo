@@ -1,25 +1,25 @@
 div.row
-  div.col-lg-10.col-lg-offset-1.card-container
+  div.col-md-10.col-md-offset-1.card-container
     div.edit-profile-disconnect-container
       div.row
-        div.col-lg-12
+        div.col-md-12
           h4 Your Account
           div.row
-            div.col-lg-4
+            div.col-md-4
               div.profile-img-container
                 div.badge(ng-bind="userObject.invitation.status")
                 img.img-circle(ng-src="{{user.password.profileImageURL}}")
-            div.col-lg-8
+            div.col-md-8
               div.account-info
                 div.row.connection-container
-                  div.col-lg-5.text-right
+                  div.col-xs-5.text-right
                     i.fa(ng-class="(userObject.gender === 'his') ? 'fa-male' : 'fa-female'")
                     div.name-details
                       h6(ng-bind="userObject.firstname + ' ' + userObject.lastname")
                       p.small.text-left(ng-bind="userObject.username")
-                  div.col-lg-2.text-center
+                  div.col-xs-2.text-center
                     i.fa.fa-exchange
-                  div.col-lg-5.text-left
+                  div.col-xs-5.text-left
                     i.fa(ng-class="(honeyGender === 'his') ? 'fa-male' : 'fa-female'", ng-hide="userObject.honey.uid === 'none'")
                     div.text-center(ng-show="disable")
                       i.fa.fa-question
@@ -43,24 +43,24 @@ div.row
         div.col-lg-12
           h4 Your Honey
           div.row
-            div.col-lg-4
+            div.col-md-4
               div.profile-img-container
                 div.badge(ng-bind="honeyStatus")
                 img.img-circle(ng-show="!disable", ng-src="{{honeyImg}}")
                 i.fa.fa-question-circle(ng-hide="!disable")
-            div.col-lg-8
+            div.col-md-8
               div.account-info
                 div.row.connection-container
-                  div.col-lg-5.text-right
+                  div.col-xs-5.text-right
                     i.fa(ng-class="(honeyGender === 'his') ? 'fa-male' : 'fa-female'", ng-hide="disable")
                     div.text-center(ng-show="disable")
                       i.fa.fa-question
                     div.name-details(ng-hide="disable")
                       h6(ng-bind="honeyName")
                       p.small.text-left(ng-bind="honeyUsername")
-                  div.col-lg-2.text-center
+                  div.col-xs-2.text-center
                     i.fa.fa-exchange
-                  div.col-lg-5.text-left
+                  div.col-xs-5.text-left
                     i.fa(ng-class="(userObject.gender === 'his') ? 'fa-male' : 'fa-female'")
                     div.name-details
                       h6(ng-bind="userObject.firstname + ' ' + userObject.lastname")

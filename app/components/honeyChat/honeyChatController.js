@@ -43,6 +43,10 @@
 
                             $scope.messages = honeyChatService.getMessages($scope.userData.chatId);
 
+                            //if($scope.messages.length === 0){
+                            //    $scope.showChatGreeting = true;
+                            //}
+
                             $scope.addMessage = function(message) {
                                 $scope.messages.$add({
                                     img: $scope.userData.image,

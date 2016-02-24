@@ -65,9 +65,15 @@
       display: inline;
     }
 
-    .fa {
+    .fa-exclamation-triangle {
       font-size: 16px;
       color: lighten(red, 10%);
+      padding-right: 5px;
+    }
+
+    .fa-check {
+      font-size: 16px;
+      color: $green2;
       padding-right: 5px;
     }
   }

@@ -24,17 +24,17 @@ div.nav.navbar-custom.navbar-static-top
             li
               div.container-fluid
                 div.row
-                  div.col-lg-4
+                  div.col-sm-4
                     div.user-img-container
                       img.img-rounded(ng-src="{{user.password.profileImageURL}}")
-                  div.col-lg-8.buttons-container
+                  div.col-sm-8.buttons-container
                     div.row
-                      div.col-lg-12.acct-btn-container
+                      div.col-sm-12.acct-btn-container
                         //p.text-center {{user.password.email}}
                         //div.text-left.logout-container
                         //  a.btn.btn-danger.btn-block(ng-click="logOut()") Logout
                         i.fa.fa-cogs
                         p.text-center &nbsp;&nbsp;Account Settings
-                      div.col-lg-12.login-btn-container(ng-click="logOut()")
+                      div.col-sm-12.login-btn-container(ng-click="logOut()")
                         i.fa.fa-power-off
                         p.text-center &nbsp;&nbsp;Sign Out

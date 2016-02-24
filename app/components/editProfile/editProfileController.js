@@ -161,7 +161,8 @@
                         notification: 'none',
                         status: 'none',
                         userId: 'none'
-                    }
+                    },
+                    chatId: null
                 });
                 //}
 
