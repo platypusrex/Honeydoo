@@ -1,7 +1,13 @@
 .edit-profile-container {
+  h3 {
+    display: inline-block;
+    margin-bottom: 20px;
+  }
 
   hr {
     border: 1px solid #ddd;
+    margin: 0 0 25px 0;
+    padding: 0;
   }
 
   .btn-primary {
@@ -34,9 +40,9 @@
   }
 
   .edit-profile-navigation {
-    position: absolute;
-    top: 44px;
-    right: 56px;
+    position: relative;
+    top: 39px;
+    float: right;
   }
 
   #editProfileContent {
