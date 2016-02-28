@@ -27,6 +27,34 @@
     font-size: 20px;
   }
 
+  .sidebar-toggle {
+    border-left: 1px solid #999;
+    border-right: 1px solid #999;
+    width: 65px;
+    height: 65px;
+    text-align: center;
+    transition: all .3s ease-in-out;
+    display: none;
+    margin-left: 20px;
+
+    &:hover {
+      background: lighten($green3, 10%);
+
+      .fa-bars {
+        font-size: 18px;
+        top: 22px;
+      }
+    }
+
+    .fa-bars {
+      color: #fff;
+      position: relative;
+      top: 20px;
+      transition: all .5s ease-in-out;
+      font-size: 14px;
+    }
+  }
+
   .navbar-brand {
     font-family: 'Clicker Script', cursive;
     font-size: 30px;
@@ -138,6 +166,14 @@
         border-radius: 0;
         color: #fff;
       }
+    }
+  }
+}
+
+@include mobile {
+  .navbar-custom {
+    .sidebar-toggle {
+      display: inline-block;
     }
   }
 }

@@ -13,3 +13,13 @@
     padding-left: 7px;
   }
 }
+
+@include mobile {
+  .profile-container {
+    padding: 0;
+
+    .col-md-9 {
+      padding: 0;
+    }
+  }
+}

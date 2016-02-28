@@ -1,6 +1,9 @@
 // Variables
 @import 'globals/variables';
 
+// Mixins
+@import 'globals/mixins';
+
 // Partials: Components
 @import 'partials/components/auth/auth';
 @import 'partials/components/connect/connect';

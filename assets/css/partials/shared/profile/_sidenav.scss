@@ -185,3 +185,11 @@
     }
   }
 }
+
+// Media Queries
+@include mobile {
+  .profile-sidebar-container {
+    position: absolute;
+    margin-left: -250px;
+  }
+}
