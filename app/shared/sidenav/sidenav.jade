@@ -1,4 +1,4 @@
-div.col-lg-3.col-md-3.col-xs-8.profile-sidebar-container(ng-class="{'slideout': getSidenavState()}")
+div.col-lg-3.col-md-3.col-sm-4.col-xs-8.profile-sidebar-container(ng-class="{'slideout': getSidenavState()}")
   div.profile-sidebar
     div.container-fluid.text-center
       div.profile-userpic
@@ -8,7 +8,6 @@ div.col-lg-3.col-md-3.col-xs-8.profile-sidebar-container(ng-class="{'slideout': 
           h5(ng-bind="username")
         div.usertitle-email
           p(ng-bind="firstLastName")
-          p(ng-bind="getSidenavState()")
       div.profile-userbutton
         button.btn.btn-warning.btn-block(type="button", data-toggle="collapse", data-target="#notificationWell", aria-expanded="false", aria-controls="notificationWell") Notifications &nbsp;
           i.fa.fa-bell-o
