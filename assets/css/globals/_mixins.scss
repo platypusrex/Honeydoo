@@ -4,3 +4,21 @@
     @content;
   }
 }
+
+@mixin edit-profile-tabs {
+  @media (max-width: 547px) {
+    @content;
+  }
+}
+
+@mixin edit-profile-tabs-2 {
+  @media (min-width: 768px) and (max-width: 892px) {
+    @content;
+  }
+}
+
+@mixin edit-profile-tabs-3 {
+  @media (max-width: 768px) {
+    @content;
+  }
+}

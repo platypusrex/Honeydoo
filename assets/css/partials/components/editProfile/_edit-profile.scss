@@ -258,3 +258,85 @@
     }
   }
 }
+
+@include edit-profile-tabs {
+  .edit-profile-container {
+    margin: auto;
+
+    h3 {
+      display: block;
+      padding-bottom: 0;
+      margin-bottom: 0;
+      text-align: center;
+    }
+
+    hr {
+      display: none;
+    }
+  }
+
+  .edit-profile-navigation {
+    position: static !important;
+    float: none !important;
+    display: block !important;
+    text-align: center;
+    margin-bottom: 12px;
+
+    ul.nav {
+      display: inline-block;
+
+      li {
+        display: inline;
+
+        a {
+          float: left;
+        }
+      }
+    }
+  }
+}
+
+@include edit-profile-tabs-2 {
+  .edit-profile-container {
+    h3 {
+      display: block;
+      padding-bottom: 0;
+      margin-bottom: 0;
+      text-align: center;
+    }
+
+    hr {
+      display: none;
+    }
+  }
+
+  .edit-profile-navigation {
+    position: static !important;
+    float: none !important;
+    display: block !important;
+    text-align: center;
+    margin-bottom: 12px;
+
+    ul.nav {
+      display: inline-block;
+
+      li {
+        display: inline;
+
+        a {
+          float: left;
+        }
+      }
+    }
+  }
+}
+
+@include edit-profile-tabs-3 {
+  .edit-profile-container {
+    label {
+      text-align: center !important;
+      position: relative;
+      top: 8px;
+    }
+  }
+}
