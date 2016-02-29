@@ -5,8 +5,14 @@
 }
 
 @include mobile {
+  .profile-container {
+    .row {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
   .profile-content {
-    padding: 2px 20px 12px;
+    padding: 2px 8px 12px;
     overflow-y: visible;
     overflow-x: visible;
   }

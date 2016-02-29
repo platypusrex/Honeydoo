@@ -7,6 +7,10 @@
     background: transparent;
   }
 
+  span.icon-bar {
+    background: #fff;
+  }
+
   a {
     color: #fff;
 
@@ -175,5 +179,13 @@
     .sidebar-toggle {
       display: inline-block;
     }
+  }
+
+  .user-img-container {
+    display: none;
+  }
+
+  .buttons-container {
+    text-align: left;
   }
 }

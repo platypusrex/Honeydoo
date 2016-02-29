@@ -190,14 +190,14 @@
 @include mobile {
   .profile-sidebar-container {
     position: absolute;
-    margin-left: -250px;
+    margin-left: -235px;
     height: auto;
     transition: margin-left .4s ease-in-out;
   }
 
   .profile-sidebar-container.slideout {
     position: absolute;
-    margin-left: 0;
+    margin-left: -15px;
     height: auto;
     z-index: 1000;
     transition: margin-left .4s ease-in-out;
