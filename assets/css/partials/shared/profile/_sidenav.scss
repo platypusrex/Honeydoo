@@ -191,5 +191,17 @@
   .profile-sidebar-container {
     position: absolute;
     margin-left: -250px;
+    height: auto
+  }
+
+  .slideout {
+    position: absolute;
+    margin-left: 0;
+    height: auto;
+    z-index: 1000;
+
+    .profile-sidebar {
+      border-right: 1px solid #ddd;
+    }
   }
 }

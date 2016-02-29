@@ -8,7 +8,8 @@
         'firebaseDataService',
         'growl',
         'ModalService',
-        function($scope, sidenavService, $state, firebaseDataService, growl, ModalService){
+        '$rootScope',
+        function($scope, sidenavService, $state, firebaseDataService, growl, ModalService, $rootScope){
             $scope.user = sidenavService.getUserAuth();
             $scope.iconActive1 = false;
             $scope.iconActive2 = false;
@@ -26,6 +27,10 @@
 
             var growlerRejectMessage = function(){
                 growl.warning('<i class="fa fa-times"></i><strong>You have rejected the connection with ' + honeyFirstName + ' ' + honeyLastName, {ttl: 5000})
+            };
+
+            $scope.getSidenavState = function(){
+                return $rootScope.showSidenav;
             };
 
             $scope.iconToggle = function(val){
