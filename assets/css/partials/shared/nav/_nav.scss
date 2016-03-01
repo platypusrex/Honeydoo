@@ -95,7 +95,7 @@
 
     .cbx:checked ~ label:after {
       left: 20px;
-      background: #179588;
+      background: $blue1;
     }
 
     .cbx:disabled ~ label {
