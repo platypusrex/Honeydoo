@@ -28,9 +28,10 @@ div.row
                       p.small(ng-bind="honeyUsername")
                 div.row
                   div.col-lg-12.reminder-container
-                    h6 Remember:
-                    p.reminder Removing your account is permanent. All account data will be lost.
-                    button.btn.btn-default.btn-sm(ng-show="!deleteUser", ng-click="initDelete()") Remove Account
+                    i.fa.fa-exclamation-triangle
+                    span.reminder &nbsp;Removing your account is permanent. All account data will be lost.
+                    div.btn-container
+                      button.btn.btn-default.btn-sm(ng-show="!deleteUser", ng-click="initDelete()") Remove Account
                   div.col-lg-12.user-password-container(ng-show="deleteUser")
                     div.input-group
                       span.input-group-btn
@@ -67,7 +68,8 @@ div.row
                       p.small(ng-bind="userObject.username")
                 div.row
                   div.col-lg-12.reminder-container
-                    h6 Remember:
-                    p.reminder(ng-hide="disable") Disconnecting from your honey will cause all shared data to be lost.
-                    p.reminder(ng-show="disable") You have to connect with someone before you can disconnect. ;)
-                    button.btn.btn-default.btn-sm(type="button", ng-class="{'disabled': disable}", ng-click="disconnectHoney()") Remove Account
+                    i.fa.fa-exclamation-triangle
+                    span.reminder(ng-hide="disable") &nbsp;Disconnecting from your honey will cause all shared data to be lost.
+                    span.reminder(ng-show="disable") &nbsp;You have to connect with someone before you can disconnect. ;)
+                    div.btn-container
+                      button.btn.btn-default.btn-sm(type="button", ng-class="{'disabled': disable}", ng-click="disconnectHoney()") Remove Account

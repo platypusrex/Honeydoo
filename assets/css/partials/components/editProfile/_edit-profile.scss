@@ -170,7 +170,7 @@
 
     .badge {
       position: absolute;
-      top: 10%;
+      top: 8%;
       right: -2%;
       background: #fff;
       border: 1px solid #ddd;
@@ -275,6 +275,21 @@
     }
   }
 
+  .account-info {
+    height: auto !important;
+  }
+
+  .reminder-container {
+    i,
+    span {
+      display: none;
+    }
+
+    .btn-container {
+      text-align: center;
+    }
+  }
+
   .edit-profile-navigation {
     position: static !important;
     float: none !important;
@@ -310,6 +325,15 @@
     }
   }
 
+  .account-info {
+    height: auto !important;
+  }
+
+  .badge {
+    top: 7% !important;
+    right: 10% !important;
+  }
+
   .edit-profile-navigation {
     position: static !important;
     float: none !important;
@@ -332,6 +356,10 @@
 }
 
 @include edit-profile-tabs-3 {
+  .account-info {
+    height: auto !important;
+  }
+
   .edit-profile-container {
     label {
       text-align: center !important;
