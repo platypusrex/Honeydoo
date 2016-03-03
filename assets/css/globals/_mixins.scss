@@ -5,6 +5,7 @@
   }
 }
 
+// Edit Profile Media Queries
 @mixin edit-profile-tabs {
   @media (max-width: 547px) {
     @content;
@@ -19,6 +20,13 @@
 
 @mixin edit-profile-tabs-3 {
   @media (max-width: 768px) {
+    @content;
+  }
+}
+
+// Connect Media Queries
+@mixin connect-tabs {
+  @media (max-width: 547px){
     @content;
   }
 }

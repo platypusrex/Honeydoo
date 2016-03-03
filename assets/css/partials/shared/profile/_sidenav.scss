@@ -204,4 +204,14 @@
       border-right: 1px solid #ddd;
     }
   }
+
+  .profile-sidebar .profile-usermenu .small {
+    &:hover,
+    &:active,
+    &:focus {
+      &:before {
+        border-color: transparent transparent !important;
+      }
+    }
+  }
 }

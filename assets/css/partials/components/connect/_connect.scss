@@ -224,3 +224,40 @@
   -webkit-animation-name: zoomOutDown;
   animation-name: zoomOutDown;
 }
+
+@include connect-tabs {
+  .connect-container {
+    margin: auto;
+
+    h3 {
+      display: block;
+      padding-bottom: 0;
+      margin-bottom: 0;
+      text-align: center;
+    }
+
+    hr {
+      display: none;
+    }
+  }
+
+  .connect-navigation {
+    position: static !important;
+    float: none !important;
+    display: block !important;
+    text-align: center;
+    margin-bottom: 12px;
+
+    ul.nav {
+      display: inline-block;
+
+      li {
+        display: inline;
+
+        a {
+          float: left;
+        }
+      }
+    }
+  }
+}
