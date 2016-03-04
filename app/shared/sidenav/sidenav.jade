@@ -30,23 +30,23 @@ div.col-lg-3.col-md-3.col-sm-4.col-xs-8.profile-sidebar-container(ng-class="{'sl
               h6 You're invitation to {{honeyName}} was denied.
     div.profile-usermenu
       div.panel.list-group
-        a.list-group-item.main(href="", data-toggle="collapse" data-target="#sm" data-parent="#menu", ng-click="iconToggle(1)")
+        a.list-group-item.main(href="", data-toggle="collapse", data-target="#sm", data-parent="#menu", ng-click="iconToggle(1)")
           span Honeydoo's
           i.fa.fa-database.pull-left.list-icon
           i.fa.fa-angle-down.pull-right.panel-icon(ng-class="{'open-panel-icon': iconActive1}")
         div#sm.sublinks.collapse
           a.list-group-item.small(ui-sref="home.add")
-            span.sub Add Honeydoo
+            span.sub The Lists
             i.fa.fa-plus-circle.pull-right.sub-icon
             i.fa.fa-caret-right.pull-left
-          a.list-group-item.small(ui-sref="home.your_list")
-            span.sub Your List
-            i.fa.pull-right.sub-icon(ng-class="{'fa-male': userIcon, 'fa-female': !userIcon}")
-            i.fa.fa-caret-right.pull-left
-          a.list-group-item.small(ui-sref="home.partner_list")
-            span.sub Your Honey's List
-            i.fa.pull-right.sub-icon(ng-class="{'fa-male': !userIcon, 'fa-female': userIcon}")
-            i.fa.fa-caret-right.pull-left
+          //a.list-group-item.small(ui-sref="home.your_list")
+          //  span.sub Your List
+          //  i.fa.pull-right.sub-icon(ng-class="{'fa-male': userIcon, 'fa-female': !userIcon}")
+          //  i.fa.fa-caret-right.pull-left
+          //a.list-group-item.small(ui-sref="home.partner_list")
+          //  span.sub Your Honey's List
+          //  i.fa.pull-right.sub-icon(ng-class="{'fa-male': !userIcon, 'fa-female': userIcon}")
+          //  i.fa.fa-caret-right.pull-left
         a.list-group-item.main(href="", data-toggle="collapse", data-target="#sl", data-parent="#menu", ng-click="iconToggle(2)")
           span Account Settings
           i.fa.fa-user.pull-left.list-icon

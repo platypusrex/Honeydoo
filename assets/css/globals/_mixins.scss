@@ -6,7 +6,7 @@
 }
 
 // Edit Profile Media Queries
-@mixin edit-profile-tabs {
+@mixin mobile-nav-tabs {
   @media (max-width: 547px) {
     @content;
   }

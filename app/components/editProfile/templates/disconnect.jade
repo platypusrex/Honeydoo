@@ -52,16 +52,16 @@ div.row
             div.col-md-8
               div.account-info
                 div.row.connection-container
-                  div.col-xs-5.text-right
+                  div.col-xs-5.text-center
                     i.fa(ng-class="(honeyGender === 'his') ? 'fa-male' : 'fa-female'", ng-hide="disable")
                     div.text-center(ng-show="disable")
                       i.fa.fa-question
                     div.name-details(ng-hide="disable")
                       h6(ng-bind="honeyName")
-                      p.small.text-left(ng-bind="honeyUsername")
+                      p.small.text-center(ng-bind="honeyUsername")
                   div.col-xs-2.text-center
                     i.fa.fa-exchange
-                  div.col-xs-5.text-left
+                  div.col-xs-5.text-center
                     i.fa(ng-class="(userObject.gender === 'his') ? 'fa-male' : 'fa-female'")
                     div.name-details
                       h6(ng-bind="userObject.firstname + ' ' + userObject.lastname")

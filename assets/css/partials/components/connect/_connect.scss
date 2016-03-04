@@ -225,7 +225,7 @@
   animation-name: zoomOutDown;
 }
 
-@include connect-tabs {
+@include mobile-nav-tabs {
   .connect-container {
     margin: auto;
 

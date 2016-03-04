@@ -1,2 +1,12 @@
-h3 Add Honeydoo
-hr
+div.lists-container
+  h3 The Lists
+  div.lists-navigation
+    ul.nav.nav-tabs
+      li.active
+        a(href=".your-list", data-toggle="tab", aria-expanded="true") Your List
+      li
+        a(href=".honey-list", data-toggle="tab", aria-expanded="true") Your Honey's List
+  hr
+  div#listsContent.tab-content
+    div.your-list.tab-pane.fade.active.in(your-list)
+    div.honey-list.tab-pane.fade(honey-list)

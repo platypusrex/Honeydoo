@@ -259,7 +259,7 @@
   }
 }
 
-@include edit-profile-tabs {
+@include mobile-nav-tabs {
   .edit-profile-container {
     margin: auto;
 
@@ -282,6 +282,10 @@
 
   .account-info {
     height: auto !important;
+
+    .col-xs-2 {
+      padding: 0;
+    }
   }
 
   .reminder-container {
