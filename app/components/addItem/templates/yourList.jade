@@ -1,7 +1,7 @@
 div.row
   div.col-md-12
     div.row
-      div.col-md-3
+      div.col-md-4
         div.panel.panel-default
           div.panel-heading
             h5 Controls
@@ -18,31 +18,33 @@ div.row
             p not sure what it will be yet
             p but it's gotta be cool
             p and it's gotta have good logic
-      div.col-md-9
+      div.col-md-8
         div.panel.panel-default
           div.panel-heading
             h5 Your List
           div#ImYourDad
             ul.list-group.panel
               li.list-group-item(data-toggle="collapse", data-target="#yourMom", data-parent="#ImYourDad")
+                //i.material-icons person_outline
+                //i.material-icons chat
+                //i.material-icons chat_bubble-outline
+                //i.material-icons forum
+                //i.icon.ion-ios-chatboxes-outline(style="font-size: 28px")
                 p.lead I'm a fun sentence. Wow.
                 p.small I'm a fun little sentence. Oh, boy.
               div.collapse#yourMom
-                hr
                 h5 I'm a header and stuff
                 p.small I'm under the header and stuff. Derrrr!
               li.list-group-item(data-toggle="collapse", data-target="#yourDad", data-parent="#ImYourDad")
                 p.lead I'm a fun sentence. Wow.
                 p.small I'm a fun little sentence. Oh, boy.
               div.collapse#yourDad
-                hr
                 h5 I'm a header and stuff
                 p.small I'm under the header and stuff. Derrrr!
               li.list-group-item(data-toggle="collapse", data-target="#greasyGranny", data-parent="#ImYourDad")
                 p.lead I'm a fun sentence. Wow.
                 p.small I'm a fun little sentence. Oh, boy.
               div.collapse#greasyGranny
-                hr
                 h5 I'm a header and stuff
                 p.small I'm under the header and stuff. Derrrr!
 
