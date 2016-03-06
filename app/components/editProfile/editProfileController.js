@@ -18,6 +18,7 @@
             var inviteStatus = sidenavService.getInvitationStatus($scope.user.uid);
             var userData = editProfileService.getUserData($scope.user.uid);
             var basicRef = firebaseDataService.users;
+            var chatRef = firebaseDataService.chats;
 
             userData.$loaded(
                 function(data){
@@ -187,6 +188,10 @@
             $scope.disconnectHoney = function(){
                 $scope.disable = true;
 
+                var onComplete = function(){
+                    console.log('chat removed');
+                };
+
                 basicRef.child($scope.user.uid).update({
                     honey: {
                         firstname: 'none',
@@ -216,6 +221,11 @@
                     },
                     chatId: null
                 });
+
+                if($scope.userObject.chatId){
+                    chatRef.child($scope.userObject.chatId).remove();
+                }
+
             };
     }]);
 }(angular.module('EditProfileModule')));

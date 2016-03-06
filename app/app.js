@@ -7,6 +7,7 @@
         'ngSanitize',
         'angular-growl',
         'angucomplete-alt',
+        'nya.bootstrap.select',
         'ModalModule',
         'firebase',
         'AuthModule',

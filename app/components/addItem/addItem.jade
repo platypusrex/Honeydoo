@@ -28,20 +28,19 @@ div.modal.fade.add-item-container
                 div.col-md-12
                   label.control-label(for="status") Status
                 div.col-md-12
-                  select#status.form-control.c-select()
-                    option(selected) Honeydoo Status
-                    option(value="one")
-                    option(value="two")
-                    option(value="three")
+                  ol#status.nya-bs-select.form-control(ng-model="itemStatus", title="What's the status?")
+                    li(nya-bs-option="option in options")
+                      a {{option}}
+                        span.glyphicon.glyphicon-ok.check-mark
             div.col-md-6
               div.form-group
                 div.col-md-12
                   label.control-label(for="owner") Owner
                 div.col-md-12
-                  select#owner.form-control.c-select()
-                    option(selected) Owner
-                    option(value="his")
-                    option(value="hers")
+                  ol#owner.nya-bs-select.form-control(ng-model="itemOwner", title="Who's the owner?")
+                    li(nya-bs-option="owner in owners")
+                    a {{owner}}
+                      span.glyphicon.glyphicon-ok.check-mark
             div.col-md-10.col-md-offset-1
               div.form-group
                 label.control-label(for="note") Add Note
