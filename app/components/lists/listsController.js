@@ -1,10 +1,10 @@
-(function(addItemModule){
+(function(listsModule){
     'use strict';
 
-    addItemModule.controller('addItemCtrl', [
+    listsModule.controller('listsCtrl', [
         '$scope',
         'ModalService',
         function($scope, ModalService){
 
     }]);
-}(angular.module('AddItemModule')));
+}(angular.module('ListsModule')));

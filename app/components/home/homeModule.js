@@ -23,8 +23,8 @@
                     url: '/add',
                     views: {
                         'add-item': {
-                            templateUrl: 'app/components/addItem/addItem.html',
-                            controller: 'addItemCtrl'
+                            templateUrl: 'app/components/lists/templates/lists.html',
+                            controller: 'listsCtrl'
                         }
                     }
                 })

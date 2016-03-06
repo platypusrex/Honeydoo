@@ -10,11 +10,32 @@
     padding: 0;
   }
 
+  .panel {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
   .lists-navigation {
     position: relative;
     top: 39px;
     float: right;
     display: inline-block;
+  }
+
+  .your-list-panel-container {
+    .list-group {
+      &.panel {
+        box-shadow: none;
+      }
+    }
+
+    .list-group-item {
+      border-right: none;
+      border-left: none;
+
+      &:first-child {
+        border-top: none;
+      }
+    }
   }
 }
 

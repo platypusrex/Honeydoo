@@ -15,13 +15,10 @@
         'HomeModule',
         'SidenavModule',
         'ContentModule',
-        'AddItemModule',
-        'YourListModule',
-        'PartnerListModule',
+        'ListsModule',
         'EditProfileModule',
-        'AddPicModule',
         'ConnectModule',
-        'HoneyChatModule',
+        'HoneyChatModule'
         ])
         .config(['$stateProvider', '$urlRouterProvider', 'growlProvider', function($stateProvider, $urlRouterProvider, growlProvider){
             growlProvider.globalEnableHtml(true);
