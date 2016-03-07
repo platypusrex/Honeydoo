@@ -33,7 +33,7 @@ div.nav.navbar-custom.navbar-static-top
                       img.img-rounded(ng-src="{{user.password.profileImageURL}}")
                   div.col-sm-8.buttons-container
                     div.row
-                      div.col-sm-12.acct-btn-container
+                      div.col-sm-12.acct-btn-container(ui-sref="home.edit_profile")
                         //p.text-center {{user.password.email}}
                         //div.text-left.logout-container
                         //  a.btn.btn-danger.btn-block(ng-click="logOut()") Logout

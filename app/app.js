@@ -8,6 +8,7 @@
         'angular-growl',
         'angucomplete-alt',
         'nya.bootstrap.select',
+        'moment-picker',
         'ModalModule',
         'firebase',
         'AuthModule',
