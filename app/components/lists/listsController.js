@@ -4,7 +4,12 @@
     listsModule.controller('listsCtrl', [
         '$scope',
         'ModalService',
-        function($scope, ModalService){
+        'addItemService',
+        function($scope, ModalService, addItemService){
+            $scope.user = addItemService.getUserAuth();
+            $scope.yourList = addItemService.getYourList($scope.user.uid);
+
+            console.log($scope.yourList);
 
             $scope.showAddItem = function(){
                 ModalService.showModal({

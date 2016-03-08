@@ -19,7 +19,7 @@
             };
 
             var growlerError = function(err){
-                growl.warning('<i class="fa fa-times"></i><strong>Oh shizzle my nizzle ' + err, {ttl: 5000})
+                growl.error('<i class="fa fa-times"></i><strong>Oh shizzle my nizzle ' + err, {ttl: 5000})
             };
 
             if($scope.user){

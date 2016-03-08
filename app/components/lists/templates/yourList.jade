@@ -15,29 +15,16 @@ div.row
         div.panel.panel-default
           div.panel-heading
             h5 Your List
-          div#ImYourDad
-            ul.list-group.panel
-              li.list-group-item(data-toggle="collapse", data-target="#yourMom", data-parent="#ImYourDad")
-                //i.material-icons person_outline
-                //i.material-icons chat
-                //i.material-icons chat_bubble-outline
-                //i.material-icons forum
-                //i.icon.ion-ios-chatboxes-outline(style="font-size: 28px")
-                p.lead I'm a fun sentence. Wow.
-                p.small I'm a fun little sentence. Oh, boy.
-              div.collapse#yourMom
-                h5 I'm a header and stuff
-                p.small I'm under the header and stuff. Derrrr!
-              li.list-group-item(data-toggle="collapse", data-target="#yourDad", data-parent="#ImYourDad")
-                p.lead I'm a fun sentence. Wow.
-                p.small I'm a fun little sentence. Oh, boy.
-              div.collapse#yourDad
-                h5 I'm a header and stuff
-                p.small I'm under the header and stuff. Derrrr!
-              li.list-group-item(data-toggle="collapse", data-target="#greasyGranny", data-parent="#ImYourDad")
-                p.lead I'm a fun sentence. Wow.
-                p.small I'm a fun little sentence. Oh, boy.
-              div.collapse#greasyGranny
-                h5 I'm a header and stuff
-                p.small I'm under the header and stuff. Derrrr!
+          //div.panel-body
+          ul.list-group
+            li.list-group-item(data-toggle="collapse", ng-attr-data-target='{{"#honeydoo-" + $index}}' ng-repeat="list in yourList")
+              div.list-info-container(data-toggle="collapse", ng-attr-data-target='{{"#honeydoo-" + $index}}')
+                p.small Date added: {{list.addedOn | date:'MMM d, y h:mm a'}}
+                p.lead Title: {{list.title}}
+              div.collapse(ng-attr-id='{{"honeydoo-" + $index}}')
+                hr
+                h5 {{list.status}}
+                p.small Note: {{list.note}}
+                p.small Due on: {{list.due}}
+
 

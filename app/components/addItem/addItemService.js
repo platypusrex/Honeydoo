@@ -16,8 +16,8 @@
                 return $firebaseArray(ref);
             };
 
-            var getHoneyList = function(honeyId){
-                var ref = firebaseDataService.users.child(honeyId).child('honeyList');
+            var getHoneyList = function(userId){
+                var ref = firebaseDataService.users.child(userId).child('honeyList');
 
                 return $firebaseArray(ref);
             };
