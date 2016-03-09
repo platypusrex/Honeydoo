@@ -22,18 +22,24 @@
   }
 
   .your-list-panel-container {
-    .list-group {
-      &.panel {
-        box-shadow: none;
-      }
+    .panel-heading {
+      //background: lighten($green1, 5%);
     }
 
-    .list-group-item {
-      border-right: none;
-      border-left: none;
+    .lead {
+      margin-bottom: 0;
+    }
 
-      &:first-child {
-        border-top: none;
+    hr {
+      margin: 16px 0;
+    }
+
+    .panel-footer {
+      text-align: center;
+      //background: lighten($green1, 5%);
+
+      .pagination {
+        margin: 10px 0 2px;
       }
     }
   }

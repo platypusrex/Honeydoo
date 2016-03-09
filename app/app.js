@@ -9,6 +9,7 @@
         'angucomplete-alt',
         'nya.bootstrap.select',
         'moment-picker',
+        'angularUtils.directives.dirPagination',
         'ModalModule',
         'firebase',
         'AuthModule',

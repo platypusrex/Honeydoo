@@ -17,7 +17,7 @@ div.row
             h5 Your List
           //div.panel-body
           ul.list-group
-            li.list-group-item(data-toggle="collapse", ng-attr-data-target='{{"#honeydoo-" + $index}}' ng-repeat="list in yourList")
+            li.list-group-item(data-toggle="collapse", ng-attr-data-target='{{"#honeydoo-" + $index}}', dir-paginate="list in yourList | itemsPerPage:4")
               div.list-info-container(data-toggle="collapse", ng-attr-data-target='{{"#honeydoo-" + $index}}')
                 p.small Date added: {{list.addedOn | date:'MMM d, y h:mm a'}}
                 p.lead Title: {{list.title}}
@@ -26,5 +26,9 @@ div.row
                 h5 {{list.status}}
                 p.small Note: {{list.note}}
                 p.small Due on: {{list.due}}
+          div.panel-footer
+            dir-pagination-controls(direction-links="true", boundary-links="true")
+
+
 
 
