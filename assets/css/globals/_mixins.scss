@@ -30,3 +30,9 @@
     @content;
   }
 }
+
+@mixin honeychat {
+  @media (max-width: 460px) {
+    @content;
+  }
+}

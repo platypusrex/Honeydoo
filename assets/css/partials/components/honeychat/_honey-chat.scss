@@ -97,3 +97,20 @@
     }
   }
 }
+
+@media screen and (max-width: 767px) and (min-width: 461px){
+  .honey-chat-container {
+    .modal-dialog {
+      left: 50%;
+      margin-left: -210px;
+    }
+  }
+}
+
+@include honeychat {
+  .honey-chat-container {
+    .modal-dialog {
+      width: auto !important;
+    }
+  }
+}
