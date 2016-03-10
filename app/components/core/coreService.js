@@ -5,7 +5,8 @@
         return {
             root: root,
             users: root.child('users'),
-            chats: root.child('chats')
+            chats: root.child('chats'),
+            categories: root.child('categories')
         };
     }]);
 }(angular.module('CoreModule')));

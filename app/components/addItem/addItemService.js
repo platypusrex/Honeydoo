@@ -5,7 +5,8 @@
         'firebaseDataService',
         'authService',
         '$firebaseArray',
-        function(firebaseDataService, authService, $firebaseArray){
+        '$firebaseObject',
+        function(firebaseDataService, authService, $firebaseArray, $firebaseObject){
             var getUserAuth = function(){
                 return authService.firebaseAuthObject.$getAuth();
             };
@@ -22,10 +23,17 @@
                 return $firebaseArray(ref);
             };
 
+            var getCategories = function(){
+                var ref = firebaseDataService.categories;
+
+                return $firebaseObject(ref);
+            };
+
             return {
                 getUserAuth: getUserAuth,
                 getYourList: getYourList,
-                getHoneyList: getHoneyList
+                getHoneyList: getHoneyList,
+                getCategories: getCategories
             }
     }]);
 }(angular.module('AddItemModule')));

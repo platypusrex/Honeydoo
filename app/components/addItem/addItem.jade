@@ -42,6 +42,16 @@ div.modal.fade.add-item-container
                       a {{owner}}
                         span.glyphicon.glyphicon-ok.check-mark
                   span.help-block(ng-show="error", ng-bind="error")
+            div.col-md-6.col-md-offset-3
+              div.form-group
+                div.col-md-12
+                  label.control-label(for="categories") Categories
+                div.col-md-12
+                  ol#categories.nya-bs-select.form-control.show-menu-arrow(ng-model="honeydoo.category", ng-focus="resetForm()", title="Choose a category", data-size="5", required)
+                    li(nya-bs-option="(key, val) in categories group by val.group")
+                      span.dropdown-header {{$group}}
+                      a {{val.name}}
+                  span.help-block(ng-show="error", ng-bind="error")
             div.col-md-10.col-md-offset-1
               div.form-group
                 label.control-label(for="note", required) Add Note

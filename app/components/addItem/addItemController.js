@@ -18,6 +18,7 @@
                 'Started',
                 'Finished'
             ];
+            var categoryData = addItemService.getCategories();
 
             $scope.close = function(result) {
                 close(result, 500);
@@ -30,6 +31,22 @@
             var growlerError = function(err){
                 growl.error('<i class="fa fa-times"></i><strong>Oh shizzle my nizzle ' + err, {ttl: 5000})
             };
+
+            categoryData.$loaded(
+                function(data){
+                    $scope.categories = {};
+
+                    angular.forEach(data, function(val, key){
+                        var k = key;
+                        angular.forEach(val, function(val, key){
+                            $scope.categories[key] = {name: key, group: k};
+                        });
+                    });
+                },
+                function(error){
+                    growlerError(error);
+                }
+            );
 
             if($scope.user){
                 var userData = sidenavService.getUserData($scope.user.uid);
@@ -59,7 +76,8 @@
                                 due: honeydoo.honeydoo.dateDue,
                                 status: honeydoo.honeydoo.status,
                                 owner: honeydoo.honeydoo.owner,
-                                note: honeydoo.honeydoo.note
+                                category: honeydoo.honeydoo.category,
+                                note: honeydoo.honeydoo.note,
                             }).then(function(){
                                 if(initCallback){
                                     saveToYourList(honeydoo, $scope.userObject.honey.uid, false);
@@ -82,6 +100,7 @@
                                 due: honeydoo.honeydoo.dateDue,
                                 status: honeydoo.honeydoo.status,
                                 owner: honeydoo.honeydoo.owner,
+                                category: honeydoo.honeydoo.category,
                                 note: honeydoo.honeydoo.note
                             }).then(function(){
                                 if($scope.userObject.honey && initCallback){
