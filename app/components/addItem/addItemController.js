@@ -12,6 +12,7 @@
         function($scope, ModalService, addItemService, sidenavService, $element, close, growl){
             $scope.user = addItemService.getUserAuth();
             $scope.userObject = null;
+            $scope.error = false;
             $scope.options = [
                 'New',
                 'Started',
@@ -40,6 +41,14 @@
                             $scope.userObject.username,
                             $scope.userObject.honey.username
                         ];
+
+                        var validateForm = function(honeydoo){
+                            console.log(honeydoo);
+                            if(!honeydoo.honeydoo){
+                                return false;
+                            }
+                            return (honeydoo.honeydoo.title && honeydoo.honeydoo.dateDue && honeydoo.honeydoo.status && honeydoo.honeydoo.owner && honeydoo.honeydoo.note) ? true : false;
+                        };
 
                         var saveToHoneyList = function(honeydoo, uid, initCallback){
                             var honeysList = addItemService.getHoneyList(uid);
@@ -87,11 +96,21 @@
                             });
                         };
 
+                        $scope.resetForm = function(){
+                            $scope.error = false;
+                        };
+
                         $scope.saveHoneydoo = function(honeydoo){
-                            if(honeydoo.honeydoo.owner === $scope.userObject.username){
-                                saveToYourList(honeydoo, $scope.user.uid, true);
+                            var validate = validateForm(honeydoo);
+                            console.log(validate);
+                            if(validate){
+                                if(honeydoo.honeydoo.owner === $scope.userObject.username){
+                                    saveToYourList(honeydoo, $scope.user.uid, true);
+                                }else {
+                                    saveToHoneyList(honeydoo, $scope.user.uid, true);
+                                }
                             }else {
-                                saveToHoneyList(honeydoo, $scope.user.uid, true);
+                                $scope.error = 'field required';
                             }
                         };
                     },

@@ -5,43 +5,48 @@ div.modal.fade.add-item-container
         button.close(type="button", data-dismiss="modal", aria-hidden="true", ng-click="close()") &times;
         h5.modal-title.text-center {{honeydoo.title || "Add Honeydoo"}}
       div.modal-body
-        form.form-horizontal(name="AddHoneydooForm")
+        form.form-horizontal(name="AddHoneydooForm", novalidate)
           div.row
             div.col-md-6
               div.form-group
                 div.col-md-12
                   label.control-label(for="itemTitle") Honeydoo Title
                 div.col-md-12
-                  input#itemTitle.form-control(type="text", ng-model="honeydoo.title", placeholder="Add a title...")
+                  input#itemTitle.form-control(type="text", ng-model="honeydoo.title", ng-focus="resetForm()", placeholder="Add a title...", required)
+                  span.help-block(ng-show="error", ng-bind="error")
             div.col-md-6
               div.form-group
                 div.col-md-12
                   label.control-label(for="honeydooDate") Due Date
                 div.col-md-12
-                  input#honeydooDate.form-control(placeholder="Select a date...", moment-picker="honeydoo.dateDue", format="lll", ng-model="honeydoo.dateDue", ng-model-options="{updateOn: 'blur'}")
+                  input#honeydooDate.form-control(placeholder="Select a date...", ng-focus="resetForm()", required, moment-picker="honeydoo.dateDue", format="lll", ng-model="honeydoo.dateDue", ng-model-options="{updateOn: 'blur'}")
+                  span.help-block(ng-show="error", ng-bind="error")
           div.row
             div.col-md-6
               div.form-group
                 div.col-md-12
                   label.control-label(for="status") Status
                 div.col-md-12
-                  ol#status.nya-bs-select.form-control(ng-model="honeydoo.status", title="What's the status?")
+                  ol#status.nya-bs-select.form-control.show-menu-arrow(ng-model="honeydoo.status", ng-focus="resetForm()", title="What's the status?", required)
                     li(nya-bs-option="option in options")
                       a {{option}}
                         span.glyphicon.glyphicon-ok.check-mark
+                  span.help-block(ng-show="error", ng-bind="error")
             div.col-md-6
               div.form-group
                 div.col-md-12
                   label.control-label(for="owner") Owner
                 div.col-md-12
-                  ol#owner.nya-bs-select.form-control(ng-model="honeydoo.owner", title="Who's the owner?")
+                  ol#owner.nya-bs-select.form-control.show-menu-arrow(ng-model="honeydoo.owner", ng-focus="resetForm()", title="Who's the owner?", required)
                     li(nya-bs-option="owner in owners")
                       a {{owner}}
                         span.glyphicon.glyphicon-ok.check-mark
+                  span.help-block(ng-show="error", ng-bind="error")
             div.col-md-10.col-md-offset-1
               div.form-group
-                label.control-label(for="note") Add Note
-                textarea#note.form-control(rows="3", ng-model="honeydoo.note", placeholder="Add a note...")
+                label.control-label(for="note", required) Add Note
+                textarea#note.form-control(rows="3", ng-model="honeydoo.note", ng-focus="resetForm()", placeholder="Add a note...")
+                span.help-block(ng-show="error", ng-bind="error")
       div.modal-footer
         button.btn.btn-default(type="button", data-dismiss="modal", ng-click="close()") Cancel
-        button.btn.btn-primary(type="button", ng-click="saveHoneydoo({honeydoo: honeydoo})") Submit
+        button.btn.btn-primary(type="submit", ng-click="saveHoneydoo({honeydoo: honeydoo})") Submit
