@@ -18,6 +18,11 @@
                 'Started',
                 'Finished'
             ];
+            $scope.taskDifficulty = [
+                'Easy',
+                'Medium',
+                'Hard'
+            ];
             var categoryData = addItemService.getCategories();
 
             $scope.close = function(result) {
@@ -34,13 +39,13 @@
 
             categoryData.$loaded(
                 function(data){
-                    $scope.categories = {};
+                    $scope.categories = [];
 
                     angular.forEach(data, function(val, key){
                         var k = key;
                         angular.forEach(val, function(val, key){
-                            $scope.categories[key] = {name: key, group: k};
-                        });
+                            this.push({name: key, group: k});
+                        }, $scope.categories);
                     });
                 },
                 function(error){
@@ -73,11 +78,14 @@
                             honeysList.$add({
                                 title: honeydoo.honeydoo.title,
                                 addedOn: Firebase.ServerValue.TIMESTAMP,
+                                requesterImg: $scope.userObject.image,
+                                requester: $scope.userObject.username,
                                 due: honeydoo.honeydoo.dateDue,
                                 status: honeydoo.honeydoo.status,
                                 owner: honeydoo.honeydoo.owner,
                                 category: honeydoo.honeydoo.category,
-                                note: honeydoo.honeydoo.note,
+                                difficulty: honeydoo.honeydoo.difficulty,
+                                note: honeydoo.honeydoo.note
                             }).then(function(){
                                 if(initCallback){
                                     saveToYourList(honeydoo, $scope.userObject.honey.uid, false);
@@ -97,10 +105,13 @@
                             yourListItems.$add({
                                 title: honeydoo.honeydoo.title,
                                 addedOn: Firebase.ServerValue.TIMESTAMP,
+                                requesterImg: $scope.userObject.image,
+                                requester: $scope.userObject.username,
                                 due: honeydoo.honeydoo.dateDue,
                                 status: honeydoo.honeydoo.status,
                                 owner: honeydoo.honeydoo.owner,
                                 category: honeydoo.honeydoo.category,
+                                difficulty: honeydoo.honeydoo.difficulty,
                                 note: honeydoo.honeydoo.note
                             }).then(function(){
                                 if($scope.userObject.honey && initCallback){

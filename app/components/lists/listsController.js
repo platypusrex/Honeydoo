@@ -8,6 +8,7 @@
         function($scope, ModalService, addItemService){
             $scope.user = addItemService.getUserAuth();
             $scope.yourList = addItemService.getYourList($scope.user.uid);
+            $scope.honeyList = addItemService.getHoneyList($scope.user.uid);
 
             console.log($scope.yourList);
 
@@ -18,7 +19,7 @@
                 }).then(function(modal){
                     modal.element.modal();
                     modal.close.then(function(result){
-                        console.log('the dishes are done')
+                        console.log('the dishes are done');
                     });
                 });
             };

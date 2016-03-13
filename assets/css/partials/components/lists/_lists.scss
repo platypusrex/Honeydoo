@@ -22,10 +22,6 @@
   }
 
   .your-list-panel-container {
-    .panel-heading {
-      //background: lighten($green1, 5%);
-    }
-
     .lead {
       margin-bottom: 0;
     }
@@ -34,13 +30,57 @@
       margin: 16px 0;
     }
 
+    .edit-todo-container {
+      height: 51px;
+      line-height: 51px;
+
+      .icon {
+        font-size: 30px;
+        margin-left: 18px;
+        cursor: pointer;
+      }
+
+      .ion-ios-trash-outline {
+        color: lighten(red, 12%);
+        transition: color .2s ease-in-out;
+
+        &:hover {
+          color: red;
+        }
+      }
+
+      .ion-ios-compose-outline {
+        color: $blue1;
+        transition: color .2s ease-in-out;
+
+        &:hover {
+          color: darken($blue1, 12%);
+        }
+      }
+    }
+
     .panel-footer {
       text-align: center;
-      //background: lighten($green1, 5%);
 
       .pagination {
         margin: 10px 0 2px;
       }
+    }
+
+    img {
+      width: 65px;
+      height: 65px;
+    }
+
+    .requester-img-container {
+      padding: 3px;
+      border: 1px solid #ddd;
+      width: 73px;
+      margin-left: 20px;
+    }
+
+    .note {
+      font-size: 14px;
     }
   }
 }

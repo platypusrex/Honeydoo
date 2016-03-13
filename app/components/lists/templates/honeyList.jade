@@ -1,1 +1,50 @@
-p.lead I'm all up in your honey's list, guy.
+div.row
+  div.col-md-12
+    div.row
+      div.col-md-4
+        div.panel.panel-default.controls-panel
+          div.panel-heading
+            h4 Controls
+          div.panel-body
+            h6 Add
+            p Click the button below to add a new todo item to you or your honey's list
+            button.btn.btn-default.btn-block(type="button", ng-click="showAddItem()") Add Honeydoo
+      div.col-md-8.your-list-panel-container
+        div.panel.panel-default
+          div.panel-heading
+            h4 Honey's List
+          div.panel-body(ng-hide="honeyList.length >= 1")
+            h5.text-center Use the control panel to start adding honeydoos!
+          ul.list-group
+            li.list-group-item(data-toggle="collapse", ng-attr-data-target='{{"#honeydoo-" + $index}}', dir-paginate="item in honeyList | itemsPerPage:4" pagination-id="honeys")
+              div.list-info-container(data-toggle="collapse", ng-attr-data-target='{{"#honeydooItem-" + $index}}')
+                div.row
+                  div.col-md-10
+                    strong Date added:
+                    span.small &nbsp;{{item.addedOn | date:'MMM d, y h:mm a'}}
+                    p.lead {{item.title}}
+                  div.col-md-2
+                    div.edit-todo-container
+                      i.icon.ion-ios-compose-outline
+                      i.icon.ion-ios-trash-outline
+              div.collapse(ng-attr-id='{{"honeydooItem-" + $index}}')
+                hr
+                div.row
+                  div.col-md-3
+                    strong Requested by&nbsp;
+                    span.small {{item.requester}}
+                    div.requester-img-container
+                      img(ng-src="{{item.requesterImg}}")
+                  div.col-md-9
+                    div.row
+                      div.col-md-6
+                        strong Status:&nbsp;
+                        span {{item.status}}
+                      div.col-md-6
+                        strong Due on:&nbsp;
+                        span {{item.due}}
+                    div.row
+                      div.col-md-12
+                        p.note {{item.note}}
+          div.panel-footer(ng-show="honeyList.length >= 1")
+            dir-pagination-controls(pagination-id="honeys", direction-links="true", boundary-links="true", auto-hide="false")

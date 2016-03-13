@@ -2,32 +2,52 @@ div.row
   div.col-md-12
     div.row
       div.col-md-4
-        div.panel.panel-default
+        div.panel.panel-default.controls-panel
           div.panel-heading
-            h5 Controls
+            h4 Controls
           div.panel-body
-            p some content will go here
-            p not sure what it will be yet
-            p but it's gotta be cool
-            p and it's gotta have good logic
+            h6 Add
+            p Click the button below to add a new todo item to you or your honey's list
             button.btn.btn-default.btn-block(type="button", ng-click="showAddItem()") Add Honeydoo
       div.col-md-8.your-list-panel-container
         div.panel.panel-default
           div.panel-heading
-            h5 Your List
-          //div.panel-body
+            h4 Your List
+          div.panel-body(ng-hide="yourList.length >= 1")
+            h5.text-center Use the control panel to start adding honeydoos!
           ul.list-group
-            li.list-group-item(data-toggle="collapse", ng-attr-data-target='{{"#honeydoo-" + $index}}', dir-paginate="list in yourList | itemsPerPage:4")
+            li.list-group-item(data-toggle="collapse", ng-attr-data-target='{{"#honeydoo-" + $index}}', dir-paginate="list in yourList | itemsPerPage:4" pagination-id="yours")
               div.list-info-container(data-toggle="collapse", ng-attr-data-target='{{"#honeydoo-" + $index}}')
-                p.small Date added: {{list.addedOn | date:'MMM d, y h:mm a'}}
-                p.lead Title: {{list.title}}
+                div.row
+                  div.col-md-10
+                    strong Date added:
+                    span.small &nbsp;{{list.addedOn | date:'MMM d, y h:mm a'}}
+                    p.lead {{list.title}}
+                  div.col-md-2
+                    div.edit-todo-container
+                      i.icon.ion-ios-compose-outline
+                      i.icon.ion-ios-trash-outline
               div.collapse(ng-attr-id='{{"honeydoo-" + $index}}')
                 hr
-                h5 {{list.status}}
-                p.small Note: {{list.note}}
-                p.small Due on: {{list.due}}
-          div.panel-footer
-            dir-pagination-controls(direction-links="true", boundary-links="true")
+                div.row
+                  div.col-md-3
+                    strong Requested by&nbsp;
+                    span.small {{list.requester}}
+                    div.requester-img-container
+                      img(ng-src="{{list.requesterImg}}")
+                  div.col-md-9
+                    div.row
+                      div.col-md-6
+                        strong Status:&nbsp;
+                        span {{list.status}}
+                      div.col-md-6
+                        strong Due on:&nbsp;
+                        span {{list.due}}
+                    div.row
+                      div.col-md-12
+                        p.note {{list.note}}
+          div.panel-footer(ng-show="yourList.length >= 1")
+            dir-pagination-controls(pagination-id="yours", direction-links="true", boundary-links="true", auto-hide="false")
 
 
 

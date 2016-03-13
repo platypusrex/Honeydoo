@@ -42,15 +42,26 @@ div.modal.fade.add-item-container
                       a {{owner}}
                         span.glyphicon.glyphicon-ok.check-mark
                   span.help-block(ng-show="error", ng-bind="error")
-            div.col-md-6.col-md-offset-3
+            div.col-md-6
               div.form-group
                 div.col-md-12
-                  label.control-label(for="categories") Categories
+                  label.control-label(for="categories") Category
                 div.col-md-12
                   ol#categories.nya-bs-select.form-control.show-menu-arrow(ng-model="honeydoo.category", ng-focus="resetForm()", title="Choose a category", data-size="5", required)
-                    li(nya-bs-option="(key, val) in categories group by val.group")
+                    li(nya-bs-option="option in categories group by option.group")
                       span.dropdown-header {{$group}}
-                      a {{val.name}}
+                      a {{option.name}}
+                        span.glyphicon.glyphicon-ok.check-mark
+                  span.help-block(ng-show="error", ng-bind="error")
+            div.col-md-6
+              div.form-group
+                div.col-md-12
+                  label.control-label(for="difficulty") Difficulty
+                div.col-md-12
+                  ol#difficulty.nya-bs-select.form-control.show-menu-arrow(ng-model="honeydoo.difficulty", ng-focus="resetForm()", title="Select task difficulty", required)
+                    li(nya-bs-option="task in taskDifficulty")
+                      a {{task}}
+                        span.glyphicon.glyphicon-ok.check-mark
                   span.help-block(ng-show="error", ng-bind="error")
             div.col-md-10.col-md-offset-1
               div.form-group
