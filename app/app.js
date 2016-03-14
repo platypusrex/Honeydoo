@@ -22,7 +22,8 @@
         'EditProfileModule',
         'ConnectModule',
         'HoneyChatModule',
-        'AddItemModule'
+        'AddItemModule',
+        'EditItemModule'
         ])
         .config(['$stateProvider', '$urlRouterProvider', 'growlProvider', function($stateProvider, $urlRouterProvider, growlProvider){
             growlProvider.globalEnableHtml(true);

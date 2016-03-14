@@ -65,11 +65,10 @@
                         ];
 
                         var validateForm = function(honeydoo){
-                            console.log(honeydoo);
                             if(!honeydoo.honeydoo){
                                 return false;
                             }
-                            return (honeydoo.honeydoo.title && honeydoo.honeydoo.dateDue && honeydoo.honeydoo.status && honeydoo.honeydoo.owner && honeydoo.honeydoo.note) ? true : false;
+                            return (honeydoo.honeydoo.title && honeydoo.honeydoo.dateDue && honeydoo.honeydoo.status && honeydoo.honeydoo.owner && honeydoo.honeydoo.note && honeydoo.honeydoo.category && honeydoo.honeydoo.difficulty) ? true : false;
                         };
 
                         var saveToHoneyList = function(honeydoo, uid, initCallback){

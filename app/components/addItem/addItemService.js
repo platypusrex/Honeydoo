@@ -12,7 +12,7 @@
             };
 
             var getYourList = function(userId){
-                var ref = firebaseDataService.users.child(userId).child('yourlist');
+                var ref = firebaseDataService.users.child(userId).child('yourList');
 
                 return $firebaseArray(ref);
             };

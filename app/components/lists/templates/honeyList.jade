@@ -16,16 +16,16 @@ div.row
           div.panel-body(ng-hide="honeyList.length >= 1")
             h5.text-center Use the control panel to start adding honeydoos!
           ul.list-group
-            li.list-group-item(data-toggle="collapse", ng-attr-data-target='{{"#honeydoo-" + $index}}', dir-paginate="item in honeyList | itemsPerPage:4" pagination-id="honeys")
-              div.list-info-container(data-toggle="collapse", ng-attr-data-target='{{"#honeydooItem-" + $index}}')
+            li.list-group-item(dir-paginate="item in honeyList | itemsPerPage:4" pagination-id="honeys")
+              div.list-info-container
                 div.row
-                  div.col-md-10
+                  div.col-md-10(data-toggle="collapse", ng-attr-data-target='{{"#honeydooItem-" + $index}}')
                     strong Date added:
                     span.small &nbsp;{{item.addedOn | date:'MMM d, y h:mm a'}}
                     p.lead {{item.title}}
                   div.col-md-2
                     div.edit-todo-container
-                      i.icon.ion-ios-compose-outline
+                      i.icon.ion-ios-compose-outline(ng-click="editItem($index, 'honeyList')")
                       i.icon.ion-ios-trash-outline
               div.collapse(ng-attr-id='{{"honeydooItem-" + $index}}')
                 hr
