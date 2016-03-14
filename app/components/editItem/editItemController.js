@@ -6,15 +6,13 @@
         'authService',
         '$element',
         'listItem',
-        'honeyListItem',
         'index',
         'close',
         'addItemService',
         'sidenavService',
         'editItemService',
-        'listsService',
         'growl',
-        function($scope, authService, $element, listItem, honeyListItem, index, close, addItemService, sidenavService, editItemService, listsService, growl){
+        function($scope, authService, $element, listItem, index, close, addItemService, sidenavService, editItemService, growl){
             $scope.user = authService.firebaseAuthObject.$getAuth();
             $scope.honeydoo = {
                 title: listItem.title,
@@ -75,6 +73,7 @@
                                 function(data){
                                     var key = data.$keyAt(index);
                                     var item = data.$getRecord(key);
+                                    console.log(honeydoo.honeydoo);
                                     item.title = honeydoo.honeydoo.title;
                                     item.due = honeydoo.honeydoo.dateDue;
                                     item.status = honeydoo.honeydoo.status;
@@ -103,11 +102,12 @@
                         };
 
                         var updateHoneyList = function(honeydoo, uid, initCallback){
-                            var honeyItem = editItemService.getHoneydoo($scope.userObject.honey.uid, 'honeyList');
+                            var honeyItem = editItemService.getHoneydoo(uid, 'honeyList');
                             honeyItem.$loaded(
                                 function(data){
                                     var key = data.$keyAt(index);
                                     var item = data.$getRecord(key);
+                                    console.log(honeydoo.honeydoo);
                                     item.title = honeydoo.honeydoo.title;
                                     item.due = honeydoo.honeydoo.dateDue;
                                     item.status = honeydoo.honeydoo.status;
@@ -119,7 +119,7 @@
                                     data.$save(item).then(function(){
                                         console.log('saved in honeylist');
                                         if(initCallback){
-                                            updateYourList(honeydoo, $scope.user.uid, false);
+                                            updateYourList(honeydoo, $scope.userObject.honey.uid, false);
                                         }
                                     }).then(function(){
                                         if(initCallback){

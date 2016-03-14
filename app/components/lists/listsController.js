@@ -29,38 +29,25 @@
                             }
 
                             var yourTodos = listsService.getListItem($scope.user.uid, list);
-                            var honeyTodos = listsService.getListItem($scope.userObject.honey.uid, honeyList);
-
 
                             yourTodos.$loaded(
                                 function(data){
                                     var key = data.$keyAt(index);
                                     var listItem = data.$getRecord(key);
 
-                                    honeyTodos.$loaded(
-                                        function(data){
-                                            var honeyKey = data.$keyAt(index);
-                                            var honeyListItem = data.$getRecord(honeyKey);
-
-                                            ModalService.showModal({
-                                                templateUrl: 'app/components/editItem/editItem.html',
-                                                controller: 'editItemCtrl',
-                                                inputs: {
-                                                    listItem: listItem,
-                                                    honeyListItem: honeyListItem,
-                                                    index: index
-                                                }
-                                            }).then(function(modal){
-                                                modal.element.modal();
-                                                modal.close.then(function(result){
-                                                    console.log('i done wit da edit');
-                                                })
-                                            });
-                                        },
-                                        function(error){
-
+                                    ModalService.showModal({
+                                        templateUrl: 'app/components/editItem/editItem.html',
+                                        controller: 'editItemCtrl',
+                                        inputs: {
+                                            listItem: listItem,
+                                            index: index
                                         }
-                                    );
+                                    }).then(function(modal){
+                                        modal.element.modal();
+                                        modal.close.then(function(result){
+                                            console.log('i done wit da edit');
+                                        })
+                                    });
                                 }
                             );
                         };
