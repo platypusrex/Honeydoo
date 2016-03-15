@@ -12,7 +12,7 @@ div.row
       div.col-md-8.your-list-panel-container
         div.panel.panel-default
           div.panel-heading
-            h4 Your List
+            h4 {{userObject.firstname + "'s" || Your}} List
           div.panel-body(ng-hide="yourList.length >= 1")
             h5.text-center Use the control panel to start adding honeydoos!
           ul.list-group
@@ -20,9 +20,11 @@ div.row
               div.list-info-container
                 div.row
                   div.col-md-10(data-toggle="collapse", ng-attr-data-target='{{"#honeydoo-" + $index}}')
-                    strong Date added:
-                    span.small &nbsp;{{list.addedOn | date:'MMM d, y h:mm a'}}
-                    p.lead {{list.title}}
+                    div.date-container
+                      strong Date added:
+                      span.small &nbsp;{{list.addedOn | date:'MMM d, y h:mm a'}}
+                    div.title-container
+                      p.lead {{list.title}}
                   div.col-md-2
                     div.edit-todo-container
                       i.icon.ion-ios-compose-outline(ng-click="editItem($index, 'yourList')")
@@ -30,21 +32,24 @@ div.row
               div.collapse(ng-attr-id='{{"honeydoo-" + $index}}')
                 hr
                 div.row
-                  div.col-md-3
-                    strong Requested by&nbsp;
-                    span.small {{list.requester}}
+                  div.col-md-2
+                    //strong Requester:&nbsp;
+                    //span.small {{list.requester}}
                     div.requester-img-container
                       img(ng-src="{{list.requesterImg}}")
-                  div.col-md-9
+                  div.col-md-10
                     div.row
-                      div.col-md-6
-                        strong Status:&nbsp;
-                        span {{list.status}}
-                      div.col-md-6
-                        strong Due on:&nbsp;
+                      div.col-md-5
+                        i.mdi.mdi-calendar-clock
                         span {{list.due}}
+                      div.col-md-4
+                        i.mdi.mdi-account-outline &nbsp;
+                        span {{list.requester}}
+                      div.col-md-3
+                        i.mdi.mdi-information-outline
+                        span {{list.status}}
                     div.row
-                      div.col-md-12
+                      div.col-md-12.note-container
                         p.note {{list.note}}
           div.panel-footer(ng-show="yourList.length >= 1")
             dir-pagination-controls(pagination-id="yours", direction-links="true", boundary-links="true", auto-hide="false")

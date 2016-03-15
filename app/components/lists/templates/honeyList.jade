@@ -12,7 +12,7 @@ div.row
       div.col-md-8.your-list-panel-container
         div.panel.panel-default
           div.panel-heading
-            h4 Honey's List
+            h4 {{userObject.honey.firstname + "'s" || Honey}} List
           div.panel-body(ng-hide="honeyList.length >= 1")
             h5.text-center Use the control panel to start adding honeydoos!
           ul.list-group
@@ -31,7 +31,7 @@ div.row
                 hr
                 div.row
                   div.col-md-3
-                    strong Requested by&nbsp;
+                    strong Requester:&nbsp;
                     span.small {{item.requester}}
                     div.requester-img-container
                       img(ng-src="{{item.requesterImg}}")
