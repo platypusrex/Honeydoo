@@ -12,7 +12,8 @@
         'sidenavService',
         'editItemService',
         'growl',
-        function($scope, authService, $element, listItem, index, close, addItemService, sidenavService, editItemService, growl){
+        '$timeout',
+        function($scope, authService, $element, listItem, index, close, addItemService, sidenavService, editItemService, growl, $timeout){
             $scope.user = authService.firebaseAuthObject.$getAuth();
             $scope.honeydoo = {
                 title: listItem.title,
@@ -73,27 +74,29 @@
                                 function(data){
                                     var key = data.$keyAt(index);
                                     var item = data.$getRecord(key);
-                                    console.log(honeydoo.honeydoo);
-                                    item.title = honeydoo.honeydoo.title;
-                                    item.due = honeydoo.honeydoo.dateDue;
-                                    item.status = honeydoo.honeydoo.status;
-                                    item.owner = honeydoo.honeydoo.owner;
-                                    item.category = honeydoo.honeydoo.category;
-                                    item.difficulty = honeydoo.honeydoo.difficulty;
-                                    item.note = honeydoo.honeydoo.note;
 
-                                    data.$save(item).then(function(){
-                                        console.log('saved in yourlist');
-                                        if($scope.userObject.honey && initCallback){
-                                            updateHoneyList(honeydoo, $scope.userObject.honey.uid, false);
-                                        }
-                                    }).then(function(){
-                                        if(initCallback){
-                                            $element.modal('hide');
-                                            $scope.close();
-                                            growlerSuccess('Honeydoo successfully updated!');
-                                        }
-                                    });
+                                    if(listItem.owner !== honeydoo.honeydoo.owner){
+                                        changeOwner(honeydoo, 'honeyList', 'yourList', uid);
+                                    }else {
+                                        item.title = honeydoo.honeydoo.title;
+                                        item.due = honeydoo.honeydoo.dateDue;
+                                        item.status = honeydoo.honeydoo.status;
+                                        item.owner = honeydoo.honeydoo.owner;
+                                        item.category = honeydoo.honeydoo.category;
+                                        item.difficulty = honeydoo.honeydoo.difficulty;
+                                        item.note = honeydoo.honeydoo.note;
+
+                                        data.$save(item).then(function(){
+                                            console.log('saved in yourlist');
+                                            if($scope.userObject.honey && initCallback){
+                                                updateHoneyList(honeydoo, $scope.userObject.honey.uid, false);
+                                            }
+                                        }).then(function(){
+                                            if(initCallback){
+                                                closeModal();
+                                            }
+                                        });
+                                    }
                                 },
                                 function(error){
 
@@ -107,32 +110,73 @@
                                 function(data){
                                     var key = data.$keyAt(index);
                                     var item = data.$getRecord(key);
-                                    console.log(honeydoo.honeydoo);
-                                    item.title = honeydoo.honeydoo.title;
-                                    item.due = honeydoo.honeydoo.dateDue;
-                                    item.status = honeydoo.honeydoo.status;
-                                    item.owner = honeydoo.honeydoo.owner;
-                                    item.category = honeydoo.honeydoo.category;
-                                    item.difficulty = honeydoo.honeydoo.difficulty;
-                                    item.note = honeydoo.honeydoo.note;
 
-                                    data.$save(item).then(function(){
-                                        console.log('saved in honeylist');
-                                        if(initCallback){
-                                            updateYourList(honeydoo, $scope.userObject.honey.uid, false);
-                                        }
-                                    }).then(function(){
-                                        if(initCallback){
-                                            $element.modal('hide');
-                                            $scope.close();
-                                            growlerSuccess('Honeydoo successfully updated!');
-                                        }
-                                    });
+                                    if(listItem.owner !== honeydoo.honeydoo.owner){
+                                        changeOwner(honeydoo, 'yourList', 'honeyList', uid);
+                                    }else {
+                                        item.title = honeydoo.honeydoo.title;
+                                        item.due = honeydoo.honeydoo.dateDue;
+                                        item.status = honeydoo.honeydoo.status;
+                                        item.owner = honeydoo.honeydoo.owner;
+                                        item.category = honeydoo.honeydoo.category;
+                                        item.difficulty = honeydoo.honeydoo.difficulty;
+                                        item.note = honeydoo.honeydoo.note;
+
+                                        data.$save(item).then(function(){
+                                            console.log('saved in honeylist');
+                                            if(initCallback){
+                                                updateYourList(honeydoo, $scope.userObject.honey.uid, false);
+                                            }
+                                        }).then(function(){
+                                            if(initCallback){
+                                                closeModal();
+                                            }
+                                        });
+                                    }
                                 },
                                 function(error){
 
                                 }
                             );
+                        };
+
+                        var changeOwner = function(honeydoo, list1, list2, uid){
+                            var listOne = editItemService.getHoneydoo(uid, list1);
+                            var listTwo = editItemService.getHoneydoo(uid, list2);
+
+                            listOne.$loaded(
+                                function(data){
+                                    var key = data.$keyAt(index);
+                                    var item = data.$getRecord(key);
+                                    var dateAdded = item.addedOn;
+
+                                    listOne.$remove(item).then(function(){
+                                        listTwo.$add({
+                                            title: honeydoo.honeydoo.title,
+                                            addedOn: dateAdded,
+                                            requesterImg: $scope.userObject.image,
+                                            requester: $scope.userObject.username,
+                                            due: honeydoo.honeydoo.dateDue,
+                                            status: honeydoo.honeydoo.status,
+                                            owner: honeydoo.honeydoo.owner,
+                                            category: honeydoo.honeydoo.category,
+                                            difficulty: honeydoo.honeydoo.difficulty,
+                                            note: honeydoo.honeydoo.note
+                                        })
+                                    }).then(function(){
+                                        closeModal();
+                                    });
+                                }
+                            );
+                        };
+
+                        var closeModal = function(){
+                            $element.modal('hide');
+                            $scope.close();
+
+                            $timeout(function(){
+                                growlerSuccess('Honeydoo successfully updated!');
+                            }, 500)
                         };
 
                         $scope.updateHoneydoo = function(honeydoo){
@@ -144,6 +188,7 @@
                                     updateYourList(honeydoo, $scope.user.uid, true);
 
                                 }else {
+                                    console.log("I'm all up in your honey's business")
                                     updateHoneyList(honeydoo, $scope.user.uid, true);
                                 }
                             }else {

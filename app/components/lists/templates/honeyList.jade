@@ -20,31 +20,34 @@ div.row
               div.list-info-container
                 div.row
                   div.col-md-10(data-toggle="collapse", ng-attr-data-target='{{"#honeydooItem-" + $index}}')
-                    strong Date added:
-                    span.small &nbsp;{{item.addedOn | date:'MMM d, y h:mm a'}}
-                    p.lead {{item.title}}
+                    div.date-container
+                      strong Date added:
+                      span.small &nbsp;{{item.addedOn | date:'MMM d, y h:mm a'}}
+                    div.title-container
+                      p.lead {{item.title}}
                   div.col-md-2
                     div.edit-todo-container
-                      i.icon.ion-ios-compose-outline(ng-click="editItem($index, 'honeyList')")
-                      i.icon.ion-ios-trash-outline
+                      i.mdi.mdi-pencil-box-outline(ng-click="editItem($index, 'honeyList')")
+                      i.mdi.mdi-delete-variant
               div.collapse(ng-attr-id='{{"honeydooItem-" + $index}}')
                 hr
                 div.row
-                  div.col-md-3
-                    strong Requester:&nbsp;
-                    span.small {{item.requester}}
+                  div.col-md-2
                     div.requester-img-container
                       img(ng-src="{{item.requesterImg}}")
-                  div.col-md-9
+                  div.col-md-10
                     div.row
-                      div.col-md-6
-                        strong Status:&nbsp;
-                        span {{item.status}}
-                      div.col-md-6
-                        strong Due on:&nbsp;
+                      div.col-md-5
+                        i.mdi.mdi-calendar-clock
                         span {{item.due}}
+                      div.col-md-4
+                        i.mdi.mdi-account-outline &nbsp;
+                        span {{item.requester}}
+                      div.col-md-3
+                        i.mdi.mdi-information-outline
+                        span {{item.status}}
                     div.row
-                      div.col-md-12
+                      div.col-md-12.note-container
                         p.note {{item.note}}
           div.panel-footer(ng-show="honeyList.length >= 1")
             dir-pagination-controls(pagination-id="honeys", direction-links="true", boundary-links="true", auto-hide="false")

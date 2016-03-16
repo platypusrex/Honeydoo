@@ -18,7 +18,7 @@ div.row
                       h6(ng-bind="userObject.firstname + ' ' + userObject.lastname")
                       p.small.text-center(ng-bind="userObject.username")
                   div.col-xs-2.text-center
-                    i.fa.fa-exchange
+                    i.mdi.mdi-rotate-3d
                   div.col-xs-5.text-center
                     i.fa(ng-class="(honeyGender === 'his') ? 'fa-male' : 'fa-female'", ng-hide="userObject.honey.uid === 'none'")
                     div.text-center(ng-show="disable")
@@ -60,7 +60,7 @@ div.row
                       h6(ng-bind="honeyName")
                       p.small.text-center(ng-bind="honeyUsername")
                   div.col-xs-2.text-center
-                    i.fa.fa-exchange
+                    i.mdi.mdi-rotate-3d
                   div.col-xs-5.text-center
                     i.fa(ng-class="(userObject.gender === 'his') ? 'fa-male' : 'fa-female'")
                     div.name-details

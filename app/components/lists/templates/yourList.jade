@@ -27,14 +27,12 @@ div.row
                       p.lead {{list.title}}
                   div.col-md-2
                     div.edit-todo-container
-                      i.icon.ion-ios-compose-outline(ng-click="editItem($index, 'yourList')")
-                      i.icon.ion-ios-trash-outline
+                      i.mdi.mdi-pencil-box-outline(ng-click="editItem($index, 'yourList')")
+                      i.mdi.mdi-delete-variant
               div.collapse(ng-attr-id='{{"honeydoo-" + $index}}')
                 hr
                 div.row
                   div.col-md-2
-                    //strong Requester:&nbsp;
-                    //span.small {{list.requester}}
                     div.requester-img-container
                       img(ng-src="{{list.requesterImg}}")
                   div.col-md-10
