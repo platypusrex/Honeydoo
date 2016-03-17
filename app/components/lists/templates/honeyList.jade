@@ -28,22 +28,24 @@ div.row
                   div.col-md-2
                     div.edit-todo-container
                       i.mdi.mdi-pencil-box-outline(ng-click="editItem($index, 'honeyList')")
-                      i.mdi.mdi-delete-variant
+                      i.mdi.mdi-delete-variant(ng-click="removeItem($index, 'honeyList')")
               div.collapse(ng-attr-id='{{"honeydooItem-" + $index}}')
                 hr
                 div.row
-                  div.col-md-2
+                  div.col-md-4
                     div.requester-img-container
                       img(ng-src="{{item.requesterImg}}")
-                  div.col-md-10
+                    div.requester-name-container
+                      div.name-wrapper
+                        p requested by:
+                        i.mdi.mdi-account-outline &nbsp;
+                        span.small {{item.requester}}
+                  div.col-md-8
                     div.row
-                      div.col-md-5
+                      div.col-md-6
                         i.mdi.mdi-calendar-clock
                         span {{item.due}}
-                      div.col-md-4
-                        i.mdi.mdi-account-outline &nbsp;
-                        span {{item.requester}}
-                      div.col-md-3
+                      div.col-md-6
                         i.mdi.mdi-information-outline
                         span {{item.status}}
                     div.row

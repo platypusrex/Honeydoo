@@ -76,7 +76,7 @@
                                     var item = data.$getRecord(key);
 
                                     if(listItem.owner !== honeydoo.honeydoo.owner){
-                                        changeOwner(honeydoo, 'honeyList', 'yourList', uid);
+                                        changeOwner(honeydoo, 'honeyList', 'yourList', uid, $scope.userObject.honey.uid);
                                     }else {
                                         item.title = honeydoo.honeydoo.title;
                                         item.due = honeydoo.honeydoo.dateDue;
@@ -112,7 +112,7 @@
                                     var item = data.$getRecord(key);
 
                                     if(listItem.owner !== honeydoo.honeydoo.owner){
-                                        changeOwner(honeydoo, 'yourList', 'honeyList', uid);
+                                        changeOwner(honeydoo, 'yourList', 'honeyList', uid, $scope.userObject.honey.uid);
                                     }else {
                                         item.title = honeydoo.honeydoo.title;
                                         item.due = honeydoo.honeydoo.dateDue;
@@ -140,9 +140,11 @@
                             );
                         };
 
-                        var changeOwner = function(honeydoo, list1, list2, uid){
+                        var changeOwner = function(honeydoo, list1, list2, uid, uid2){
                             var listOne = editItemService.getHoneydoo(uid, list1);
                             var listTwo = editItemService.getHoneydoo(uid, list2);
+                            var honeyListOne = editItemService.getHoneydoo(uid2, list2);
+                            var honeyListTwo = editItemService.getHoneydoo(uid2, list1);
 
                             listOne.$loaded(
                                 function(data){
@@ -168,6 +170,29 @@
                                     });
                                 }
                             );
+
+                            honeyListOne.$loaded(
+                                function(data){
+                                    var key = data.$keyAt(index);
+                                    var item = data.$getRecord(key);
+                                    var dateAdded = item.addedOn;
+
+                                    honeyListOne.$remove(item).then(function(){
+                                        honeyListTwo.$add({
+                                            title: honeydoo.honeydoo.title,
+                                            addedOn: dateAdded,
+                                            requesterImg: $scope.userObject.image,
+                                            requester: $scope.userObject.username,
+                                            due: honeydoo.honeydoo.dateDue,
+                                            status: honeydoo.honeydoo.status,
+                                            owner: honeydoo.honeydoo.owner,
+                                            category: honeydoo.honeydoo.category,
+                                            difficulty: honeydoo.honeydoo.difficulty,
+                                            note: honeydoo.honeydoo.note
+                                        })
+                                    });
+                                }
+                            )
                         };
 
                         var closeModal = function(){
@@ -184,11 +209,9 @@
 
                             if(validate){
                                 if(honeydoo.honeydoo.owner === $scope.userObject.username){
-                                    console.log("I'm all up in this business");
                                     updateYourList(honeydoo, $scope.user.uid, true);
 
                                 }else {
-                                    console.log("I'm all up in your honey's business")
                                     updateHoneyList(honeydoo, $scope.user.uid, true);
                                 }
                             }else {

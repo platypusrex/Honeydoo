@@ -91,9 +91,7 @@
                                 }
                             }).then(function(){
                                 if(initCallback){
-                                    $element.modal('hide');
-                                    $scope.close();
-                                    growlerSuccess();
+                                    closeModal();
                                 }
                             });
                         };
@@ -118,11 +116,18 @@
                                 }
                             }).then(function(){
                                 if(initCallback){
-                                    $element.modal('hide');
-                                    $scope.close();
-                                    growlerSuccess();
+                                    closeModal();
                                 }
                             });
+                        };
+
+                        var closeModal = function(){
+                            $element.modal('hide');
+                            $scope.close();
+
+                            $timeout(function(){
+                                growlerSuccess('Honeydoo successfully updated!');
+                            }, 500)
                         };
 
                         $scope.resetForm = function(){
