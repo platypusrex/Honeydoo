@@ -12,6 +12,8 @@
             $scope.user = addItemService.getUserAuth();
             $scope.yourList = addItemService.getYourList($scope.user.uid);
             $scope.honeyList = addItemService.getHoneyList($scope.user.uid);
+            $scope.pageSize = 4;
+            $scope.currentPage = 1;
 
             var growlerSuccess = function(message){
                 growl.warning('<i class="fa fa-check"></i><strong>Alright!&nbsp;' + message, {ttl: 5000})
@@ -27,6 +29,7 @@
                 userData.$loaded(
                     function(data){
                         $scope.userObject = data;
+                        var absolute_index = null;
 
                         $scope.editItem = function(index, list){
                             var honeyList = null;
@@ -37,11 +40,17 @@
                                 honeyList = 'yourList';
                             }
 
+                            $scope.pageChangeHandler = function(num){
+                                $scope.currentPage = num;
+
+                            };
+                            absolute_index = index + ($scope.currentPage - 1) * $scope.pageSize;
+
                             var yourTodos = listsService.getListItem($scope.user.uid, list);
 
                             yourTodos.$loaded(
                                 function(data){
-                                    var key = data.$keyAt(index);
+                                    var key = data.$keyAt(absolute_index);
                                     var listItem = data.$getRecord(key);
 
                                     ModalService.showModal({
@@ -49,7 +58,7 @@
                                         controller: 'editItemCtrl',
                                         inputs: {
                                             listItem: listItem,
-                                            index: index
+                                            index: absolute_index
                                         }
                                     }).then(function(modal){
                                         modal.element.modal();
@@ -63,6 +72,13 @@
 
                         $scope.removeItem = function(index, list){
                             var otherList = null;
+                            var absolute_index = null;
+
+                            $scope.pageChangeHandler = function(num){
+                                $scope.currentPage = num;
+
+                            };
+                            absolute_index = index + ($scope.currentPage - 1) * $scope.pageSize;
 
                             if(list === 'yourList'){
                                 otherList = 'honeyList';
@@ -72,8 +88,8 @@
                             var listOne = listsService.getListItem($scope.user.uid, list);
                             var listTwo = listsService.getListItem($scope.userObject.honey.uid, otherList);
 
-                            remove(listOne, index);
-                            remove(listTwo, index, true);
+                            remove(listOne, absolute_index);
+                            remove(listTwo, absolute_index, true);
                         };
 
                         var remove = function(list, index, initCallback){

@@ -16,7 +16,7 @@ div.row
           div.panel-body(ng-hide="yourList.length >= 1")
             h5.text-center Use the control panel to start adding honeydoos!
           ul.list-group
-            li.list-group-item(dir-paginate="list in yourList | itemsPerPage:4" pagination-id="yours")
+            li.list-group-item(dir-paginate="list in yourList | itemsPerPage:pageSize", pagination-id="yours", currentPage="currentPage")
               div.list-info-container
                 div.row
                   div.col-md-10(data-toggle="collapse", ng-attr-data-target='{{"#honeydoo-" + $index}}')
@@ -52,7 +52,7 @@ div.row
                       div.col-md-12.note-container
                         p.note {{list.note}}
           div.panel-footer(ng-show="yourList.length >= 1")
-            dir-pagination-controls(pagination-id="yours", direction-links="true", boundary-links="true", auto-hide="false")
+            dir-pagination-controls(pagination-id="yours", on-page-change="pageChangeHandler(newPageNumber)", direction-links="true", boundary-links="true", auto-hide="false")
 
 
 
