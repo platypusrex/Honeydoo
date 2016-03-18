@@ -18,6 +18,7 @@
         'HomeModule',
         'SidenavModule',
         'ContentModule',
+        'DashboardModule',
         'ListsModule',
         'EditProfileModule',
         'ConnectModule',

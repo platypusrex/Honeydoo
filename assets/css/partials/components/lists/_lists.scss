@@ -21,6 +21,26 @@
     display: inline-block;
   }
 
+  .controls-panel {
+    h6 {
+      font-weight: 600;
+      color: #666;
+    }
+
+    .btn {
+      border: 1px solid $blue1;
+      color: $blue1;
+      border-radius: 0;
+      background: #fff;
+      transition: all .2s ease-in-out;
+
+      &:hover {
+        color: #fff;
+        background: $blue1;
+      }
+    }
+  }
+
   .your-list-panel-container {
     .lead {
       margin-bottom: 0;
@@ -85,6 +105,15 @@
 
       .pagination {
         margin: 10px 0 2px;
+        color: $blue1;
+
+        .active {
+          a {
+            background: $blue1;
+            border-color: $blue1;
+            color: #fff;
+          }
+        }
       }
     }
 

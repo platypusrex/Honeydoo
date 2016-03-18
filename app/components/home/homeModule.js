@@ -19,6 +19,15 @@
                         }
                     }
                 })
+                .state('home.dashboard', {
+                    url: '/dashboard',
+                    views: {
+                        'dashboard': {
+                            templateUrl: 'app/components/dashboard/dashboard.html',
+                            controller: 'dashboardCtrl'
+                        }
+                    }
+                })
                 .state('home.add', {
                     url: '/add',
                     views: {
