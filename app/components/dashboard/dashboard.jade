@@ -1,11 +1,16 @@
 div.dashboard-container
   h3 Dashboard
   div.dashboard-navigation
-    //ul.nav.nav-tabs
-    //  li.active
-    //    a(href=".general", data-toggle="tab", aria-expanded="true") General Settings
-    //  li
-    //    a(href=".pic", data-toggle="tab", aria-expanded="true") Profile Pic
-    //  li
-    //    a(href=".disconnect", data-toggle="tab", aria-expanded="true") Disconnect
-  hr(class="header-hr")
+    hr(class="header-hr")
+    div.row
+      div.col-md-12
+        div.panel.panel-default
+          div.panel-body
+            div.row
+              div.col-md-3
+                p some info here
+              div.col-md-6
+                //canvas#base.chart-base(chart-type="type", chart-data="yourData", chart-labels="labels", chart-legend="true")
+                canvas#line.chart.chart-line(chart-data="categoryData", chart-legend="true", chart-labels="categories", chart-series="series")
+              div.col-md-3
+                p some other info here

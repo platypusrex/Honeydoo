@@ -14,6 +14,7 @@
             $scope.honeyList = addItemService.getHoneyList($scope.user.uid);
             $scope.pageSize = 4;
             $scope.currentPage = 1;
+            var absolute_index = null;
 
             var growlerSuccess = function(message){
                 growl.warning('<i class="fa fa-check"></i><strong>Alright!&nbsp;' + message, {ttl: 5000})
@@ -23,16 +24,20 @@
                 growl.error('<i class="fa fa-times"></i><strong>Oh shizzle my nizzle ' + err, {ttl: 5000})
             };
 
+            $scope.pageChangeHandler = function(num){
+                $scope.currentPage = num;
+            };
+
             if($scope.user){
                 var userData = sidenavService.getUserData($scope.user.uid);
 
                 userData.$loaded(
                     function(data){
                         $scope.userObject = data;
-                        var absolute_index = null;
 
                         $scope.editItem = function(index, list){
                             var honeyList = null;
+                            absolute_index = index + ($scope.currentPage - 1) * $scope.pageSize;
 
                             if(list === 'yourList'){
                                 honeyList = 'honeyList';
@@ -40,12 +45,7 @@
                                 honeyList = 'yourList';
                             }
 
-                            $scope.pageChangeHandler = function(num){
-                                $scope.currentPage = num;
-
-                            };
-                            absolute_index = index + ($scope.currentPage - 1) * $scope.pageSize;
-
+                            console.log(absolute_index);
                             var yourTodos = listsService.getListItem($scope.user.uid, list);
 
                             yourTodos.$loaded(
@@ -72,12 +72,6 @@
 
                         $scope.removeItem = function(index, list){
                             var otherList = null;
-                            var absolute_index = null;
-
-                            $scope.pageChangeHandler = function(num){
-                                $scope.currentPage = num;
-
-                            };
                             absolute_index = index + ($scope.currentPage - 1) * $scope.pageSize;
 
                             if(list === 'yourList'){
@@ -85,6 +79,7 @@
                             }else {
                                 otherList = 'yourList';
                             }
+
                             var listOne = listsService.getListItem($scope.user.uid, list);
                             var listTwo = listsService.getListItem($scope.userObject.honey.uid, otherList);
 

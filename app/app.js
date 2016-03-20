@@ -10,6 +10,7 @@
         'nya.bootstrap.select',
         'moment-picker',
         'angularUtils.directives.dirPagination',
+        'chart.js',
         'ModalModule',
         'firebase',
         'AuthModule',

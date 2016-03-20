@@ -13,6 +13,7 @@
             $scope.user = addItemService.getUserAuth();
             $scope.userObject = null;
             $scope.error = false;
+            $scope.submitted = false;
             $scope.options = [
                 'New',
                 'Started',
@@ -131,12 +132,13 @@
                         };
 
                         $scope.resetForm = function(){
-                            $scope.error = false;
+                            $scope.submitted = false;
                         };
 
                         $scope.saveHoneydoo = function(honeydoo){
+                            $scope.submitted = true;
                             var validate = validateForm(honeydoo);
-                            console.log(validate);
+
                             if(validate){
                                 if(honeydoo.honeydoo.owner === $scope.userObject.username){
                                     saveToYourList(honeydoo, $scope.user.uid, true);

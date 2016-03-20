@@ -136,24 +136,48 @@
 
   .card-container {
     &:first-child {
-      margin-bottom: 15px;
+      //margin-bottom: 15px;
     }
   }
 
   .edit-profile-disconnect-container {
-    padding: 0 25px 25px 25px;
+    padding: 5px 25px;
+
+    img {
+      height: 120px;
+      width: 120px;
+      border: 2px solid #ddd;
+    }
+
+    h6 {
+      padding: 0;
+      margin: 0;
+    }
+
+    h4 {
+      margin: 15px 0;
+    }
+
+    .small {
+      margin-bottom: 0;
+    }
 
     .profile-img-container {
       padding: 20px;
       text-align: center;
       background: $green3;
       border-radius: 2px;
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
       transition: box-shadow .3s ease-in-out;
       height: 160px;
+      position: relative;
 
       &:hover {
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+        transition: transform .4s ease-in-out;
+
+        img {
+          transform: rotate(360);
+        }
       }
     }
 
@@ -162,16 +186,32 @@
       padding-left: 8px;
     }
 
-    .email-details {
-      p {
-        display: inline-block
+    .panel-heading {
+      img {
+        display: inline-block;
+        margin-bottom: 6px;
+        transition: transform .4s ease-in-out;
+
+        &:hover {
+          transform: rotate(360deg);
+        }
+      }
+    }
+
+    .panel-footer {
+      .user-password-container {
+        .form-control {
+          text-align: center;
+        }
+      }
+
+      .btn {
+        -webkit-transition: none !important;
+        transition: none !important;
       }
     }
 
     .badge {
-      position: absolute;
-      top: 8%;
-      right: -2%;
       background: #fff;
       border: 1px solid #ddd;
       color: #777;
@@ -179,29 +219,6 @@
       padding: 8px;
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
       width: 80px;
-    }
-
-    img {
-      height: 120px;
-      width: 120px;
-      border: 2px solid #ddd;
-    }
-
-    h4 {
-      margin: 14px 0;
-    }
-
-    hr {
-      margin-bottom: 0;
-    }
-
-    h6 {
-      padding: 0;
-      margin: 0;
-    }
-
-    .small {
-      margin-bottom: 0;
     }
 
     .reminder {
@@ -229,8 +246,14 @@
     }
 
     .fa-question-circle {
-      font-size: 120px;
+      font-size: 130px;
       color: #fff;
+      margin-bottom: -4px;
+      transition: transform .4s ease-in-out;
+
+      &:hover {
+        transform: rotate(360deg);
+      }
     }
 
     .fa-question {
@@ -238,22 +261,21 @@
     }
 
     .account-info {
-      border: 1px solid #ddd;
-      padding: 12px;
-      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
-      height: 160px;
-
       .connection-container {
-        margin-bottom: 20px;
+        margin-bottom: 16px;
       }
 
-      .form-control {
-        height: 30px;
-        text-align: center;
-      }
+      .reminder-container {
+        h6 {
+          display: inline-block;
+          font-weight: 600;
+        }
 
-      .btn-sm {
-        transition: none;
+        .mdi-alert-outline {
+          position: relative;
+          top: 3px;
+          color: lighten(red, 15%);
+        }
       }
     }
   }
@@ -272,30 +294,6 @@
 
     .header-hr {
       display: none;
-    }
-  }
-  
-  .name-details {
-    padding-left: 0 !important;
-  }
-
-
-  .account-info {
-    height: auto !important;
-
-    .col-xs-2 {
-      padding: 0;
-    }
-  }
-
-  .reminder-container {
-    i,
-    span {
-      display: none;
-    }
-
-    .btn-container {
-      text-align: center;
     }
   }
 
@@ -332,15 +330,6 @@
     .header-hr {
       display: none;
     }
-  }
-
-  .account-info {
-    height: auto !important;
-  }
-
-  .badge {
-    top: 7% !important;
-    right: 10% !important;
   }
 
   .edit-profile-navigation {

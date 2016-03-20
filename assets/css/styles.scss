@@ -11,6 +11,7 @@
 @import 'partials/components/honeyChat/honey-chat';
 @import 'partials/components/lists/lists';
 @import 'partials/components/addItem/addItem';
+@import 'partials/components/dashboard/dashboard';
 
 // Partials: Shared
 @import 'partials/shared/nav/nav';
@@ -18,10 +19,10 @@
 @import 'partials/shared/growler/angular-growl';
 @import 'partials/shared/angucomplete/angucomplete-alt';
 @import 'partials/shared/select/bootstrap-select';
+@import 'partials/shared/angularChart/angular-chart';
 
 body {
   font-family: 'Raleway', sans-serif;
-  //font-family: 'Cabin', sans-serif;
 
   h1,
   h2,
@@ -29,10 +30,6 @@ body {
   h4,
   h5,
   h6 {
-    //font-family: 'Clicker Script', cursive;
-    //font-family: 'Ubuntu', sans-serif;
-    //font-family: 'Montserrat', sans-serif;
-    //font-family: 'PT Sans', sans-serif;
     color: #555;
   }
 }

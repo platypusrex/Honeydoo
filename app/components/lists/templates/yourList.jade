@@ -26,9 +26,11 @@ div.row
                     div.title-container
                       p.lead {{list.title}}
                   div.col-md-2
-                    div.edit-todo-container
-                      i.mdi.mdi-pencil-box-outline(ng-click="editItem($index, 'yourList')")
-                      i.mdi.mdi-delete-variant(ng-click="removeItem($index, 'yourList')")
+                    div.panel.panel-default
+                      div.panel-body
+                        div.edit-icons
+                          i.mdi.mdi-pencil-box-outline(ng-click="editItem($index, 'yourList')")
+                          i.mdi.mdi-delete-variant(ng-click="removeItem($index, 'yourList')")
               div.collapse(ng-attr-id='{{"honeydoo-" + $index}}')
                 hr
                 div.row

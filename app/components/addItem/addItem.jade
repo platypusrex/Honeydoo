@@ -5,69 +5,69 @@ div.modal.fade.add-item-container
         button.close(type="button", data-dismiss="modal", aria-hidden="true", ng-click="close()") &times;
         h5.modal-title.text-center {{honeydoo.title || "Add Honeydoo"}}
       div.modal-body
-        form.form-horizontal(name="AddHoneydooForm", novalidate)
+        form.form-horizontal(name="addHoneydoo" novalidate)
           div.row
             div.col-md-6
               div.form-group
                 div.col-md-12
                   label.control-label(for="itemTitle") Honeydoo Title
                 div.col-md-12
-                  input#itemTitle.form-control(type="text", ng-model="honeydoo.title", ng-focus="resetForm()", placeholder="Add a title...", required)
-                  span.help-block(ng-show="error", ng-bind="error")
+                  input#itemTitle.form-control(name="title", type="text", ng-model="honeydoo.title", ng-focus="resetForm()", placeholder="Add a title...", required)
+                  span.help-block(ng-show="submitted && addHoneydoo.title.$error.required") field required
             div.col-md-6
               div.form-group
                 div.col-md-12
                   label.control-label(for="honeydooDate") Due Date
                 div.col-md-12
-                  input#honeydooDate.form-control(placeholder="Select a date...", ng-focus="resetForm()", required, moment-picker="honeydoo.dateDue", format="lll", ng-model="honeydoo.dateDue", ng-model-options="{updateOn: 'blur'}")
-                  span.help-block(ng-show="error", ng-bind="error")
+                  input#honeydooDate.form-control(name="dateDue", placeholder="Select a date...", ng-focus="resetForm()", required, moment-picker="honeydoo.dateDue", format="lll", ng-model="honeydoo.dateDue", ng-model-options="{updateOn: 'blur'}")
+                  span.help-block(ng-show="submitted && addHoneydoo.dateDue.$error.required") field required
           div.row
             div.col-md-6
               div.form-group
                 div.col-md-12
                   label.control-label(for="status") Status
                 div.col-md-12
-                  ol#status.nya-bs-select.form-control.show-menu-arrow(ng-model="honeydoo.status", ng-focus="resetForm()", title="What's the status?", required)
+                  ol#status.nya-bs-select.form-control.show-menu-arrow(name="status", ng-model="honeydoo.status", ng-change="resetForm()", title="What's the status?", required)
                     li(nya-bs-option="option in options")
                       a {{option}}
                         span.glyphicon.glyphicon-ok.check-mark
-                  span.help-block(ng-show="error", ng-bind="error")
+                  span.help-block(ng-show="submitted && addHoneydoo.status.$error.required") field required
             div.col-md-6
               div.form-group
                 div.col-md-12
                   label.control-label(for="owner") Owner
                 div.col-md-12
-                  ol#owner.nya-bs-select.form-control.show-menu-arrow(ng-model="honeydoo.owner", ng-focus="resetForm()", title="Who's the owner?", required)
+                  ol#owner.nya-bs-select.form-control.show-menu-arrow(name="owner", ng-model="honeydoo.owner", ng-change="resetForm()", title="Who's the owner?", required)
                     li(nya-bs-option="owner in owners")
                       a {{owner}}
                         span.glyphicon.glyphicon-ok.check-mark
-                  span.help-block(ng-show="error", ng-bind="error")
+                  span.help-block(ng-show="submitted && addHoneydoo.owner.$error.required") field required
             div.col-md-6
               div.form-group
                 div.col-md-12
-                  label.control-label(for="categories") Category
+                  label.control-label(for="categories") Categories
                 div.col-md-12
-                  ol#categories.nya-bs-select.form-control.show-menu-arrow(ng-model="honeydoo.category", ng-focus="resetForm()", title="Choose a category", data-size="5", required)
+                  ol#categories.nya-bs-select.form-control.show-menu-arrow(name="category", ng-model="honeydoo.category", ng-change="resetForm()", title="Choose a category", data-size="5", required)
                     li(nya-bs-option="option in categories group by option.group")
                       span.dropdown-header {{$group}}
                       a {{option.name}}
                         span.glyphicon.glyphicon-ok.check-mark
-                  span.help-block(ng-show="error", ng-bind="error")
+                  span.help-block(ng-show="submitted && addHoneydoo.category.$error.required") field required
             div.col-md-6
               div.form-group
                 div.col-md-12
                   label.control-label(for="difficulty") Difficulty
                 div.col-md-12
-                  ol#difficulty.nya-bs-select.form-control.show-menu-arrow(ng-model="honeydoo.difficulty", ng-focus="resetForm()", title="Select task difficulty", required)
+                  ol#difficulty.nya-bs-select.form-control.show-menu-arrow(name="difficulty", ng-model="honeydoo.difficulty", ng-change="resetForm()", title="Select task difficulty", required)
                     li(nya-bs-option="task in taskDifficulty")
                       a {{task}}
                         span.glyphicon.glyphicon-ok.check-mark
-                  span.help-block(ng-show="error", ng-bind="error")
+                  span.help-block(ng-show="submitted && addHoneydoo.difficulty.$error.required") field required
             div.col-md-10.col-md-offset-1
               div.form-group
                 label.control-label(for="note", required) Add Note
-                textarea#note.form-control(rows="3", ng-model="honeydoo.note", ng-focus="resetForm()", placeholder="Add a note...")
-                span.help-block(ng-show="error", ng-bind="error")
+                textarea#note.form-control(name="note", rows="3", ng-model="honeydoo.note", ng-focus="resetForm()", placeholder="Add a note...", required)
+                span.help-block(ng-show="submitted && addHoneydoo.note.$error.required") field required
       div.modal-footer
         button.btn.btn-default(type="button", data-dismiss="modal", ng-click="close()") Cancel
         button.btn.btn-primary(type="submit", ng-click="saveHoneydoo({honeydoo: honeydoo})") Submit
