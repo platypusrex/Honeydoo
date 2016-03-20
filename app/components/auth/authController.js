@@ -55,7 +55,7 @@
                          return authData;
                     })
                     .then(function(){
-                         $state.go('home.connect');
+                         $state.go('home.dashboard');
                      })
                     .catch(function(error){
                          $scope.error = error;
