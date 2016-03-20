@@ -12,7 +12,6 @@
         function($scope, ModalService, addItemService, sidenavService, $element, close, growl){
             $scope.user = addItemService.getUserAuth();
             $scope.userObject = null;
-            $scope.error = false;
             $scope.submitted = false;
             $scope.options = [
                 'New',

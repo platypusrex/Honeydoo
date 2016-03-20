@@ -96,4 +96,7 @@ body {
   top: 3px;
   left: -3px
 }
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
 
