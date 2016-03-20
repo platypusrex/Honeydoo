@@ -13,7 +13,8 @@
             $scope.yourList = addItemService.getYourList($scope.user.uid);
             $scope.honeyList = addItemService.getHoneyList($scope.user.uid);
             $scope.pageSize = 4;
-            $scope.currentPage = 1;
+            $scope.currentPage1 = 1;
+            $scope.currentPage2 = 1;
             var absolute_index = null;
 
             var growlerSuccess = function(message){
@@ -24,8 +25,12 @@
                 growl.error('<i class="fa fa-times"></i><strong>Oh shizzle my nizzle ' + err, {ttl: 5000})
             };
 
-            $scope.pageChangeHandler = function(num){
-                $scope.currentPage = num;
+            $scope.pageChangeHandler = function(num, list){
+                if(list === 'yours'){
+                    $scope.currentPage1 = num;
+                }else {
+                    $scope.currentPage2 = num;
+                }
             };
 
             if($scope.user){
@@ -37,7 +42,8 @@
 
                         $scope.editItem = function(index, list){
                             var honeyList = null;
-                            absolute_index = index + ($scope.currentPage - 1) * $scope.pageSize;
+                            var thisList = (list === 'yourList') ? $scope.currentPage1 : $scope.currentPage2;
+                            absolute_index = index + (thisList - 1) * $scope.pageSize;
 
                             if(list === 'yourList'){
                                 honeyList = 'honeyList';
@@ -45,7 +51,6 @@
                                 honeyList = 'yourList';
                             }
 
-                            console.log(absolute_index);
                             var yourTodos = listsService.getListItem($scope.user.uid, list);
 
                             yourTodos.$loaded(

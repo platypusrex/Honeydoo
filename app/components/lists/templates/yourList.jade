@@ -54,7 +54,7 @@ div.row
                       div.col-md-12.note-container
                         p.note {{list.note}}
           div.panel-footer(ng-show="yourList.length >= 1")
-            dir-pagination-controls(pagination-id="yours", on-page-change="pageChangeHandler(newPageNumber)", direction-links="true", boundary-links="true", auto-hide="false")
+            dir-pagination-controls(pagination-id="yours", on-page-change="pageChangeHandler(newPageNumber, 'yours')", direction-links="true", boundary-links="true", auto-hide="false")
 
 
 

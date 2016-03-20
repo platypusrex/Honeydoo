@@ -52,4 +52,4 @@ div.row
                       div.col-md-12.note-container
                         p.note {{item.note}}
           div.panel-footer(ng-show="honeyList.length >= 1")
-            dir-pagination-controls(pagination-id="honeys", direction-links="true", on-page-change="pageChangeHandler(newPageNumber)", boundary-links="true", auto-hide="false")
+            dir-pagination-controls(pagination-id="honeys", direction-links="true", on-page-change="pageChangeHandler(newPageNumber, 'honeys')", boundary-links="true", auto-hide="false")
