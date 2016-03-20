@@ -4,7 +4,7 @@ div.modal.fade.honey-chat-container
       div.modal-header
         button.close(type="button", ng-click="close(false)", data-dismiss="modal", aria-hidden="true") &times;
         h5.modal-title Honeychat
-      div.modal-body
+      div.modal-body(scroll-bottom="messages")
         div.chat-helper.text-center(ng-show="!showModalBody")
           i.fa.fa-exclamation-triangle
           h6 You need to connect with someone before using honeychat.
