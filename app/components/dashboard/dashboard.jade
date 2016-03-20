@@ -4,12 +4,31 @@ div.dashboard-container
     hr(class="header-hr")
     div.row
       div.col-md-12
-        div.panel.panel-default
-          div.panel-body
+        div.panel.panel-default.dashboard-panel
+          div.panel-heading
+            p.small Dashboard information and statistics
+          div.panel-body.dashboard-panel-body
             div.row
               div.col-md-3
-                p some info here
+                h6.text-center {{userObject.firstname + "'s"}} Stats
+                div.row
+                  div.col-md-8.col-md-offset-2
+                    div.panel.panel-default.text-center
+                      div.panel-heading
+                        p.small status
+                      div.panel-body
+                        h4 {{yourCategory[0]}}
+                        p {{yourCategory[1]}}
               div.col-md-6
                 canvas#line.chart.chart-line(chart-data="categoryData", chart-legend="true", chart-labels="categories", chart-series="series", ng-cloak)
               div.col-md-3
-                p some other info here
+                h6.text-center(ng-show="!userObject.honey") Connect with your better half!
+                h6.text-center(ng-show="userObject.honey") {{userObject.honey.firstname + "'s"}} Stats
+                div.row
+                  div.col-md-8.col-md-offset-2
+                    div.panel.panel-default.text-center
+                      div.panel-heading
+                        p.small status
+                      div.panel-body
+                        h4 {{honeyCategory[0]}}
+                        p {{honeyCategory[1]}}

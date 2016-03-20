@@ -6,9 +6,11 @@
         'sidenavService',
         'listsService',
         'growl',
-        function($scope, sidenavService, listsService, growl){
+        '$interval',
+        function($scope, sidenavService, listsService, growl, $interval){
             $scope.categories = ['New', 'Started', 'Finished'];
             $scope.user = sidenavService.getUserAuth();
+            var categoryCount = 0;
 
             if($scope.user){
                 var userData = sidenavService.getUserData($scope.user.uid);
@@ -32,6 +34,18 @@
                                     honeyListData.$loaded(
                                         function(data){
                                             $scope.categoryData[1] = getListStatusData(data);
+                                            $scope.yourCategory = [$scope.categories[0], $scope.categoryData[0][0]];
+                                            $scope.honeyCategory = [$scope.categories[0], $scope.categoryData[1][0]];
+
+                                            $interval(function(){
+                                                $scope.yourCategory = [$scope.categories[categoryCount], $scope.categoryData[0][categoryCount]];
+                                                $scope.honeyCategory = [$scope.categories[categoryCount], $scope.categoryData[1][categoryCount]];
+                                                if(categoryCount < ($scope.categories.length - 1)){
+                                                    categoryCount++;
+                                                }else {
+                                                    categoryCount = 0;
+                                                }
+                                            }, 6000);
                                         },
                                         function(error){
 
