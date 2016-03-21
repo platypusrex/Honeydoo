@@ -77,7 +77,8 @@
 
                         $scope.removeItem = function(index, list){
                             var otherList = null;
-                            absolute_index = index + ($scope.currentPage - 1) * $scope.pageSize;
+                            var thisList = (list === 'yourList') ? $scope.currentPage1 : $scope.currentPage2;
+                            absolute_index = index + (thisList - 1) * $scope.pageSize;
 
                             if(list === 'yourList'){
                                 otherList = 'honeyList';

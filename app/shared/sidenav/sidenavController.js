@@ -9,7 +9,8 @@
         'growl',
         'ModalService',
         '$rootScope',
-        function($scope, sidenavService, $state, firebaseDataService, growl, ModalService, $rootScope){
+        '$timeout',
+        function($scope, sidenavService, $state, firebaseDataService, growl, ModalService, $rootScope, $timeout){
             $scope.user = sidenavService.getUserAuth();
             $scope.iconActive1 = false;
             $scope.iconActive2 = false;
@@ -96,6 +97,10 @@
                     controller: "honeyChatCtrl"
                 }).then(function(modal) {
                     modal.element.modal();
+                    $timeout(function(){
+                        $(modal.element).find('.modal-body').scrollTop($(modal.element).find('.modal-body')[0].scrollHeight);
+                    }, 200);
+
                     modal.close.then(function(result) {
                         console.log('hey dude')
                     });
