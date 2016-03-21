@@ -23,7 +23,7 @@ div.modal.fade.honey-chat-container
                 p {{message.text}}
       div.modal-footer
         div.input-group
-          input.form-control(type="text", placeholder="Type a message...", ng-model="message", ng-disabled="!showModalBody")
+          input.form-control(type="text", placeholder="Type a message...", ng-model="message", ng-keypress="$event.which === 13 && addMessage(message)", ng-disabled="!showModalBody")
           span.input-group-btn
             button.btn.btn-default.btn-secondary(type="submit", ng-click="addMessage(message)", ng-class="{'disabled': !showModalBody}") Submit
 
