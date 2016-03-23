@@ -1,36 +1,34 @@
 div.login-container
-  div.container
-    div.row
-      div.col-sm-4.col-sm-offset-4
-        div.login-wrapper
-          form.form-signin(name="authForm", novalidate)
-            h2.form-signin-heading.text-center Honeydoo List
-            p.lead.text-center(ng-bind="formTitle")
-            div.alert.alert-dismissible.alert-danger(ng-show="error")
-              button.close(type="button", data-dismiss="alert")
-                i.fa.fa-close
-              strong Oh shizzle, my nizzle!
-              p(ng-bind="error")
-            label.sr-only(for="inputEmail") Email Address
-            input#inputEmail.form-control(type="email", name="email", placeholder="Email Address", ng-model="user.email", required, autofocus)
-            label.sr-only(for="inputPassword") Password
-            input#inputPassword.form-control(type="password", name="password", placeholder="Password", ng-model="user.password", required)
-            div(ng-show="formTitle === 'Register'")
-              label.sr-only(for="inputUsername") Username
-              input#inputUsername.form-control(type="text", name="username", placeholder="Username", ng-model="user.username", required)
-              label.sr-only(for="inputFirstname") Username
-              input#inputUsername.form-control(type="text", name="firstname", placeholder="First Name", ng-model="user.firstname", required)
-              label.sr-only(for="inputLastname") Username
-              input#inputUsername.form-control(type="text", name="lastname", placeholder="Last Name", ng-model="user.lastname", required)
-              div.form-group
-                label.col-lg-2 Gender:
-                div.radio-container.text-center.col-lg-10
-                  label.radio-inline
-                    input(type="radio", name="radios", id="option1", value="his", ng-model="user.gender", required)
-                    | Male &nbsp;
-                  label.radio-inline
-                    input(type="radio", name="radios", id="option2", value="hers", ng-model="user.gender")
-                    | Female &nbsp;
-            ng-transclude
-            button.btn.btn-lg.btn-block.btn-primary(type="submit", ng-click="submitAction({user: user})", ng-bind="formTitle")
-    p {{user}} {{error}}
+  div.row
+    div.col-sm-12
+      div.login-wrapper
+        form.form-signin(name="authForm", novalidate)
+          h2.form-signin-heading.text-center Honeydoo List
+          p.lead.text-center(ng-bind="formTitle")
+          div.alert.alert-dismissible.alert-danger(ng-show="error")
+            button.close(type="button", data-dismiss="alert")
+              i.fa.fa-close
+            strong Oh shizzle, my nizzle!
+            p(ng-bind="error")
+          label.sr-only(for="inputEmail") Email Address
+          input#inputEmail.form-control(type="email", name="email", placeholder="Email Address", ng-model="user.email", required, autofocus)
+          label.sr-only(for="inputPassword") Password
+          input#inputPassword.form-control(type="password", name="password", placeholder="Password", ng-model="user.password", required)
+          div(ng-show="formTitle === 'Register'")
+            label.sr-only(for="inputUsername") Username
+            input#inputUsername.form-control(type="text", name="username", placeholder="Username", ng-model="user.username", required)
+            label.sr-only(for="inputFirstname") Username
+            input#inputUsername.form-control(type="text", name="firstname", placeholder="First Name", ng-model="user.firstname", required)
+            label.sr-only(for="inputLastname") Username
+            input#inputUsername.form-control(type="text", name="lastname", placeholder="Last Name", ng-model="user.lastname", required)
+            div.form-group
+              label.col-lg-2 Gender:
+              div.radio-container.text-center.col-lg-10
+                label.radio-inline
+                  input(type="radio", name="radios", id="option1", value="his", ng-model="user.gender", required)
+                  | Male &nbsp;
+                label.radio-inline
+                  input(type="radio", name="radios", id="option2", value="hers", ng-model="user.gender")
+                  | Female &nbsp;
+          ng-transclude
+          button.btn.btn-lg.btn-block.btn-primary(type="submit", ng-click="submitAction({user: user})", ng-bind="formTitle")

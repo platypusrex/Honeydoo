@@ -8,8 +8,9 @@
         'firebaseDataService',
         '$firebaseObject',
         'authService',
+        'ModalService',
         '$rootScope',
-        function($scope, $state, $firebaseAuth, firebaseDataService, $firebaseObject, authService, $rootScope){
+        function($scope, $state, $firebaseAuth, firebaseDataService, $firebaseObject, authService, ModalService, $rootScope){
             $rootScope.showSidenav = false;
             $scope.logOut = logout;
             var authData = authService.firebaseAuthObject.$getAuth();
@@ -27,6 +28,30 @@
                 );
             }
 
+            $scope.showLogin = function(){
+                ModalService.showModal({
+                    templateUrl: "app/components/auth/login.html",
+                    controller: "authCtrl"
+                }).then(function(modal) {
+                    modal.element.modal();
+                    modal.close.then(function(result) {
+                        console.log('hey dude')
+                    });
+                });
+            };
+
+            $scope.showRegister = function(){
+                ModalService.showModal({
+                    templateUrl: "app/components/auth/register.html",
+                    controller: "authCtrl"
+                }).then(function(modal) {
+                    modal.element.modal();
+                    modal.close.then(function(result) {
+                        console.log('hey dude')
+                    });
+                });
+            };
+
             $scope.changeSidenavState = function(){
                 $rootScope.showSidenav = !$rootScope.showSidenav;
             };
@@ -40,7 +65,7 @@
 
             function logout(){
                 authService.logout();
-                $state.go('login');
+                $state.go('/');
             }
     }]);
 }(angular.module('NavModule')));

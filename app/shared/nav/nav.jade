@@ -7,7 +7,6 @@ div.nav.navbar-custom.navbar-static-top
         span.icon-bar
         span.icon-bar
       div.sidebar-toggle.pull-left()
-        //i.fa.fa-bars
         input#unchecked.cbx.hidden(type="checkbox")
         label.lbl(for="unchecked", ng-click="changeSidenavState()")
       a.navbar-brand(href="index.html") Honeydoo List&nbsp;
@@ -15,9 +14,9 @@ div.nav.navbar-custom.navbar-static-top
     div.collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right(ng-hide="loggedIn")
         li
-          a(href="#/login") Sign In
+          a(ng-click="showLogin()") Sign In
         li
-          a(href="#/register") Register
+          a(ng-click="showRegister()") Register
       ul.nav.navbar-nav.navbar-right(ng-hide="!loggedIn")
         li.dropdown
           a.dropdown-toggle(href="", data-toggle="dropdown")
@@ -34,9 +33,6 @@ div.nav.navbar-custom.navbar-static-top
                   div.col-sm-8.buttons-container
                     div.row
                       div.col-sm-12.acct-btn-container(ui-sref="home.edit_profile")
-                        //p.text-center {{user.password.email}}
-                        //div.text-left.logout-container
-                        //  a.btn.btn-danger.btn-block(ng-click="logOut()") Logout
                         i.fa.fa-cogs
                         p.text-center &nbsp;&nbsp;Account Settings
                       div.col-sm-12.login-btn-container(ng-click="logOut()")

@@ -28,7 +28,7 @@
         'AddItemModule',
         'EditItemModule'
         ])
-        .config(['$stateProvider', '$urlRouterProvider', 'growlProvider', function($stateProvider, $urlRouterProvider, growlProvider){
+        .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'growlProvider', function($stateProvider, $urlRouterProvider, $locationProvider, growlProvider){
             growlProvider.globalEnableHtml(true);
             $urlRouterProvider.otherwise('/');
         }])

@@ -4,9 +4,10 @@
     authModule.controller('authCtrl', [
         '$scope',
         '$state',
+        'ModalService',
         'authService',
         'firebaseDataService',
-        function($scope, $state, authService, firebaseDataService){
+        function($scope, $state, ModalService, authService, firebaseDataService){
             var ref = firebaseDataService.users;
 
             $scope.register = function(user){
@@ -36,7 +37,7 @@
                         return $scope.user;
                     })
                     .then(function(){
-                        $state.go('login');
+                        $state.go('/');
                     })
                     .catch(function(error){
                         $scope.error = error;

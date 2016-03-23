@@ -1,1 +1,7 @@
-auth-form(form-title="Log In", submit-action="login(user)", error="error")
+div.modal.fade.login-container
+  div.modal-dialog
+    div.modal-content
+      div.modal-header
+        button.close(type="button", data-dismiss="modal", aria-hidden="true", ng-click="close()") &times;
+      div.modal-body
+        auth-form(form-title="Log In", submit-action="login(user)", error="error")

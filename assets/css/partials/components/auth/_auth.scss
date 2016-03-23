@@ -1,29 +1,14 @@
 .login-container {
-  &:after {
-    content: "";
-    background: url(../img/couples2.jpg);
-    background-size: cover;
-    background-position: top right;
-    position: absolute;
-    top: 62px;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    display: block;
-    opacity: 0.4;
+  .modal-dialog {
+    max-width: 400px;
+    top: 60px;
   }
 
   .login-wrapper {
-    position: relative;
-    z-index: 2;
-    top: 60px;
-    border-radius: 2px;
-    padding: 25px 25px 45px;
-    box-shadow: 0 2px 8px 2px #777;
-    background: #fff;
 
     h2 {
       font-family: 'Clicker Script', cursive;
+      margin-top: 0;
     }
 
     .form-control {
@@ -41,6 +26,12 @@
       color: #fff;
       margin-top: 25px;
       border-radius: 0;
+      background: $blue1;
+      transition: all .2s ease-in-out;
+
+      &:hover {
+        background: darken($blue1, 4%);
+      }
     }
 
     .alert {
