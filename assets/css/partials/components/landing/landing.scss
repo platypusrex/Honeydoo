@@ -1,0 +1,41 @@
+.landing-container {
+  header {
+    background: url(../img/couples2.jpg);
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-attachment: fixed;
+    overflow: hidden;
+    margin: 0 0;
+    text-align: center;
+    background-color: #ebebeb;
+
+    .intro-text {
+      padding: 180px 0 120px;
+      background: rgba(0,0,0,0.2);
+
+      h1,
+      h4 {
+        color: #fff;
+      }
+    }
+
+    .intro-footer {
+      background: $green1;
+      height: 100%;
+      padding: 16px 0;
+
+      h5 {
+        color: #fff;
+        display: inline-block;
+        margin: 0 30px 0 0;
+      }
+
+      .btn {
+        display: inline-block;
+      }
+    }
+  }
+}

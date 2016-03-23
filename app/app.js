@@ -13,6 +13,7 @@
         'chart.js',
         'ModalModule',
         'firebase',
+        'LandingModule',
         'AuthModule',
         'NavModule',
         'CoreModule',
@@ -29,7 +30,7 @@
         ])
         .config(['$stateProvider', '$urlRouterProvider', 'growlProvider', function($stateProvider, $urlRouterProvider, growlProvider){
             growlProvider.globalEnableHtml(true);
-            $urlRouterProvider.otherwise('/login');
+            $urlRouterProvider.otherwise('/');
         }])
         .run(['$rootScope', '$state', '$log', function($rootScope, $state, $log){
             $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error){
