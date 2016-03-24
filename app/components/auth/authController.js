@@ -7,8 +7,15 @@
         'ModalService',
         'authService',
         'firebaseDataService',
-        function($scope, $state, ModalService, authService, firebaseDataService){
+        '$element',
+        'growl',
+        '$timeout',
+        function($scope, $state, ModalService, authService, firebaseDataService, $element, growl, $timeout){
             var ref = firebaseDataService.users;
+
+            var growlerSuccess = function(){
+                growl.warning('<i class="fa fa-check"></i><strong>Congrats!&nbsp;</strong>Now click the Sign In button and get going!', {ttl: 5000})
+            };
 
             $scope.register = function(user){
                 authService.register(user)
@@ -37,6 +44,12 @@
                         return $scope.user;
                     })
                     .then(function(){
+                        $element.modal('hide');
+                        $timeout(function(){
+                            growlerSuccess();
+                        }, 200);
+                    })
+                    .then(function(){
                         $state.go('/');
                     })
                     .catch(function(error){
@@ -56,6 +69,7 @@
                          return authData;
                     })
                     .then(function(){
+                         $element.modal('hide');
                          $state.go('home.dashboard');
                      })
                     .catch(function(error){
