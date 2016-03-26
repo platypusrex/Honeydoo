@@ -44,6 +44,16 @@
         position: relative;
         bottom: 3px;
         margin-left: 20px;
+        border: 1px solid $green3;
+        border-radius: 0;
+        background: #fff;
+        transition: all .3s ease-in-out;
+
+        &:hover {
+          border-color: darken($green3, 5%);
+          background: darken(#fff, 5%);
+          transition: all .3s ease-in-out;
+        }
       }
     }
   }
