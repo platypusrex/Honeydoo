@@ -58,7 +58,7 @@
     }
   }
 
-  .about-honeydoo-container1 {
+  .about-honeydoo-container {
     h1 {
       margin: 60px 0 40px;
     }
@@ -66,6 +66,42 @@
     p {
       font-size: 18px;
       margin-bottom: 60px;
+    }
+
+    .about-card-panel-container {
+      margin-bottom: 60px;
+    }
+
+    .about-card-panel {
+      .panel-heading {
+        padding: 0;
+
+        .about-img-container {
+          position: relative;
+
+          img {
+            height: 100%;
+            width: 100%;
+          }
+
+          h5 {
+            margin: 0;
+            padding: 12px;
+            position: absolute;
+            background: rgba(71, 144, 201, 0.7) !important;
+            width: 100%;
+            color: #fff;
+            bottom: 0;
+          }
+        }
+      }
+
+      .panel-body {
+        p {
+          margin: 5px 0;
+          font-size: 15px;
+        }
+      }
     }
   }
 
