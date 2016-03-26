@@ -70,7 +70,9 @@
                     })
                     .then(function(){
                          $element.modal('hide');
-                         $state.go('home.dashboard');
+                         $timeout(function(){
+                             $state.go('home.dashboard');
+                         }, 200);
                      })
                     .catch(function(error){
                          $scope.error = error;
