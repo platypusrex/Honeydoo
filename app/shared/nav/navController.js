@@ -53,7 +53,9 @@
             };
 
             $scope.changeSidenavState = function(){
-                $rootScope.showSidenav = !$rootScope.showSidenav;
+                if($scope.user) {
+                    $rootScope.showSidenav = !$rootScope.showSidenav;
+                }
             };
 
             authService.firebaseAuthObject.$onAuth(function(auth){

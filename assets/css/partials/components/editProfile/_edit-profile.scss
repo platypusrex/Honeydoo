@@ -167,16 +167,22 @@
       text-align: center;
       background: $green3;
       border-radius: 2px;
-      transition: box-shadow .3s ease-in-out;
+      //transition: box-shadow .3s ease-in-out;
       height: 160px;
       position: relative;
+      transition: all .4s ease-in-out;
 
       &:hover {
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
-        transition: transform .4s ease-in-out;
+        transition: all .4s ease-in-out;
+
+        .badge {
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+          transition: all .4s ease-in-out;
+        }
 
         img {
-          transform: rotate(360);
+          transform: rotate(360deg);
         }
       }
     }
@@ -217,8 +223,8 @@
       color: #777;
       border-radius: 2px;
       padding: 8px;
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
       width: 80px;
+      transition: all .4s ease-in-out;
     }
 
     .reminder {

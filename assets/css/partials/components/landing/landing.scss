@@ -21,20 +21,100 @@
         color: #fff;
       }
     }
+  }
+  section {
+    text-align: center;
+
+    .intro-footer-container {
+      height: 75px;
+      background: $green1;
+    }
 
     .intro-footer {
-      background: $green1;
-      height: 100%;
-      padding: 16px 0;
-
       h5 {
         color: #fff;
         display: inline-block;
-        margin: 0 30px 0 0;
+        margin: 0;
+        padding: 0;
+        line-height: 75px;
       }
 
       .btn {
         display: inline-block;
+        position: relative;
+        bottom: 3px;
+        margin-left: 20px;
+      }
+    }
+  }
+
+  .about-honeydoo-container1 {
+    h1 {
+      margin: 40px 0;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 40px;
+    }
+  }
+
+  .features-honeydoo-container {
+    background: #f7f7f7;
+
+    .feature {
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      margin: 40px 0;
+    }
+
+    .icon-container,
+    .icon-container-even {
+      background: $green2;
+      border-radius: 50%;
+      height: 100px;
+      width: 100px;
+      margin: 0 auto;
+
+      &:nth-child(2){
+        background: $green3;
+      }
+
+      .mdi {
+        color: #fff;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+
+        &:before {
+          font-size: 48px;
+          line-height: 48px;
+        }
+      }
+    }
+
+    .icon-container-even {
+      background: $green3;
+    }
+  }
+
+  .honeydoo-footer {
+    padding: 30px;
+    background: $green3;
+    text-align: center;
+
+    span {
+      color: #fff;
+      font-size: 18px;
+    }
+
+    .mdi-copyright {
+      &:before {
+        font-size: 18px;
+        color: #fff;
+        line-height: 18px;
       }
     }
   }
