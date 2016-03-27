@@ -12,11 +12,23 @@ div.row
       div.col-md-8.your-list-panel-container
         div.panel.panel-default
           div.panel-heading
-            h4 {{userObject.firstname + "'s" || Your}} List
+            div.row
+              div.col-xs-6
+                h4 {{userObject.firstname + "'s" || Your}} List
+              div.col-xs-6
+                div.btn-group.btn-group-justified(ng-show="showButtonGroup")
+                  div.btn-group
+                    button.btn.btn-default.bt-block(ng-click="showSearch()") Search
+                  div.btn-group
+                    button.btn.btn-default.btn-block Sort
+                div.input-group(ng-show="showQuery")
+                  input.form-control(type="text", ng-model="query", placeholder="Search")
+                  span.input-group-btn
+                    button.btn.btn-default(ng-click="showSearch()") Back
           div.panel-body(ng-hide="yourList.length >= 1")
             h5.text-center Use the control panel to start adding honeydoos!
           ul.list-group
-            li.list-group-item(dir-paginate="list in yourList | itemsPerPage:pageSize", pagination-id="yours", currentPage="currentPage")
+            li.list-group-item(dir-paginate="list in yourList|filter:query|itemsPerPage:pageSize", pagination-id="yours", currentPage="currentPage")
               div.list-info-container
                 div.row
                   div.col-md-10(data-toggle="collapse", ng-attr-data-target='{{"#honeydoo-" + $index}}')

@@ -12,6 +12,10 @@
 
   .panel {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+
+    .panel-heading {
+      padding: 15px;
+    }
   }
 
   .lists-navigation {
@@ -25,6 +29,14 @@
     h6 {
       font-weight: 600;
       color: #666;
+    }
+
+    .panel-heading {
+      border-bottom: 1px solid #ddd;
+
+      h4 {
+        margin: 5px 0;
+      }
     }
 
     .btn {
@@ -62,11 +74,19 @@
       margin-top: 3px;
     }
 
+    .panel-heading {
+      h4 {
+        margin-bottom: 0;
+        margin-top: 6px;
+      }
+    }
+
     .list-info-container {
       .panel {
         margin: 0;
         padding: 0;
       }
+
       .panel-body {
         padding: 0;
       }
@@ -147,6 +167,8 @@
 
     .panel-footer {
       text-align: center;
+      padding-top: 3px;
+      padding-bottom: 4px;
 
       .pagination {
         margin: 10px 0 2px;

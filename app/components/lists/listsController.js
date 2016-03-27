@@ -15,6 +15,8 @@
             $scope.pageSize = 4;
             $scope.currentPage1 = 1;
             $scope.currentPage2 = 1;
+            $scope.showQuery = false;
+            $scope.showButtonGroup = true;
             var absolute_index = null;
 
             var growlerSuccess = function(message){
@@ -23,6 +25,11 @@
 
             var growlerError = function(err){
                 growl.error('<i class="fa fa-times"></i><strong>Oh shizzle my nizzle ' + err, {ttl: 5000})
+            };
+
+            $scope.showSearch = function(){
+                $scope.showQuery = !$scope.showQuery;
+                $scope.showButtonGroup = !$scope.showButtonGroup;
             };
 
             $scope.pageChangeHandler = function(num, list){
