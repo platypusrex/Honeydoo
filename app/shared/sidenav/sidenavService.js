@@ -20,6 +20,11 @@
             return $firebaseObject(invitation);
         };
 
+        var getChats = function(chatId){
+            var chats = firebaseDataService.chats.child(chatId);
+
+        };
+
         var getId = function(){
             var PUSH_CHARS = '-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz';
             var lastPushTime = 0;

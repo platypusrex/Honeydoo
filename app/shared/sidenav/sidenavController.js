@@ -15,6 +15,7 @@
             $scope.user = sidenavService.getUserAuth();
             $scope.iconActive1 = false;
             $scope.iconActive2 = false;
+            $scope.showBadge = false;
             $scope.username = null;
             var firstName = null;
             var lastName = null;
@@ -22,6 +23,7 @@
             var honeyFirstName = null;
             var honeyLastName = null;
             var honeyUserName = null;
+            var chatId = null;
 
             var growlerAcceptMessage = function(){
                 growl.warning('<i class="fa fa-check"></i><strong>Congrats!&nbsp;</strong>You\'re connected to ' + honeyFirstName + ' ' + honeyLastName, {ttl: 5000})
@@ -123,7 +125,9 @@
                 }, growlerRejectMessage());
             };
 
-            $scope.showHoneyChat = function() {
+            $scope.showHoneyChat = function(){
+                saveChatCount($scope.user.uid);
+
                 ModalService.showModal({
                     templateUrl: "app/components/honeyChat/honeyChat.html",
                     controller: "honeyChatCtrl"
@@ -139,15 +143,39 @@
                 });
             };
 
+            var saveChatCount = function(uid){
+                var userObj = firebaseDataService.users.child(uid);
+                var chatRef = firebaseDataService.chats.child(chatId);
+
+                chatRef.on('value', function(snapshot){
+                    var chatLength = snapshot.numChildren();
+
+                    userObj.update({
+                        lastChatLength: chatLength
+                    })
+                });
+            };
+
             if($scope.user){
                 var userData = sidenavService.getUserData($scope.user.uid);
                 userData.$loaded(
                     function(data){
                         firstName = data.firstname;
                         lastName = data.lastname;
+                        chatId = data.chatId;
+                        var chatRef = firebaseDataService.chats.child(chatId);
                         $scope.username = data.username;
                         $scope.firstLastName = data.firstname + ' ' + data.lastname;
                         $scope.userIcon = (data.gender === 'his');
+
+                        chatRef.on('child_added', function(snapshot){
+                            chatRef.on('value', function(val){
+                                var chatCount = val.numChildren();
+                                $scope.chatLengthDif = chatCount - data.lastChatLength;
+                                $scope.showBadge = ($scope.chatLengthDif !== 0) ? true : false;
+                                console.log(val.numChildren() - data.lastChatLength);
+                            });
+                        })
                     },
                     function(error){
                         console.log(error);
