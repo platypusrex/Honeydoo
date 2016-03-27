@@ -4,13 +4,14 @@
     sidenavModule.controller('sidenavCtrl', [
         '$scope',
         'sidenavService',
+        'editItemService',
         '$state',
         'firebaseDataService',
         'growl',
         'ModalService',
         '$rootScope',
         '$timeout',
-        function($scope, sidenavService, $state, firebaseDataService, growl, ModalService, $rootScope, $timeout){
+        function($scope, sidenavService, editItemService, $state, firebaseDataService, growl, ModalService, $rootScope, $timeout){
             $scope.user = sidenavService.getUserAuth();
             $scope.iconActive1 = false;
             $scope.iconActive2 = false;
@@ -62,8 +63,16 @@
                     },
                     chatId: chatId
                 }, growlerAcceptMessage());
+
                 ref.child($scope.user.uid).child('invitation').update({
                     status: 'connected'
+                });
+
+                ref.child($scope.user.uid).once('value', function(snapshot){
+                   console.log(snapshot.child('yourList').exists());
+                    if(snapshot.child('yourList').exists()){
+                        addHoneyList($scope.user.uid, 'yourList', ref, honeyId)
+                    }
                 });
 
                 ref.child(honeyId).update({
@@ -75,9 +84,32 @@
                     },
                     chatId: chatId
                 });
+
                 ref.child(honeyId).child('invitation').update({
                     status: 'connected'
                 });
+
+                ref.child(honeyId).once('value', function(snapshot){
+                    if(snapshot.child('yourList').exists()){
+                        addHoneyList(honeyId, 'yourList', ref, $scope.user.uid);
+                    }
+                });
+            };
+
+            var addHoneyList = function(uid, list, userObject, otherUid){
+                var theList = editItemService.getHoneydoo(uid, list);
+                var honeyList = editItemService.getHoneydoo(otherUid, 'honeyList');
+
+                theList.$loaded(
+                    function(data){
+                        angular.forEach(data, function(val, i){
+                            honeyList.$add(val);
+                        });
+                    },
+                    function(error){
+                        console.log(error);
+                    }
+                );
             };
 
             $scope.rejectInvite = function(){

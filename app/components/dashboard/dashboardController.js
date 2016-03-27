@@ -18,45 +18,61 @@
                 userData.$loaded(
                     function(data){
                         $scope.userObject = data;
-                        $scope.series = [$scope.userObject.username, $scope.userObject.honey.username];
-                        $scope.categoryData = [];
-                        var yourListData = listsService.getListItem($scope.user.uid, 'yourList');
-
-                        if($scope.userObject.honey.uid){
-                            var honeyListData = listsService.getListItem($scope.user.uid, 'honeyList');
+                        if(!$scope.userObject.honey){
+                            $scope.series = [$scope.userObject.username];
+                        } else {
+                            $scope.series = [$scope.userObject.username, $scope.userObject.honey.username];
                         }
+                        $scope.categoryData = [];
 
-                        yourListData.$loaded(
-                            function(data){
-                                $scope.categoryData[0] = getListStatusData(data);
+                        if($scope.userObject.yourList){
+                            var yourListData = listsService.getListItem($scope.user.uid, 'yourList');
 
-                                if(honeyListData){
-                                    honeyListData.$loaded(
-                                        function(data){
-                                            $scope.categoryData[1] = getListStatusData(data);
-                                            $scope.yourCategory = [$scope.categories[0], $scope.categoryData[0][0]];
-                                            $scope.honeyCategory = [$scope.categories[0], $scope.categoryData[1][0]];
-
-                                            $interval(function(){
-                                                $scope.yourCategory = [$scope.categories[categoryCount], $scope.categoryData[0][categoryCount]];
-                                                $scope.honeyCategory = [$scope.categories[categoryCount], $scope.categoryData[1][categoryCount]];
-                                                if(categoryCount < ($scope.categories.length - 1)){
-                                                    categoryCount++;
-                                                }else {
-                                                    categoryCount = 0;
-                                                }
-                                            }, 6000);
-                                        },
-                                        function(error){
-
-                                        }
-                                    );
-                                }
-                            },
-                            function(error){
-                                growlerError(error);
+                            if($scope.userObject.honey){
+                                var honeyListData = listsService.getListItem($scope.user.uid, 'honeyList');
                             }
-                        );
+
+                            yourListData.$loaded(
+                                function(data){
+                                    $scope.categoryData[0] = getListStatusData(data);
+                                    $scope.yourCategory = [$scope.categories[0], $scope.categoryData[0][0]];
+
+                                    $interval(function(){
+                                        if(categoryCount < ($scope.categories.length - 1)){
+                                            categoryCount++;
+                                        }else {
+                                            categoryCount = 0;
+                                        }
+                                    }, 6000);
+
+                                    if(honeyListData){
+                                        honeyListData.$loaded(
+                                            function(data){
+                                                $scope.categoryData[1] = getListStatusData(data);
+                                                $scope.honeyCategory = [$scope.categories[0], $scope.categoryData[1][0]];
+
+                                                $interval(function(){
+                                                    $scope.honeyCategory = [$scope.categories[categoryCount], $scope.categoryData[1][categoryCount]];
+                                                    if(categoryCount < ($scope.categories.length - 1)){
+                                                        categoryCount++;
+                                                    }else {
+                                                        categoryCount = 0;
+                                                    }
+                                                }, 6000);
+                                            },
+                                            function(error){
+                                                growlerError(error);
+                                            }
+                                        );
+                                    }
+                                },
+                                function(error){
+                                    growlerError(error);
+                                }
+                            );
+                        }else {
+                            $scope.categoryData[0] = [0, 0, 0];
+                        }
                     },
                     function(error){
                         growlerError(error)

@@ -32,12 +32,6 @@
                                 status: 'none',
                                 userId: 'none',
                                 notification: 'You have no new notifications...'
-                            },
-                            honey: {
-                                uid: 'none',
-                                firstname: 'none',
-                                lastname: 'none',
-                                username: 'none'
                             }
                         });
 

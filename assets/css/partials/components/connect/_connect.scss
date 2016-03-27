@@ -95,17 +95,18 @@
     .panel-footer {
       .btn {
         color: $blue1;
-        border-color: #blue1;
         background: #fff;
         margin: 0 4px;
-        border-right: 1px solid;
-        border-bottom: 1px solid;
+        border: 1px solid $blue1;
+        border-radius: 0;
+        transition: all .3s ease-in-out;
 
         &:hover,
         &:active,
         &focus{
           color: #fff;
           background: $blue1;
+          transition: all .3s ease-in-out;
         }
       }
 

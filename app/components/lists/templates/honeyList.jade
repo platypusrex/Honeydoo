@@ -12,9 +12,11 @@ div.row
       div.col-md-8.your-list-panel-container
         div.panel.panel-default
           div.panel-heading
-            h4 {{userObject.honey.firstname + "'s" || Honey}} List
+            h4(ng-show="userObject.honey") {{userObject.honey.firstname + "'s"}} List
+            h4(ng-show="!userObject.honey") Not connected
           div.panel-body(ng-hide="honeyList.length >= 1")
-            h5.text-center Use the control panel to start adding honeydoos!
+            h5.text-center(ng-show="userObject.honey") Use the control panel to start adding honeydoos!
+            h5.text-center(ng-show="!userObject.honey") Can't add todos for your honey until you connect!
           ul.list-group
             li.list-group-item(dir-paginate="item in honeyList | itemsPerPage:pageSize", pagination-id="honeys", currentPage="currentPage")
               div.list-info-container

@@ -23,7 +23,7 @@
             userData.$loaded(
                 function(data){
                     $scope.userObject = data;
-                    honeyUid = (data.honey.uid !== 'none') ? data.honey.uid : null;
+                    honeyUid = (data.honey) ? data.honey.uid : null;
 
                     if(data.gender === 'his'){
                         $scope.his = true;
@@ -152,12 +152,7 @@
 
                 //if(honeyUid){
                 basicRef.child(honeyUid).update({
-                    honey: {
-                        firstname: 'none',
-                        lastname: 'none',
-                        uid: 'none',
-                        username: 'none'
-                    },
+                    honey: null,
                     invitation: {
                         notification: 'none',
                         status: 'none',
@@ -178,7 +173,7 @@
                 editProfileService.deleteAccount(userObj)
                     .then(function(){
                         basicRef.child(userUid).remove(onComplete);
-                        $state.go('login');
+                        $state.go('/');
                     })
                     .catch(function(err){
                         growlerError(err);
@@ -193,33 +188,25 @@
                 };
 
                 basicRef.child($scope.user.uid).update({
-                    honey: {
-                        firstname: 'none',
-                        lastname: 'none',
-                        uid: 'none',
-                        username: 'none'
-                    },
+                    honey: null,
                     invitation: {
                         notification: 'none',
                         status: 'none',
                         userId: 'none'
                     },
-                    chatId: null
+                    chatId: null,
+                    honeyList: null
                 });
 
                 basicRef.child(honeyUid).update({
-                    honey: {
-                        firstname: 'none',
-                        lastname: 'none',
-                        uid: 'none',
-                        username: 'none'
-                    },
+                    honey: null,
                     invitation: {
                         notification: 'none',
                         status: 'none',
                         userId: 'none'
                     },
-                    chatId: null
+                    chatId: null,
+                    honeyList: null
                 });
 
                 if($scope.userObject.chatId){

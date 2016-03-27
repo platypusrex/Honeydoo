@@ -56,10 +56,16 @@
                 userData.$loaded(
                     function(data){
                         $scope.userObject = data;
-                        $scope.owners = [
-                            $scope.userObject.username,
-                            $scope.userObject.honey.username
-                        ];
+                        if($scope.userObject.honey){
+                            $scope.owners = [
+                                $scope.userObject.username,
+                                $scope.userObject.honey.username
+                            ];
+                        }else {
+                            $scope.owners = [
+                                $scope.userObject.username
+                            ];
+                        }
 
                         var validateForm = function(honeydoo){
                             if(!honeydoo.honeydoo){

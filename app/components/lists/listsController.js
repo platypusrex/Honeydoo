@@ -87,10 +87,12 @@
                             }
 
                             var listOne = listsService.getListItem($scope.user.uid, list);
-                            var listTwo = listsService.getListItem($scope.userObject.honey.uid, otherList);
-
                             remove(listOne, absolute_index);
-                            remove(listTwo, absolute_index, true);
+
+                            if($scope.userObject.honey){
+                                var listTwo = listsService.getListItem($scope.userObject.honey.uid, otherList);
+                                remove(listTwo, absolute_index, true);
+                            }
                         };
 
                         var remove = function(list, index, initCallback){

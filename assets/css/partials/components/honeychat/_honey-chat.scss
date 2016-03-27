@@ -22,12 +22,7 @@
     overflow-y: auto;
 
     .col-lg-3 {
-      //margin-right: 10px;
       text-align: center
-    }
-
-    .col-lg-8 {
-      //margin-left: 0;
     }
   }
 
@@ -65,10 +60,12 @@
       display: inline;
     }
 
-    .fa-exclamation-triangle {
-      font-size: 16px;
-      color: lighten(red, 10%);
-      padding-right: 5px;
+    .mdi-alert-outline {
+      &:before {
+        font-size: 20px;
+        color: lighten(red, 10%);
+        padding-right: 5px;
+      }
     }
 
     .fa-check {
