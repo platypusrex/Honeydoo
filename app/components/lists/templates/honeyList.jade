@@ -16,21 +16,44 @@ div.row
               div.col-xs-6
                 h4(ng-show="userObject.honey") {{userObject.honey.firstname + "'s"}} List
                 h4(ng-show="!userObject.honey") Not connected
-              div.col-xs-6(ng-show="userObject.honey")
+              div.col-xs-6
                 div.btn-group.btn-group-justified(ng-show="showButtonGroup")
                   div.btn-group
-                    button.btn.btn-default.bt-block(ng-click="showSearch()") Search
+                    button.btn.btn-default.bt-block(ng-click="showSearch('search')") Search
                   div.btn-group
-                    button.btn.btn-default.btn-block Sort
+                    button.btn.btn-default.btn-block(ng-click="showSearch('sort')") Sort
                 div.input-group(ng-show="showQuery")
                   input.form-control(type="text", ng-model="query", placeholder="Search")
                   span.input-group-btn
-                    button.btn.btn-default(ng-click="showSearch()") Back
+                    button.btn.btn-default(ng-click="showSearch('search')") Back
+                div.row(ng-show="showSort")
+                  div.col-xs-8
+                    ol.nya-bs-select.form-control.show-menu-arrow(ng-model="sortOrder", title="Sort by")
+                      li.nya-bs-option(data-value="-addedOn")
+                        a Date added (newest)
+                          span.glyphicon.glyphicon-ok.check-mark
+                      li.nya-bs-option(data-value="addedOn")
+                        a Date added (oldest)
+                          span.glyphicon.glyphicon-ok.check-mark
+                      li.nya-bs-option(data-value="-due")
+                        a Due date (earliest due)
+                          span.glyphicon.glyphicon-ok.check-mark
+                      li.nya-bs-option(data-value="due")
+                        a Due date (latest due)
+                          span.glyphicon.glyphicon-ok.check-mark
+                      li.nya-bs-option(data-value="requester")
+                        a Requested by
+                          span.glyphicon.glyphicon-ok.check-mark
+                      li.nya-bs-option(data-value="status")
+                        a Status
+                          span.glyphicon.glyphicon-ok.check-mark
+                  div.col-xs-2(ng-show="showSort")
+                    button.btn.btn-default(ng-click="showSearch('sort')") Back
           div.panel-body(ng-hide="honeyList.length >= 1")
             h5.text-center(ng-show="userObject.honey") Use the control panel to start adding honeydoos!
             h5.text-center(ng-show="!userObject.honey") Can't add todos for your honey until you connect!
           ul.list-group
-            li.list-group-item(dir-paginate="item in honeyList|filter:query|itemsPerPage:pageSize", pagination-id="honeys", currentPage="currentPage")
+            li.list-group-item(dir-paginate="item in honeyList|orderBy:sortOrder|filter:query|itemsPerPage:pageSize", pagination-id="honeys", currentPage="currentPage")
               div.list-info-container
                 div.row
                   div.col-md-10(data-toggle="collapse", ng-attr-data-target='{{"#honeydooItem-" + $index}}')

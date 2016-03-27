@@ -16,6 +16,7 @@
             $scope.currentPage1 = 1;
             $scope.currentPage2 = 1;
             $scope.showQuery = false;
+            $scope.showSort = false;
             $scope.showButtonGroup = true;
             var absolute_index = null;
 
@@ -27,8 +28,13 @@
                 growl.error('<i class="fa fa-times"></i><strong>Oh shizzle my nizzle ' + err, {ttl: 5000})
             };
 
-            $scope.showSearch = function(){
-                $scope.showQuery = !$scope.showQuery;
+            $scope.showSearch = function(option){
+                if(option === 'search'){
+                    $scope.showQuery = !$scope.showQuery;
+                }
+                if(option === 'sort'){
+                    $scope.showSort = !$scope.showSort;
+                }
                 $scope.showButtonGroup = !$scope.showButtonGroup;
             };
 
