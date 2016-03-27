@@ -38,12 +38,13 @@
                                     $scope.yourCategory = [$scope.categories[0], $scope.categoryData[0][0]];
 
                                     $interval(function(){
+                                        $scope.yourCategory = [$scope.categories[categoryCount], $scope.categoryData[0][categoryCount]];
                                         if(categoryCount < ($scope.categories.length - 1)){
                                             categoryCount++;
                                         }else {
                                             categoryCount = 0;
                                         }
-                                    }, 6000);
+                                    }, 4000);
 
                                     if(honeyListData){
                                         honeyListData.$loaded(
@@ -58,7 +59,7 @@
                                                     }else {
                                                         categoryCount = 0;
                                                     }
-                                                }, 6000);
+                                                }, 4000);
                                             },
                                             function(error){
                                                 growlerError(error);
