@@ -171,7 +171,12 @@
 
                         chatLength.$loaded(
                             function(data){
+
                                 chats.$watch(function(){
+                                    chatLength.$watch(function(){
+                                        $scope.chatLengthDif = chats.length - chatLength.$value;
+                                        $scope.showBadge = ($scope.chatLengthDif !== 0) ? true : false;
+                                    });
                                     $scope.chatLengthDif = chats.length - data.$value;
                                     $scope.showBadge = ($scope.chatLengthDif !== 0) ? true : false;
                                 });
