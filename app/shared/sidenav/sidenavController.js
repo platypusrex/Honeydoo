@@ -147,7 +147,7 @@
                 var userObj = firebaseDataService.users.child(uid);
                 var chatRef = firebaseDataService.chats.child(chatId);
 
-                chatRef.on('value', function(snapshot){
+                chatRef.once('value', function(snapshot){
                     var chatLength = snapshot.numChildren();
 
                     userObj.update({
@@ -163,19 +163,20 @@
                         firstName = data.firstname;
                         lastName = data.lastname;
                         chatId = data.chatId;
-                        var chatRef = firebaseDataService.chats.child(chatId);
                         $scope.username = data.username;
                         $scope.firstLastName = data.firstname + ' ' + data.lastname;
                         $scope.userIcon = (data.gender === 'his');
+                        var chats = sidenavService.getChats(chatId);
+                        var chatLength = sidenavService.currentChatLength($scope.user.uid);
 
-                        chatRef.on('child_added', function(snapshot){
-                            chatRef.on('value', function(val){
-                                var chatCount = val.numChildren();
-                                $scope.chatLengthDif = chatCount - data.lastChatLength;
-                                $scope.showBadge = ($scope.chatLengthDif !== 0) ? true : false;
-                                console.log(val.numChildren() - data.lastChatLength);
-                            });
-                        })
+                        chatLength.$loaded(
+                            function(data){
+                                chats.$watch(function(){
+                                    $scope.chatLengthDif = chats.length - data.$value;
+                                    $scope.showBadge = ($scope.chatLengthDif !== 0) ? true : false;
+                                });
+                            }
+                        );
                     },
                     function(error){
                         console.log(error);
