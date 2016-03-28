@@ -18,7 +18,7 @@ div.dashboard-container
                         p.small status
                       div.panel-body
                         h4 {{yourCategory[0]}}
-                        p {{yourCategory[1]}}
+                        p count: {{yourCategory[1]}}
               div.col-md-6
                 canvas#line.chart.chart-line(chart-data="categoryData", chart-legend="true", chart-labels="categories", chart-series="series", ng-cloak)
               div.col-md-3
@@ -31,4 +31,4 @@ div.dashboard-container
                         p.small status
                       div.panel-body
                         h4 {{honeyCategory[0]}}
-                        p {{honeyCategory[1]}}
+                        p count: {{honeyCategory[1]}}

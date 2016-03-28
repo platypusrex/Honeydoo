@@ -34,26 +34,17 @@
 
                             yourListData.$loaded(
                                 function(data){
-                                    $scope.categoryData[0] = getListStatusData(data);
-                                    $scope.yourCategory = [$scope.categories[0], $scope.categoryData[0][0]];
-
-                                    $interval(function(){
-                                        $scope.yourCategory = [$scope.categories[categoryCount], $scope.categoryData[0][categoryCount]];
-                                        if(categoryCount < ($scope.categories.length - 1)){
-                                            categoryCount++;
-                                        }else {
-                                            categoryCount = 0;
-                                        }
-                                    }, 4000);
-
                                     if(honeyListData){
                                         honeyListData.$loaded(
-                                            function(data){
-                                                $scope.categoryData[1] = getListStatusData(data);
+                                            function(val){
+                                                $scope.categoryData[0] = getListStatusData(data);
+                                                $scope.categoryData[1] = getListStatusData(val);
                                                 $scope.honeyCategory = [$scope.categories[0], $scope.categoryData[1][0]];
+                                                $scope.yourCategory = [$scope.categories[0], $scope.categoryData[0][0]];
 
                                                 $interval(function(){
                                                     $scope.honeyCategory = [$scope.categories[categoryCount], $scope.categoryData[1][categoryCount]];
+                                                    $scope.yourCategory = [$scope.categories[categoryCount], $scope.categoryData[0][categoryCount]];
                                                     if(categoryCount < ($scope.categories.length - 1)){
                                                         categoryCount++;
                                                     }else {
@@ -65,6 +56,18 @@
                                                 growlerError(error);
                                             }
                                         );
+                                    }else {
+                                        $scope.categoryData[0] = getListStatusData(data);
+                                        $scope.yourCategory = [$scope.categories[0], $scope.categoryData[0][0]];
+
+                                        $interval(function(){
+                                            $scope.yourCategory = [$scope.categories[categoryCount], $scope.categoryData[0][categoryCount]];
+                                            if(categoryCount < ($scope.categories.length - 1)){
+                                                categoryCount++;
+                                            }else {
+                                                categoryCount = 0;
+                                            }
+                                        }, 4000);
                                     }
                                 },
                                 function(error){
