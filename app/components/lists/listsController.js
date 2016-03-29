@@ -53,7 +53,37 @@
                     function(data){
                         $scope.userObject = data;
 
-                        $scope.editItem = function(index, list){
+                        $scope.removeHoneydoo = function(item, list){
+                            var yourListInHoney = null;
+
+                            if(list === 'yourList'){
+                                $scope.yourList.$remove(item);
+                                yourListInHoney = addItemService.getHoneyList($scope.userObject.honey.uid);
+                            }else {
+                                $scope.honeyList.$remove(item);
+                                yourListInHoney = addItemService.getYourList($scope.userObject.honey.uid);
+                            }
+
+                            if(yourListInHoney){
+                                yourListInHoney.$loaded(
+                                    function(data){
+                                        angular.forEach(data, function(val){
+                                            if(val.itemId === item.itemId){
+                                                yourListInHoney.$remove(val).then(function(){
+                                                    growlerSuccess('Successfully deleted honeydoo!');
+                                                });
+                                            }
+                                        });
+                                    },
+                                    function(error){
+                                        growlerError(error);
+                                    }
+                                );
+                            }
+                        };
+
+                        $scope.editItem = function(index, list, item){
+                            console.log(item.$id);
                             var honeyList = null;
                             var thisList = (list === 'yourList') ? $scope.currentPage1 : $scope.currentPage2;
                             absolute_index = index + (thisList - 1) * $scope.pageSize;
@@ -69,7 +99,7 @@
                             yourTodos.$loaded(
                                 function(data){
                                     var key = data.$keyAt(absolute_index);
-                                    var listItem = data.$getRecord(key);
+                                    var listItem = data.$getRecord(item.$id);
 
                                     ModalService.showModal({
                                         templateUrl: 'app/components/editItem/editItem.html',
@@ -88,43 +118,46 @@
                             );
                         };
 
-                        $scope.removeItem = function(index, list){
-                            var otherList = null;
-                            var thisList = (list === 'yourList') ? $scope.currentPage1 : $scope.currentPage2;
-                            absolute_index = index + (thisList - 1) * $scope.pageSize;
-
-                            if(list === 'yourList'){
-                                otherList = 'honeyList';
-                            }else {
-                                otherList = 'yourList';
-                            }
-
-                            var listOne = listsService.getListItem($scope.user.uid, list);
-                            remove(listOne, absolute_index);
-
-                            if($scope.userObject.honey){
-                                var listTwo = listsService.getListItem($scope.userObject.honey.uid, otherList);
-                                remove(listTwo, absolute_index, true);
-                            }
-                        };
-
-                        var remove = function(list, index, initCallback){
-                            list.$loaded(
-                                function(data){
-                                    var key = data.$keyAt(index);
-                                    var item = data.$getRecord(key);
-
-                                    list.$remove(item).then(function(){
-                                        if(initCallback){
-                                            growlerSuccess('Successfully deleted honeydoo');
-                                        }
-                                    });
-                                },
-                                function(error){
-                                    growlerError(error);
-                                }
-                            );
-                        };
+                        //$scope.removeItem = function(index, list, item){
+                        //    var otherList = null;
+                        //    var thisList = (list === 'yourList') ? $scope.currentPage1 : $scope.currentPage2;
+                        //    absolute_index = index + (thisList - 1) * $scope.pageSize;
+                        //
+                        //    if(list === 'yourList'){
+                        //        otherList = 'honeyList';
+                        //    }else {
+                        //        otherList = 'yourList';
+                        //    }
+                        //
+                        //    var listOne = listsService.getListItem($scope.user.uid, list);
+                        //    remove(listOne, absolute_index, item);
+                        //
+                        //    //if($scope.userObject.honey){
+                        //    //    var listTwo = listsService.getListItem($scope.userObject.honey.uid, otherList);
+                        //    //    //remove(listTwo, absolute_index, true);
+                        //    //}
+                        //};
+                        //
+                        //var remove = function(list, index, item, initCallback){
+                        //    list.$loaded(
+                        //        function(data){
+                        //            var key = data.$keyAt(index);
+                        //            var thing = data.$getRecord(key);
+                        //            console.log(thing === item);
+                        //            console.log(thing);
+                        //            console.log(item);
+                        //
+                        //            list.$remove(item.$id).then(function(){
+                        //                if(initCallback){
+                        //                    growlerSuccess('Successfully deleted honeydoo');
+                        //                }
+                        //            });
+                        //        },
+                        //        function(error){
+                        //            growlerError(error);
+                        //        }
+                        //    );
+                        //};
                     },
                     function(error){
                         growlerError(error);

@@ -24,6 +24,7 @@
                 'Hard'
             ];
             var categoryData = addItemService.getCategories();
+            var itemId = null;
 
             $scope.close = function(result) {
                 close(result, 500);
@@ -90,7 +91,8 @@
                                 owner: honeydoo.honeydoo.owner,
                                 category: honeydoo.honeydoo.category,
                                 difficulty: honeydoo.honeydoo.difficulty,
-                                note: honeydoo.honeydoo.note
+                                note: honeydoo.honeydoo.note,
+                                itemId: itemId
                             }).then(function(){
                                 if(initCallback){
                                     saveToYourList(honeydoo, $scope.userObject.honey.uid, false);
@@ -115,7 +117,8 @@
                                 owner: honeydoo.honeydoo.owner,
                                 category: honeydoo.honeydoo.category,
                                 difficulty: honeydoo.honeydoo.difficulty,
-                                note: honeydoo.honeydoo.note
+                                note: honeydoo.honeydoo.note,
+                                itemId: itemId
                             }).then(function(){
                                 if($scope.userObject.honey && initCallback){
                                     saveToHoneyList(honeydoo, $scope.userObject.honey.uid, false);
@@ -143,6 +146,7 @@
                         $scope.saveHoneydoo = function(honeydoo){
                             $scope.submitted = true;
                             var validate = validateForm(honeydoo);
+                            itemId = sidenavService.getId();
 
                             if(validate){
                                 if(honeydoo.honeydoo.owner === $scope.userObject.username){

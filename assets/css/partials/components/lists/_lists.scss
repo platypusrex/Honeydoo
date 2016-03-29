@@ -15,6 +15,14 @@
 
     .panel-heading {
       padding: 15px;
+
+      .list-controls {
+        .btn {
+          border: 1px solid $blue1;
+          color: $blue1;
+          border-radius: 0;
+        }
+      }
     }
   }
 

@@ -15,7 +15,7 @@ div.row
             div.row
               div.col-xs-6
                 h4 {{userObject.firstname + "'s" || Your}} List
-              div.col-xs-6
+              div.col-xs-6.list-controls
                 div.btn-group.btn-group-justified(ng-show="showButtonGroup")
                   div.btn-group
                     button.btn.btn-default.bt-block(ng-click="showSearch('search')") Search
@@ -64,8 +64,8 @@ div.row
                     div.panel.panel-default
                       div.panel-body
                         div.edit-icons
-                          i.mdi.mdi-pencil-box-outline(ng-click="editItem($index, 'yourList')")
-                          i.mdi.mdi-delete-variant(ng-click="removeItem($index, 'yourList')")
+                          i.mdi.mdi-pencil-box-outline(ng-click="editItem($index, 'yourList', list)")
+                          i.mdi.mdi-delete-variant(ng-click="removeHoneydoo(list, 'yourList')")
               div.collapse(ng-attr-id='{{"honeydoo-" + $index}}')
                 hr
                 div.row

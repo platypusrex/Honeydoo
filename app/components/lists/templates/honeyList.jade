@@ -64,8 +64,8 @@ div.row
                       p.lead {{item.title}}
                   div.col-md-2
                     div.edit-todo-container
-                      i.mdi.mdi-pencil-box-outline(ng-click="editItem($index, 'honeyList')")
-                      i.mdi.mdi-delete-variant(ng-click="removeItem($index, 'honeyList')")
+                      i.mdi.mdi-pencil-box-outline(ng-click="editItem($index, 'honeyList', item)")
+                      i.mdi.mdi-delete-variant(ng-click="removeHoneydoo(item, 'honeyList')")
               div.collapse(ng-attr-id='{{"honeydooItem-" + $index}}')
                 hr
                 div.row
