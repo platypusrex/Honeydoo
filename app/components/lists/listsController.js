@@ -8,7 +8,8 @@
         'listsService',
         'sidenavService',
         'growl',
-        function($scope, ModalService, addItemService, listsService, sidenavService, growl){
+        '$timeout',
+        function($scope, ModalService, addItemService, listsService, sidenavService, growl, $timeout){
             $scope.user = addItemService.getUserAuth();
             $scope.yourList = addItemService.getYourList($scope.user.uid);
             $scope.honeyList = addItemService.getHoneyList($scope.user.uid);
@@ -46,6 +47,26 @@
                 }
             };
 
+            var getHoneyListItem = function(uid, list, itemId){
+                var honeyList = listsService.getListItem(uid, list);
+                var id = [];
+
+                honeyList.$loaded(
+                    function(data){
+                        angular.forEach(data, function(val){
+                            if(val.itemId === itemId){
+                                honeyList.$remove(val).then(function(){
+                                    growlerSuccess('Successfully deleted honeydoo!');
+                                });
+                            }
+                        });
+                    },
+                    function(error){
+                        growlerError(error);
+                    }
+                );
+            };
+
             if($scope.user){
                 var userData = sidenavService.getUserData($scope.user.uid);
 
@@ -54,59 +75,40 @@
                         $scope.userObject = data;
 
                         $scope.removeHoneydoo = function(item, list){
-                            var yourListInHoney = null;
-
                             if(list === 'yourList'){
                                 $scope.yourList.$remove(item);
-                                yourListInHoney = addItemService.getHoneyList($scope.userObject.honey.uid);
+                                getHoneyListItem($scope.userObject.honey.uid, 'honeyList', item.itemId)
                             }else {
                                 $scope.honeyList.$remove(item);
-                                yourListInHoney = addItemService.getYourList($scope.userObject.honey.uid);
-                            }
-
-                            if(yourListInHoney){
-                                yourListInHoney.$loaded(
-                                    function(data){
-                                        angular.forEach(data, function(val){
-                                            if(val.itemId === item.itemId){
-                                                yourListInHoney.$remove(val).then(function(){
-                                                    growlerSuccess('Successfully deleted honeydoo!');
-                                                });
-                                            }
-                                        });
-                                    },
-                                    function(error){
-                                        growlerError(error);
-                                    }
-                                );
+                                getHoneyListItem($scope.userObject.honey.uid, 'yourList', item.itemId);
                             }
                         };
 
                         $scope.editItem = function(index, list, item){
-                            console.log(item.$id);
                             var honeyList = null;
-                            var thisList = (list === 'yourList') ? $scope.currentPage1 : $scope.currentPage2;
-                            absolute_index = index + (thisList - 1) * $scope.pageSize;
 
                             if(list === 'yourList'){
-                                honeyList = 'honeyList';
+                                honeyList = listsService.getListItem($scope.userObject.honey.uid, 'honeyList');
                             }else {
-                                honeyList = 'yourList';
+                                honeyList = listsService.getListItem($scope.userObject.honey.uid, 'yourList');
                             }
 
-                            var yourTodos = listsService.getListItem($scope.user.uid, list);
-
-                            yourTodos.$loaded(
+                            honeyList.$loaded(
                                 function(data){
-                                    var key = data.$keyAt(absolute_index);
-                                    var listItem = data.$getRecord(item.$id);
+                                    var id = '';
+                                    angular.forEach(data, function(val){
+                                        if(val.itemId === item.itemId){
+                                            id = val.$id;
+                                        }
+                                    });
 
                                     ModalService.showModal({
                                         templateUrl: 'app/components/editItem/editItem.html',
                                         controller: 'editItemCtrl',
                                         inputs: {
-                                            listItem: listItem,
-                                            index: absolute_index
+                                            listItem: item,
+                                            index: absolute_index,
+                                            honeyId: id
                                         }
                                     }).then(function(modal){
                                         modal.element.modal();
@@ -114,50 +116,13 @@
                                             console.log('i done wit da edit');
                                         })
                                     });
+                                },
+                                function(error){
+                                    growlerError(error);
                                 }
                             );
-                        };
 
-                        //$scope.removeItem = function(index, list, item){
-                        //    var otherList = null;
-                        //    var thisList = (list === 'yourList') ? $scope.currentPage1 : $scope.currentPage2;
-                        //    absolute_index = index + (thisList - 1) * $scope.pageSize;
-                        //
-                        //    if(list === 'yourList'){
-                        //        otherList = 'honeyList';
-                        //    }else {
-                        //        otherList = 'yourList';
-                        //    }
-                        //
-                        //    var listOne = listsService.getListItem($scope.user.uid, list);
-                        //    remove(listOne, absolute_index, item);
-                        //
-                        //    //if($scope.userObject.honey){
-                        //    //    var listTwo = listsService.getListItem($scope.userObject.honey.uid, otherList);
-                        //    //    //remove(listTwo, absolute_index, true);
-                        //    //}
-                        //};
-                        //
-                        //var remove = function(list, index, item, initCallback){
-                        //    list.$loaded(
-                        //        function(data){
-                        //            var key = data.$keyAt(index);
-                        //            var thing = data.$getRecord(key);
-                        //            console.log(thing === item);
-                        //            console.log(thing);
-                        //            console.log(item);
-                        //
-                        //            list.$remove(item.$id).then(function(){
-                        //                if(initCallback){
-                        //                    growlerSuccess('Successfully deleted honeydoo');
-                        //                }
-                        //            });
-                        //        },
-                        //        function(error){
-                        //            growlerError(error);
-                        //        }
-                        //    );
-                        //};
+                        };
                     },
                     function(error){
                         growlerError(error);

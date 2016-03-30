@@ -6,14 +6,15 @@
         'authService',
         '$element',
         'listItem',
-        'index',
+        'honeyId',
         'close',
         'addItemService',
         'sidenavService',
         'editItemService',
         'growl',
         '$timeout',
-        function($scope, authService, $element, listItem, index, close, addItemService, sidenavService, editItemService, growl, $timeout){
+        function($scope, authService, $element, listItem, honeyId, close, addItemService, sidenavService, editItemService, growl, $timeout){
+            console.log(honeyId);
             $scope.user = authService.firebaseAuthObject.$getAuth();
             $scope.honeydoo = {
                 title: listItem.title,
@@ -78,11 +79,10 @@
                             var yourItem = editItemService.getHoneydoo(uid, 'yourList');
                             yourItem.$loaded(
                                 function(data){
-                                    var key = data.$keyAt(index);
-                                    var item = data.$getRecord(key);
+                                    var item = data.$getRecord(listItem.$id);
 
                                     if(listItem.owner !== honeydoo.honeydoo.owner){
-                                        changeOwner(honeydoo, 'honeyList', 'yourList', uid, $scope.userObject.honey.uid);
+                                        changeOwner(honeydoo, 'honeyList', 'yourList', uid, $scope.userObject.honey.uid, listItem.$id, honeyId);
                                     }else {
                                         item.title = honeydoo.honeydoo.title;
                                         item.due = honeydoo.honeydoo.dateDue;
@@ -95,7 +95,7 @@
                                         data.$save(item).then(function(){
                                             console.log('saved in yourlist');
                                             if($scope.userObject.honey && initCallback){
-                                                updateHoneyList(honeydoo, $scope.userObject.honey.uid, false);
+                                                updateHoneyList(honeydoo, $scope.userObject.honey.uid, false, honeyId);
                                             }
                                         }).then(function(){
                                             if(initCallback){
@@ -110,15 +110,14 @@
                             );
                         };
 
-                        var updateHoneyList = function(honeydoo, uid, initCallback){
+                        var updateHoneyList = function(honeydoo, uid, initCallback, id){
                             var honeyItem = editItemService.getHoneydoo(uid, 'honeyList');
                             honeyItem.$loaded(
                                 function(data){
-                                    var key = data.$keyAt(index);
-                                    var item = data.$getRecord(key);
+                                    var item = data.$getRecord(id);
 
                                     if(listItem.owner !== honeydoo.honeydoo.owner){
-                                        changeOwner(honeydoo, 'yourList', 'honeyList', uid, $scope.userObject.honey.uid);
+                                        changeOwner(honeydoo, 'yourList', 'honeyList', uid, $scope.userObject.honey.uid, listItem.$id, honeyId);
                                     }else {
                                         item.title = honeydoo.honeydoo.title;
                                         item.due = honeydoo.honeydoo.dateDue;
@@ -129,9 +128,8 @@
                                         item.note = honeydoo.honeydoo.note;
 
                                         data.$save(item).then(function(){
-                                            console.log('saved in honeylist');
                                             if(initCallback){
-                                                updateYourList(honeydoo, $scope.userObject.honey.uid, false);
+                                                updateYourList(honeydoo, $scope.userObject.honey.uid, false, honeyId);
                                             }
                                         }).then(function(){
                                             if(initCallback){
@@ -146,7 +144,7 @@
                             );
                         };
 
-                        var changeOwner = function(honeydoo, list1, list2, uid, uid2){
+                        var changeOwner = function(honeydoo, list1, list2, uid, uid2, id1, id2){
                             var listOne = editItemService.getHoneydoo(uid, list1);
                             var listTwo = editItemService.getHoneydoo(uid, list2);
                             var honeyListOne = editItemService.getHoneydoo(uid2, list2);
@@ -154,8 +152,7 @@
 
                             listOne.$loaded(
                                 function(data){
-                                    var key = data.$keyAt(index);
-                                    var item = data.$getRecord(key);
+                                    var item = data.$getRecord(id1);
                                     var dateAdded = item.addedOn;
 
                                     listOne.$remove(item).then(function(){
@@ -179,8 +176,7 @@
 
                             honeyListOne.$loaded(
                                 function(data){
-                                    var key = data.$keyAt(index);
-                                    var item = data.$getRecord(key);
+                                    var item = data.$getRecord(id2);
                                     var dateAdded = item.addedOn;
 
                                     honeyListOne.$remove(item).then(function(){
@@ -215,10 +211,10 @@
 
                             if(validate){
                                 if(honeydoo.honeydoo.owner === $scope.userObject.username){
-                                    updateYourList(honeydoo, $scope.user.uid, true);
+                                    updateYourList(honeydoo, $scope.user.uid, true, listItem.$id);
 
                                 }else {
-                                    updateHoneyList(honeydoo, $scope.user.uid, true);
+                                    updateHoneyList(honeydoo, $scope.user.uid, true, listItem.$id);
                                 }
                             }else {
                                 $scope.error = 'field required';
