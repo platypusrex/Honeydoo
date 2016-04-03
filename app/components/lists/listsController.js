@@ -8,8 +8,7 @@
         'listsService',
         'sidenavService',
         'growl',
-        '$timeout',
-        function($scope, ModalService, addItemService, listsService, sidenavService, growl, $timeout){
+        function($scope, ModalService, addItemService, listsService, sidenavService, growl){
             $scope.user = addItemService.getUserAuth();
             $scope.yourList = addItemService.getYourList($scope.user.uid);
             $scope.honeyList = addItemService.getHoneyList($scope.user.uid);
