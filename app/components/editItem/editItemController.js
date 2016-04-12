@@ -91,6 +91,7 @@
                                         item.category = honeydoo.honeydoo.category;
                                         item.difficulty = honeydoo.honeydoo.difficulty;
                                         item.note = honeydoo.honeydoo.note;
+                                        item.completedOn = (honeydoo.honeydoo.status === 'Finished') ? Firebase.ServerValue.TIMESTAMP : null;
 
                                         data.$save(item).then(function(){
                                             console.log('saved in yourlist');
@@ -126,6 +127,7 @@
                                         item.category = honeydoo.honeydoo.category;
                                         item.difficulty = honeydoo.honeydoo.difficulty;
                                         item.note = honeydoo.honeydoo.note;
+                                        item.completedOn = (honeydoo.honeydoo.status === 'Finished') ? Firebase.ServerValue.TIMESTAMP : null;
 
                                         data.$save(item).then(function(){
                                             if(initCallback){
@@ -166,7 +168,8 @@
                                             owner: honeydoo.honeydoo.owner,
                                             category: honeydoo.honeydoo.category,
                                             difficulty: honeydoo.honeydoo.difficulty,
-                                            note: honeydoo.honeydoo.note
+                                            note: honeydoo.honeydoo.note,
+                                            completedOn: (honeydoo.honeydoo.status === 'Finished') ? Firebase.ServerValue.TIMESTAMP : null
                                         })
                                     }).then(function(){
                                         closeModal();
@@ -190,7 +193,8 @@
                                             owner: honeydoo.honeydoo.owner,
                                             category: honeydoo.honeydoo.category,
                                             difficulty: honeydoo.honeydoo.difficulty,
-                                            note: honeydoo.honeydoo.note
+                                            note: honeydoo.honeydoo.note,
+                                            completedOn: (honeydoo.honeydoo.status === 'Finished') ? Firebase.ServerValue.TIMESTAMP : null
                                         })
                                     });
                                 }

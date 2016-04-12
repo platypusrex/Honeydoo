@@ -92,6 +92,7 @@
                                 category: honeydoo.honeydoo.category,
                                 difficulty: honeydoo.honeydoo.difficulty,
                                 note: honeydoo.honeydoo.note,
+                                completedOn: (honeydoo.honeydoo.status === 'Finished') ? Firebase.ServerValue.TIMESTAMP : null,
                                 itemId: itemId
                             }).then(function(){
                                 if(initCallback){
@@ -118,6 +119,7 @@
                                 category: honeydoo.honeydoo.category,
                                 difficulty: honeydoo.honeydoo.difficulty,
                                 note: honeydoo.honeydoo.note,
+                                completeOn: (honeydoo.honeydoo.status === 'Finished') ? Firebase.ServerValue.TIMESTAMP : null,
                                 itemId: itemId
                             }).then(function(){
                                 if($scope.userObject.honey && initCallback){

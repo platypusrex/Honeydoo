@@ -54,13 +54,13 @@ div.row
             li.list-group-item(dir-paginate="list in yourList|orderBy:sortOrder|filter:query|itemsPerPage:pageSize", pagination-id="yours", currentPage="currentPage")
               div.list-info-container
                 div.row
-                  div.col-lg-10.col-md-9.col-sm-9.col-xs-8(data-toggle="collapse", ng-attr-data-target='{{"#honeydoo-" + $index}}')
+                  div.col-md-10.col-xs-8(data-toggle="collapse", ng-attr-data-target='{{"#honeydoo-" + $index}}')
                     div.date-container
                       strong Date added:
                       span.small &nbsp;{{list.addedOn | date:'MMM d, y h:mm a'}}
                     div.title-container
                       p.lead {{list.title}}
-                  div.col-lg-2.col-md-3.col-sm-3.col-xs-4
+                  div.col-md-2.col-xs-4
                     div.panel.panel-default
                       div.panel-body
                         div.edit-icons
