@@ -18,7 +18,31 @@
             $scope.showQuery = false;
             $scope.showSort = false;
             $scope.showButtonGroup = true;
-            var absolute_index = null;
+            var yourCompletedList = addItemService.getYourList($scope.user.uid);
+            var honeyCompletedList = addItemService.getHoneyList($scope.user.uid);
+
+            yourCompletedList.$loaded(
+                function(data){
+                    $scope.yourComplete = [];
+                    angular.forEach(data, function(val){
+                        if(val.status === 'Finished'){
+                            $scope.yourComplete.push(val);
+                        }
+                    });
+                    console.log($scope.yourComplete);
+                }
+            );
+
+            honeyCompletedList.$loaded(
+                function(data){
+                    $scope.honeyComplete = [];
+                    angular.forEach(data, function(val){
+                        if(val.status === 'Finished'){
+                            $scope.honeyComplete.push(val);
+                        }
+                    });
+                }
+            );
 
             var growlerSuccess = function(message){
                 growl.warning('<i class="fa fa-check"></i><strong>Alright!&nbsp;' + message, {ttl: 5000})
@@ -106,7 +130,6 @@
                                         controller: 'editItemCtrl',
                                         inputs: {
                                             listItem: item,
-                                            index: absolute_index,
                                             honeyId: id
                                         }
                                     }).then(function(modal){

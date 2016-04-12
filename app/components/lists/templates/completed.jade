@@ -1,0 +1,40 @@
+div.row
+  div.col-md-12
+    div.completed-lists-container
+      div.row
+        div.col-md-6
+          div.panel.panel-default
+            div.panel-heading
+              h4 {{userObject.firstname + "'s"}} Completed Items
+            div.panel-body(ng-show="yourComplete.length < 1")
+              p You haven't completed any honeydoo's yet!
+            ul.list-group
+              li.list-group-item(dir-paginate="item in yourComplete|itemsPerPage:pageSize", pagination-id="yourComplete")
+                div.completed-info-container
+                  div.row
+                    div.col-md-12(data-toggle="collapse", data-target="")
+                      div.date-container
+                      strong Completed On:
+                      span.small &nbsp;{{item.addedOn | date:'MMM d, y h:mm a'}}
+                    div.title-container
+                      p.lead {{item.title}}
+                div.collapse
+                  p this is the stuff in the collapsed div
+            div.panel-footer(ng-show="yourComplete.length > 0")
+              dir-pagination-controls(pagination-id="yourComplete", direction-links="true", boundary-links="true", auto-hide="false")
+        div.col-md-6
+          div.panel.panel-default
+            div.panel-heading
+              h4 {{userObject.honey.firstname + "'s Completed Items"|| "Connect with your honey"}}
+            div.panel-body(ng-show="honeyComplete.length < 1")
+              p Your honey hasn't completed any honeydoo's yet
+            ul.list-group
+              li.list-group-item(dir-paginate="item in honeyComplete|itemsPerPage:pageSize", pagination-id="honeyComplete")
+                div.completed-info-container(data-toggle="collapse")
+                  div.row
+                    div.col-lg-10.col-md-9.col-sm-9.col-xs-8(data-toggle="collapse", data-target="#list2")
+                      p this is some stuff in the other list
+                div.collapse#list2
+                  p this is the stuff in the other collapsed div
+            div.panel-footer(ng-show="honeyComplete.length > 0")
+              dir-pagination-controls(pagination-id="honeyComplete", direction-links="true", boundary-links="true", auto-hide="false")

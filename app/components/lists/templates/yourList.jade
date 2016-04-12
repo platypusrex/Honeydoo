@@ -69,7 +69,7 @@ div.row
               div.collapse(ng-attr-id='{{"honeydoo-" + $index}}')
                 hr
                 div.row
-                  div.col-md-4
+                  div.col-xs-4
                     div.requester-img-container
                       img(ng-src="{{list.requesterImg}}")
                     div.requester-name-container
@@ -77,16 +77,16 @@ div.row
                         p requested by:
                         i.mdi.mdi-account-outline &nbsp;
                         span.small {{list.requester}}
-                  div.col-md-8
+                  div.col-xs-8
                     div.row
-                      div.col-md-6
+                      div.col-sm-6
                         i.mdi.mdi-calendar-clock
                         span {{list.due}}
-                      div.col-md-6
+                      div.col-sm-6
                         i.mdi.mdi-information-outline
                         span {{list.status}}
                     div.row
-                      div.col-md-12.note-container
+                      div.col-sm-12.note-container
                         p.note {{list.note}}
           div.panel-footer(ng-show="yourList.length >= 1")
             dir-pagination-controls(pagination-id="yours", on-page-change="pageChangeHandler(newPageNumber, 'yours')", direction-links="true", boundary-links="true", auto-hide="false")
