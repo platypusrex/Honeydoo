@@ -58,4 +58,4 @@ div.col-lg-3.col-md-3.col-sm-4.col-xs-8.profile-sidebar-container(ng-class="{'sl
         a.list-group-item(ng-click="showHoneyChat()")
           span Honeychat
           i.fa.fa-comments-o.pull-left.list-icon
-          span.badge.pull-right(ng-show="showBadge", ng-bind="chatLengthDif") {{chatLengthDif}}
+          span.badge.pull-right(ng-show="showBadge > 0", ng-bind="showBadge")

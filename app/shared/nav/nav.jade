@@ -6,7 +6,7 @@ div.nav.navbar-custom.navbar-static-top
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      div.sidebar-toggle.pull-left()
+      div.sidebar-toggle.pull-left(ng-hide="!loggedIn")
         input#unchecked.cbx.hidden(type="checkbox")
         label.lbl(for="unchecked", ng-click="changeSidenavState()")
       a.navbar-brand(href="index.html") Honeydoo List&nbsp;
@@ -17,6 +17,11 @@ div.nav.navbar-custom.navbar-static-top
           a(ng-click="showLogin()") Sign In
         li
           a(ng-click="showRegister()") Register
+      ul.nav.navbar-nav.navbar-right.hidden
+        li
+          a(ui-sref="home.edit_profile") Account Settings
+        li
+          a(ng-click="logOut()") Sign Out
       ul.nav.navbar-nav.navbar-right(ng-hide="!loggedIn")
         li.dropdown
           a.dropdown-toggle(href="", data-toggle="dropdown")

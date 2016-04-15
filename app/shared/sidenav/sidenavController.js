@@ -163,30 +163,57 @@
                         firstName = data.firstname;
                         lastName = data.lastname;
                         chatId = data.chatId;
+                        var honeyUid = data.honey.uid;
                         $scope.username = data.username;
                         $scope.firstLastName = data.firstname + ' ' + data.lastname;
                         $scope.userIcon = (data.gender === 'his');
                         var chats = sidenavService.getChats(chatId);
                         var chatLength = sidenavService.currentChatLength($scope.user.uid);
+                        var unread = sidenavService.getChatLengthDif($scope.user.uid);
 
-                        chatLength.$loaded(
-                            function(data){
+                        if(chatId) {
+                            unread.$bindTo($scope, 'unread').then(function () {
+                                $scope.$watch('unread.unread', function (val) {
+                                    console.log(val);
+                                    $scope.showBadge = val;
+                                })
+                            });
 
-                                chats.$watch(function(){
-                                    chatLength.$watch(function(){
-                                        $scope.chatLengthDif = chats.length - chatLength.$value;
-                                        $scope.showBadge = ($scope.chatLengthDif !== 0) ? true : false;
+
+                            chatLength.$loaded(
+                                function (data) {
+                                    chats.$watch(function () {
+                                        chatLength.$watch(function () {
+                                            var dif = chats.length - chatLength.$value;
+                                            saveChatLengthDif(dif, $scope.user.uid, honeyUid, chats.length);
+                                        });
+                                        var dif = chats.length - data.$value;
+                                        saveChatLengthDif(dif, $scope.user.uid, honeyUid, chats.length);
                                     });
-                                    $scope.chatLengthDif = chats.length - data.$value;
-                                    $scope.showBadge = ($scope.chatLengthDif !== 0) ? true : false;
-                                });
-                            }
-                        );
+                                }
+                            );
+                        }
                     },
                     function(error){
                         console.log(error);
                     }
                 );
+
+                var saveChatLengthDif = function(val, uid, huid, length){
+                    var chatLength = sidenavService.getChatLengthDif(uid);
+                    var honeyChatLength = sidenavService.currentChatLength(huid);
+
+                    chatLength.unread = val;
+                    chatLength.$save();
+
+                    honeyChatLength.$loaded(
+                        function(data){
+                            var honeyUnreadChats = sidenavService.getChatLengthDif(huid);
+                            honeyUnreadChats.unread = length - data.$value;
+                            honeyUnreadChats.$save();
+                        }
+                    )
+                };
 
                 var inviteStatus = sidenavService.getInvitationStatus($scope.user.uid);
                 inviteStatus.$bindTo($scope, 'status').then(function(){

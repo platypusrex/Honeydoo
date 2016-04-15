@@ -31,6 +31,11 @@
                 return $firebaseObject(chatLength);
             };
 
+            var getChatLengthDif = function(uid){
+                var chatdif = firebaseDataService.users.child(uid).child('unreadChats');
+                return $firebaseObject(chatdif);
+            };
+
             var getId = function(){
                 var PUSH_CHARS = '-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz';
                 var lastPushTime = 0;
@@ -76,6 +81,7 @@
                 getInvitationStatus: getInvitationStatus,
                 getChats: getChats,
                 currentChatLength: currentChatLength,
+                getChatLengthDif: getChatLengthDif,
                 getId: getId
             }
     }]);
