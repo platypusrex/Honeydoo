@@ -7,8 +7,10 @@
         'addItemService',
         'listsService',
         'sidenavService',
+        'firebaseDataService',
+        '$firebaseArray',
         'growl',
-        function($scope, ModalService, addItemService, listsService, sidenavService, growl){
+        function($scope, ModalService, addItemService, listsService, sidenavService, firebaseDataService, $firebaseArray, growl){
             $scope.user = addItemService.getUserAuth();
             $scope.yourList = addItemService.getYourList($scope.user.uid);
             $scope.honeyList = addItemService.getHoneyList($scope.user.uid);
@@ -21,28 +23,21 @@
             var yourCompletedList = addItemService.getYourList($scope.user.uid);
             var honeyCompletedList = addItemService.getHoneyList($scope.user.uid);
 
-            yourCompletedList.$loaded(
-                function(data){
-                    $scope.yourComplete = [];
-                    angular.forEach(data, function(val){
-                        if(val.status === 'Finished'){
-                            $scope.yourComplete.push(val);
-                        }
-                    });
-                    console.log($scope.yourComplete);
-                }
-            );
+            yourCompletedList.$watch(function(){
+                $scope.yourComplete = yourCompletedList.filter(function(val){
+                    if(val.status === 'Finished'){
+                        return val;
+                    }
+                });
+            });
 
-            honeyCompletedList.$loaded(
-                function(data){
-                    $scope.honeyComplete = [];
-                    angular.forEach(data, function(val){
-                        if(val.status === 'Finished'){
-                            $scope.honeyComplete.push(val);
-                        }
-                    });
-                }
-            );
+            honeyCompletedList.$watch(function(){
+                $scope.honeyComplete = honeyCompletedList.filter(function(val){
+                    if(val.status === 'Finished'){
+                        return val;
+                    }
+                });
+            });
 
             var growlerSuccess = function(message){
                 growl.warning('<i class="fa fa-check"></i><strong>Alright!&nbsp;' + message, {ttl: 5000})

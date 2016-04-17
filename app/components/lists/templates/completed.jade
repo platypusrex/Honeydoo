@@ -6,7 +6,7 @@ div.row
           div.panel.panel-default
             div.panel-heading
               h4 {{userObject.firstname + "'s"}} Completed Items
-            div.panel-body(ng-show="yourComplete.length < 1")
+            div.panel-body(ng-hide="yourComplete.length > 0")
               p You haven't completed any honeydoo's yet!
             ul.list-group
               li.list-group-item(dir-paginate="item in yourComplete|itemsPerPage:pageSize", pagination-id="yourComplete")
@@ -19,14 +19,14 @@ div.row
                       div.title-container
                         p.lead(style="margin-bottom:0") {{item.title}}
                 div.collapse(ng-attr-id='{{"your-complete-" + $index}}')
-                  p this is the stuff in the collapsed div
+                  p this is the stuff in the collapsed div {{yourComplete.length}}
             div.panel-footer(ng-show="yourComplete.length > 0")
               dir-pagination-controls(pagination-id="yourComplete", direction-links="true", boundary-links="true", auto-hide="false")
         div.col-md-6
           div.panel.panel-default
             div.panel-heading
               h4 {{userObject.honey.firstname + "'s Completed Items"|| "Connect with your honey"}}
-            div.panel-body(ng-show="honeyComplete.length < 1")
+            div.panel-body(ng-hide="honeyComplete.length > 0")
               p Your honey hasn't completed any honeydoo's yet
             ul.list-group
               li.list-group-item(dir-paginate="item in honeyComplete|itemsPerPage:pageSize", pagination-id="honeyComplete")

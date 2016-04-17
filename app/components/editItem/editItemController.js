@@ -11,9 +11,10 @@
         'addItemService',
         'sidenavService',
         'editItemService',
+        'listsService',
         'growl',
         '$timeout',
-        function($scope, authService, $element, listItem, honeyId, close, addItemService, sidenavService, editItemService, growl, $timeout){
+        function($scope, authService, $element, listItem, honeyId, close, addItemService, sidenavService, editItemService, listsService, growl, $timeout){
             console.log(honeyId);
             $scope.user = authService.firebaseAuthObject.$getAuth();
             $scope.honeydoo = {
@@ -208,6 +209,23 @@
                             $timeout(function(){
                                 growlerSuccess('Honeydoo successfully updated!');
                             }, 500)
+                        };
+
+                        var saveCompletedHoneydoo = function(uid){
+                            var completed = listsService.getCompletedItems(uid);
+                            completed.$add({
+                                title: honeydoo.honeydoo.title,
+                                addedOn: dateAdded,
+                                requesterImg: $scope.userObject.image,
+                                requester: $scope.userObject.username,
+                                due: honeydoo.honeydoo.dateDue,
+                                status: honeydoo.honeydoo.status,
+                                owner: honeydoo.honeydoo.owner,
+                                category: honeydoo.honeydoo.category,
+                                difficulty: honeydoo.honeydoo.difficulty,
+                                note: honeydoo.honeydoo.note,
+                                completedOn: Firebase.ServerValue.TIMESTAMP
+                            });
                         };
 
                         $scope.updateHoneydoo = function(honeydoo){

@@ -24,7 +24,6 @@
                 'Hard'
             ];
             var categoryData = addItemService.getCategories();
-            var itemId = null;
 
             $scope.close = function(result) {
                 close(result, 500);
@@ -78,7 +77,7 @@
                             return (honeydoo.honeydoo.title && honeydoo.honeydoo.dateDue && honeydoo.honeydoo.status && honeydoo.honeydoo.owner && honeydoo.honeydoo.note && honeydoo.honeydoo.category && honeydoo.honeydoo.difficulty) ? true : false;
                         };
 
-                        var saveToHoneyList = function(honeydoo, uid, initCallback){
+                        var saveToHoneyList = function(honeydoo, uid, initCallback, id){
                             var honeysList = addItemService.getHoneyList(uid);
 
                             honeysList.$add({
@@ -93,10 +92,10 @@
                                 difficulty: honeydoo.honeydoo.difficulty,
                                 note: honeydoo.honeydoo.note,
                                 completedOn: (honeydoo.honeydoo.status === 'Finished') ? Firebase.ServerValue.TIMESTAMP : null,
-                                itemId: itemId
+                                itemId: id
                             }).then(function(){
                                 if(initCallback){
-                                    saveToYourList(honeydoo, $scope.userObject.honey.uid, false);
+                                    saveToYourList(honeydoo, $scope.userObject.honey.uid, false, id);
                                 }
                             }).then(function(){
                                 if(initCallback){
@@ -105,7 +104,7 @@
                             });
                         };
 
-                        var saveToYourList = function(honeydoo, uid, initCallback){
+                        var saveToYourList = function(honeydoo, uid, initCallback, id){
                             var yourListItems = addItemService.getYourList(uid);
 
                             yourListItems.$add({
@@ -120,10 +119,10 @@
                                 difficulty: honeydoo.honeydoo.difficulty,
                                 note: honeydoo.honeydoo.note,
                                 completeOn: (honeydoo.honeydoo.status === 'Finished') ? Firebase.ServerValue.TIMESTAMP : null,
-                                itemId: itemId
+                                itemId: id
                             }).then(function(){
                                 if($scope.userObject.honey && initCallback){
-                                    saveToHoneyList(honeydoo, $scope.userObject.honey.uid, false);
+                                    saveToHoneyList(honeydoo, $scope.userObject.honey.uid, false, id);
                                 }
                             }).then(function(){
                                 if(initCallback){
@@ -148,13 +147,13 @@
                         $scope.saveHoneydoo = function(honeydoo){
                             $scope.submitted = true;
                             var validate = validateForm(honeydoo);
-                            itemId = sidenavService.getId();
+                            var itemId = sidenavService.getId();
 
                             if(validate){
                                 if(honeydoo.honeydoo.owner === $scope.userObject.username){
-                                    saveToYourList(honeydoo, $scope.user.uid, true);
+                                    saveToYourList(honeydoo, $scope.user.uid, true, itemId);
                                 }else {
-                                    saveToHoneyList(honeydoo, $scope.user.uid, true);
+                                    saveToHoneyList(honeydoo, $scope.user.uid, true, itemId);
                                 }
                             }else {
                                 $scope.error = 'field required';

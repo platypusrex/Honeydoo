@@ -98,7 +98,25 @@ body {
   top: 3px;
   left: -3px
 }
-[ng\:cloak], [ng-cloak], .ng-cloak {
-  display: none !important;
+.list-group-item.ng-enter,
+.list-group-item.ng-leave {
+  transition: transform 400ms, margin 400ms;
+}
+
+.list-group-item.ng-enter,
+.list-group-item.ng-leave-active {
+  transform: translate3d(2000px, 0, 0);
+  margin-bottom: -20px;
+}
+
+.list-group-item.ng-enter-active {
+  transform: translate3d(0, 0, 0);
+  margin-bottom: 1px;
+}
+
+.ng-enter-stagger,
+.ng-leave-stagger {
+  transition-delay: 50ms;
+  transition-duration: 0;
 }
 

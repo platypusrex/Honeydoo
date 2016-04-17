@@ -173,9 +173,8 @@
 
                         if(chatId) {
                             unread.$bindTo($scope, 'unread').then(function () {
-                                $scope.$watch('unread.unread', function (val) {
-                                    console.log(val);
-                                    $scope.showBadge = val;
+                                $scope.$watch('unread', function(val) {
+                                    $scope.showBadge = val.$value;
                                 })
                             });
 
@@ -184,11 +183,11 @@
                                 function (data) {
                                     chats.$watch(function () {
                                         chatLength.$watch(function () {
-                                            var dif = chats.length - chatLength.$value;
-                                            saveChatLengthDif(dif, $scope.user.uid, honeyUid, chats.length);
+                                            $scope.chatLengthDif = chats.length - chatLength.$value;
+                                            saveChatLengthDif($scope.chatLengthDif, $scope.user.uid, honeyUid, chats.length);
                                         });
-                                        var dif = chats.length - data.$value;
-                                        saveChatLengthDif(dif, $scope.user.uid, honeyUid, chats.length);
+                                        $scope.chatLengthDif = chats.length - data.$value;
+                                        saveChatLengthDif($scope.chatLengthDif, $scope.user.uid, honeyUid, chats.length);
                                     });
                                 }
                             );
@@ -200,17 +199,19 @@
                 );
 
                 var saveChatLengthDif = function(val, uid, huid, length){
-                    var chatLength = sidenavService.getChatLengthDif(uid);
+                    var chatLength = firebaseDataService.users.child(uid);
                     var honeyChatLength = sidenavService.currentChatLength(huid);
 
-                    chatLength.unread = val;
-                    chatLength.$save();
+                    chatLength.update({
+                        unreadChats: val
+                    });
 
                     honeyChatLength.$loaded(
                         function(data){
-                            var honeyUnreadChats = sidenavService.getChatLengthDif(huid);
-                            honeyUnreadChats.unread = length - data.$value;
-                            honeyUnreadChats.$save();
+                            var honeyUnreadChats = firebaseDataService.users.child(huid);
+                            honeyUnreadChats.update({
+                                unreadChats: length - data.$value
+                            })
                         }
                     )
                 };
