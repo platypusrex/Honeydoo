@@ -11,9 +11,15 @@
             return $firebaseArray(users);
         };
 
+        var getNotifications = function(uid){
+            var notifications = firebaseDataService.users.child(uid).child('notifications');
+            return $firebaseArray(notifications);
+        };
+
         return {
             getUserAuth: getUserAuth,
-            getUsers: getUsers
+            getUsers: getUsers,
+            getNotifications: getNotifications
         }
     }]);
 }(angular.module('ConnectModule')));

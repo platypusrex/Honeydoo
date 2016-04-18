@@ -30,8 +30,7 @@
                             lastname: user.lastname,
                             invitation: {
                                 status: 'none',
-                                userId: 'none',
-                                notification: 'You have no new notifications...'
+                                userId: 'none'
                             }
                         });
 

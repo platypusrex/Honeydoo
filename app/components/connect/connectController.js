@@ -15,6 +15,7 @@
             $scope.disable = false;
             $scope.users = null;
             var placeholder = 'http://www.disruptorbeam.com/assets/uploaded/news-thumbnails/Spock_final_thumb.png';
+            var userData = sidenavService.getUserData($scope.user.uid);
             var usersData = connectService.getUsers();
             var inviteStatus = sidenavService.getInvitationStatus($scope.user.uid);
 
@@ -26,6 +27,20 @@
                             this.push({firstname: val.firstname, lastname: val.lastname, value: val.$id, un: val.username, img: (val.image) ? val.image : placeholder});
                         }
                     }, $scope.users);
+
+                    $scope.honeySearch = function(str){
+                        var matches = [];
+                        $scope.users.forEach(function(user){
+                            var fullname = user.firstname + ' ' + user.lastname;
+                            if ((user.firstname.toLowerCase().indexOf(str.toString().toLowerCase()) >= 0) ||
+                                (user.lastname.toLowerCase().indexOf(str.toString().toLowerCase()) >= 0) ||
+                                (fullname.toLowerCase().indexOf(str.toString().toLowerCase()) >= 0))
+                            {
+                                matches.push(user);
+                            }
+                        });
+                        return matches;
+                    };
 
                     //$timeout(function(){
                     //    $scope.selectData = {
@@ -41,44 +56,64 @@
                 }
             );
 
-            $scope.honeySearch = function(str){
-                var matches = [];
-                $scope.users.forEach(function(user){
-                    var fullname = user.firstname + ' ' + user.lastname;
-                    if ((user.firstname.toLowerCase().indexOf(str.toString().toLowerCase()) >= 0) ||
-                        (user.lastname.toLowerCase().indexOf(str.toString().toLowerCase()) >= 0) ||
-                        (fullname.toLowerCase().indexOf(str.toString().toLowerCase()) >= 0))
-                    {
-                        matches.push(user);
-                    }
-                });
-                return matches;
-            };
+            userData.$loaded(
+                function(data){
+                    var userObj = data;
+
+                    $scope.setInviteStatus = function(){
+                        var ref = firebaseDataService.users;
+                        var userUid = $scope.user.uid;
+                        var honeyUid = $scope.honeyUid;
+
+                        ref.child(userUid).update({
+                            invitation: {
+                                status: 'sent',
+                                userId: honeyUid
+                            }
+                        }, growlerMessage());
+
+                        ref.child(honeyUid).update({
+                            invitation: {
+                                status: 'received',
+                                userId: userUid
+                            }
+                        });
+                        updateNotifications(userUid, true, honeyUid);
+                        updateNotifications(honeyUid, false);
+                    };
+
+                    var updateNotifications = function(uid, honey, honeyUid){
+                        var notifications = connectService.getNotifications(uid);
+                        var message = null;
+
+                        if(honey){
+                            var userData = sidenavService.getUserData(honeyUid);
+                            userData.$loaded(
+                                function(data){
+                                    message = 'Your invitation has been sent to ' + data.firstname + ' ' + data.lastname;
+                                    notifications.$add({
+                                        message: message
+                                    })
+                                },
+                                function(error){
+                                    console.log(error);
+                                }
+                            );
+                        }else {
+                            message = userObj.firstname + ' ' + userObj.lastname + ' sent you an invitation to connect!';
+                            notifications.$add({
+                                message: message
+                            });
+                        }
+                    };
+                },
+                function(error){
+
+                }
+            );
 
             var growlerMessage = function(){
                 growl.warning('<i class="fa fa-check"></i><strong>Yay!&nbsp;</strong>You\'re invite has been sent to ' + $scope.honey, {ttl: 5000});
-            };
-
-            $scope.setInviteStatus = function(){
-                var ref = firebaseDataService.users;
-                var userUid = $scope.user.uid;
-                var honeyUid = $scope.honeyUid;
-
-                ref.child(userUid).update({
-                    invitation: {
-                        status: 'sent',
-                        userId: honeyUid,
-                        notification: 'Your invitation has been sent to'
-                    }
-                }, growlerMessage());
-
-                ref.child(honeyUid).update({
-                    invitation: {
-                        status: 'received',
-                        userId: userUid,
-                        notification: 'sent you an invitation to connect!'
-                    }
-                });
             };
 
             $scope.changeDisable = function(){

@@ -5,17 +5,19 @@
         '$scope',
         'sidenavService',
         'editItemService',
+        'connectService',
         '$state',
         'firebaseDataService',
         'growl',
         'ModalService',
         '$rootScope',
         '$timeout',
-        function($scope, sidenavService, editItemService, $state, firebaseDataService, growl, ModalService, $rootScope, $timeout){
+        function($scope, sidenavService, editItemService, connectService, $state, firebaseDataService, growl, ModalService, $rootScope, $timeout){
             $scope.user = sidenavService.getUserAuth();
             $scope.iconActive1 = false;
             $scope.iconActive2 = false;
             $scope.showBadge = false;
+            $scope.showDefaultNotification = true;
             $scope.username = null;
             var firstName = null;
             var lastName = null;
@@ -96,6 +98,9 @@
                         addHoneyList(honeyId, 'yourList', ref, $scope.user.uid);
                     }
                 });
+
+                addNotification($scope.user.uid, 'You are now connected with ' + honeyFirstName + ' ' + honeyLastName);
+                addNotification(honeyId, 'You are now connected with ' + firstName + ' ' + lastName);
             };
 
             var addHoneyList = function(uid, list, userObject, otherUid){
@@ -125,8 +130,18 @@
                 }, growlerRejectMessage());
             };
 
+            var addNotification = function(uid, message){
+                var notification = connectService.getNotifications(uid);
+
+                notification.$add({
+                    message: message
+                });
+            };
+
             $scope.showHoneyChat = function(){
-                saveChatCount($scope.user.uid);
+                if(chatId){
+                    saveChatCount($scope.user.uid);
+                }
 
                 ModalService.showModal({
                     templateUrl: "app/components/honeyChat/honeyChat.html",
@@ -163,15 +178,17 @@
                         firstName = data.firstname;
                         lastName = data.lastname;
                         chatId = data.chatId;
-                        var honeyUid = data.honey.uid;
                         $scope.username = data.username;
                         $scope.firstLastName = data.firstname + ' ' + data.lastname;
                         $scope.userIcon = (data.gender === 'his');
-                        var chats = sidenavService.getChats(chatId);
-                        var chatLength = sidenavService.currentChatLength($scope.user.uid);
-                        var unread = sidenavService.getChatLengthDif($scope.user.uid);
+                        var notifications = connectService.getNotifications($scope.user.uid);
 
                         if(chatId) {
+                            var honeyUid = data.honey.uid;
+                            var chats = sidenavService.getChats(chatId);
+                            var chatLength = sidenavService.currentChatLength($scope.user.uid);
+                            var unread = sidenavService.getChatLengthDif($scope.user.uid);
+
                             unread.$bindTo($scope, 'unread').then(function () {
                                 $scope.$watch('unread', function(val) {
                                     $scope.showBadge = val.$value;
@@ -192,6 +209,32 @@
                                 }
                             );
                         }
+
+                        notifications.$watch(function(){
+                            $scope.notifications = notifications;
+                            $scope.notificationIndex = 0;
+                            if(notifications.length > 0){
+                                $scope.showDefaultNotification = false;
+                            }
+
+                            $scope.next = function(){
+                                if($scope.notificationIndex >= $scope.notifications.length - 1){
+                                    $scope.notificationIndex = 0;
+                                }else {
+                                    $scope.notificationIndex++;
+                                }
+                            };
+
+                            $scope.prev = function(){
+                                if($scope.notificationIndex === 0){
+                                    $scope.notificationIndex = $scope.notifications.length - 1;
+                                }else {
+                                    $scope.notificationIndex--;
+                                }
+                            };
+
+                            console.log($scope.notifications.length);
+                        });
                     },
                     function(error){
                         console.log(error);

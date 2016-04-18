@@ -10,24 +10,35 @@ div.col-lg-3.col-md-3.col-sm-4.col-xs-8.profile-sidebar-container(ng-class="{'sl
           p(ng-bind="firstLastName")
       div.profile-userbutton
         button.btn.btn-warning.btn-block(type="button", data-toggle="collapse", data-target="#notificationWell", aria-expanded="false", aria-controls="notificationWell") Notifications &nbsp;
-          i.fa.fa-bell-o
+          i.fa.fa-bell-o(ng-class="{'new-notification': !showDefaultNotification}")
         div.collapse#notificationWell
           div.well
-            div(ng-show="value === 'none'")
+            div(ng-show="showDefaultNotification")
               h6 You have no new notifications...
-            div(ng-show="value === 'sent'")
-              h6 Your invitation has been sent to {{honeyName}}!
-            div(ng-show="value === 'received'")
-              h6 {{honeyName}} sent you an invitation to connect!
-              div.btn-group
-                button.btn.btn-primary.btn-xs(ng-click="acceptInvite()") accept
-                button.btn.btn-danger.btn-xs(ng-click="rejectInvite()") reject
-            div(ng-show="value === 'connected'")
-              h6 You are now connected with {{honeyName}}!
-            div(ng-show="value === 'rejected'")
-              h6 You have rejected {{honeyName}}'s invitation.
-            div(ng-show="value === 'denied'")
-              h6 You're invitation to {{honeyName}} was denied.
+            div.notification-container(ng-show="notifications.length > 0")
+              div.row
+                div.message-container
+                  div.col-xs-1.chevron-container(ng-show="notifications.length > 0")
+                    i.fa.fa-chevron-left(ng-click="prev()")
+                  div.col-xs-9(ng-repeat="notification in notifications")
+                    div.message(ng-if="notificationIndex === $index")
+                      span {{notification.message}}
+                  div.col-xs-1.chevron-container-2(ng-show="notifications.length > 0", style="position:absolute;top:10px;right:10px")
+                    i.fa.fa-chevron-right(ng-click="next()", style="cursor:pointer")
+                div.btn-group(ng-show="value === 'received'")
+                  button.btn.btn-primary.btn-xs(ng-click="acceptInvite()") accept
+                  button.btn.btn-danger.btn-xs(ng-click="rejectInvite()") reject
+            //div(ng-show="value === 'received'")
+            //  h6 {{honeyName}} sent you an invitation to connect!
+              //div.btn-group(ng-show="value === 'received'")
+              //  button.btn.btn-primary.btn-xs(ng-click="acceptInvite()") accept
+              //  button.btn.btn-danger.btn-xs(ng-click="rejectInvite()") reject
+            //div(ng-show="value === 'connected'")
+            //  h6 You are now connected with {{honeyName}}!
+            //div(ng-show="value === 'rejected'")
+            //  h6 You have rejected {{honeyName}}'s invitation.
+            //div(ng-show="value === 'denied'")
+            //  h6 You're invitation to {{honeyName}} was denied.
     div.profile-usermenu
       div.panel.list-group
         a.list-group-item(ui-sref="home.dashboard")
