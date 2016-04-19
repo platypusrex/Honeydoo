@@ -16,12 +16,12 @@ div.row
               div.col-xs-6
                 h4(ng-show="userObject.honey") {{userObject.honey.firstname + "'s"}} List
                 h4(ng-show="!userObject.honey") Not connected
-              div.col-xs-6
+              div.col-xs-6.list-controls
                 div.btn-group.btn-group-justified(ng-show="showButtonGroup")
                   div.btn-group
-                    button.btn.btn-default.bt-block(ng-click="showSearch('search')", ng-class="{'disabled': !userObj.honey}") Search
+                    button.btn.btn-default.bt-block(ng-click="showSearch('search')", ng-class="{'disabled': !userObject.honey}") Search
                   div.btn-group
-                    button.btn.btn-default.btn-block(ng-click="showSearch('sort')", ng-class="{'disabled': !userObj.honey}") Sort
+                    button.btn.btn-default.btn-block(ng-click="showSearch('sort')", ng-class="{'disabled': !userObject.honey}") Sort
                 div.input-group(ng-show="showQuery")
                   input.form-control(type="text", ng-model="query", placeholder="Search")
                   span.input-group-btn

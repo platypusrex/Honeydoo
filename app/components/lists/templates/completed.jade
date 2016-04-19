@@ -25,11 +25,11 @@ div.row
         div.col-md-6
           div.panel.panel-default
             div.panel-heading
-              h4(ng-show="userObj.honey") {{userObject.honey.firstname + "'s Completed Items"}}
-              h4(ng-show="!userObj.honey") Not connected
+              h4(ng-show="userObject.honey") {{userObject.honey.firstname + "'s Completed Items"}}
+              h4(ng-show="!userObject.honey") Not connected
             div.panel-body(ng-hide="honeyComplete.length > 0")
-              p(ng-show="userObj.honey") Your honey hasn't completed any honeydoo's yet
-              p(ng-show="!userObj.honey") Connect with your honey to use this feature
+              p(ng-show="userObject.honey && honeyComplete.length < 1") Your honey hasn't completed any honeydoo's yet
+              p(ng-show="!userObject.honey") Connect with your honey to use this feature
             ul.list-group
               li.list-group-item(dir-paginate="item in honeyComplete|itemsPerPage:pageSize", pagination-id="honeyComplete")
                 div.completed-info-container(data-toggle="collapse", ng-attr-data-target='{{"#honey-complete-" + $index}}')
