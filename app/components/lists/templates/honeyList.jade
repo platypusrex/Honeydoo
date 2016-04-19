@@ -19,9 +19,9 @@ div.row
               div.col-xs-6
                 div.btn-group.btn-group-justified(ng-show="showButtonGroup")
                   div.btn-group
-                    button.btn.btn-default.bt-block(ng-click="showSearch('search')") Search
+                    button.btn.btn-default.bt-block(ng-click="showSearch('search')", ng-class="{'disabled': !userObj.honey}") Search
                   div.btn-group
-                    button.btn.btn-default.btn-block(ng-click="showSearch('sort')") Sort
+                    button.btn.btn-default.btn-block(ng-click="showSearch('sort')", ng-class="{'disabled': !userObj.honey}") Sort
                 div.input-group(ng-show="showQuery")
                   input.form-control(type="text", ng-model="query", placeholder="Search")
                   span.input-group-btn

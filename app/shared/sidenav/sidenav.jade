@@ -20,25 +20,14 @@ div.col-lg-3.col-md-3.col-sm-4.col-xs-8.profile-sidebar-container(ng-class="{'sl
                 div.message-container
                   div.col-xs-1.chevron-container(ng-show="notifications.length > 0")
                     i.fa.fa-chevron-left(ng-click="prev()")
-                  div.col-xs-9(ng-repeat="notification in notifications")
+                  div.col-xs-10(ng-repeat="notification in notifications")
                     div.message(ng-if="notificationIndex === $index")
                       span {{notification.message}}
+                      div.btn-group(ng-show='value === "received" && notification.message.indexOf("received an invitation") !== -1')
+                        button.btn.btn-primary.btn-xs(ng-click="acceptInvite()") accept
+                        button.btn.btn-danger.btn-xs(ng-click="rejectInvite()") reject
                   div.col-xs-1.chevron-container-2(ng-show="notifications.length > 0", style="position:absolute;top:10px;right:10px")
                     i.fa.fa-chevron-right(ng-click="next()", style="cursor:pointer")
-                div.btn-group(ng-show="value === 'received'")
-                  button.btn.btn-primary.btn-xs(ng-click="acceptInvite()") accept
-                  button.btn.btn-danger.btn-xs(ng-click="rejectInvite()") reject
-            //div(ng-show="value === 'received'")
-            //  h6 {{honeyName}} sent you an invitation to connect!
-              //div.btn-group(ng-show="value === 'received'")
-              //  button.btn.btn-primary.btn-xs(ng-click="acceptInvite()") accept
-              //  button.btn.btn-danger.btn-xs(ng-click="rejectInvite()") reject
-            //div(ng-show="value === 'connected'")
-            //  h6 You are now connected with {{honeyName}}!
-            //div(ng-show="value === 'rejected'")
-            //  h6 You have rejected {{honeyName}}'s invitation.
-            //div(ng-show="value === 'denied'")
-            //  h6 You're invitation to {{honeyName}} was denied.
     div.profile-usermenu
       div.panel.list-group
         a.list-group-item(ui-sref="home.dashboard")

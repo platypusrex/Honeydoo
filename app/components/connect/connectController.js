@@ -64,6 +64,8 @@
                         var ref = firebaseDataService.users;
                         var userUid = $scope.user.uid;
                         var honeyUid = $scope.honeyUid;
+                        var honeyMessage = 'You\'ve received an invitation to connect from ';
+                        var userMessage = 'Your invitation has been sent to ';
 
                         ref.child(userUid).update({
                             invitation: {
@@ -78,8 +80,11 @@
                                 userId: userUid
                             }
                         });
-                        updateNotifications(userUid, true, honeyUid);
-                        updateNotifications(honeyUid, false);
+
+                        connectService.addNotification(userUid, userMessage, honeyUid);
+                        connectService.addNotification(honeyUid, honeyMessage, userUid);
+                        //updateNotifications(userUid, true, honeyUid);
+                        //updateNotifications(honeyUid, false);
                     };
 
                     var updateNotifications = function(uid, honey, honeyUid){

@@ -27,12 +27,12 @@
             var honeyUserName = null;
             var chatId = null;
 
-            var growlerAcceptMessage = function(){
-                growl.warning('<i class="fa fa-check"></i><strong>Congrats!&nbsp;</strong>You\'re connected to ' + honeyFirstName + ' ' + honeyLastName, {ttl: 5000})
+            var growlerSuccess = function(message){
+                growl.warning('<i class="fa fa-check"></i><strong>Congrats!&nbsp;</strong>' + message, {ttl: 5000});
             };
 
-            var growlerRejectMessage = function(){
-                growl.warning('<i class="fa fa-times"></i><strong>You have rejected the connection with ' + honeyFirstName + ' ' + honeyLastName, {ttl: 5000})
+            var growlerError = function(message){
+                growl.warning('<i class="fa fa-times"></i><strong>' + message, {ttl: 5000})
             };
 
             $scope.getSidenavState = function(){
@@ -66,7 +66,7 @@
                         username: honeyUserName
                     },
                     chatId: chatId
-                }, growlerAcceptMessage());
+                }, growlerSuccess('You\'re connected with ' + honeyFirstName + honeyLastName));
 
                 ref.child($scope.user.uid).child('invitation').update({
                     status: 'connected'
@@ -99,8 +99,8 @@
                     }
                 });
 
-                addNotification($scope.user.uid, 'You are now connected with ' + honeyFirstName + ' ' + honeyLastName);
-                addNotification(honeyId, 'You are now connected with ' + firstName + ' ' + lastName);
+                connectService.addNotification($scope.user.uid, 'You are now connected with ', honeyId);
+                connectService.addNotification(honeyId, 'You are now connected with ', $scope.user.uid);
             };
 
             var addHoneyList = function(uid, list, userObject, otherUid){
@@ -127,15 +127,10 @@
 
                 ref.child($scope.user.uid).child('invitation').update({
                     status: 'rejected'
-                }, growlerRejectMessage());
-            };
+                }, growlerError('You have rejected the connection with ' + firstName + ' ' + lastName));
 
-            var addNotification = function(uid, message){
-                var notification = connectService.getNotifications(uid);
-
-                notification.$add({
-                    message: message
-                });
+                connectService.addNotification($scope.user.uid, 'You rejected an invitation from ', honeyId);
+                connectService.addNotification(honeyId, 'Your invitation was denied by ', $scope.user.uid);
             };
 
             $scope.showHoneyChat = function(){
@@ -212,7 +207,7 @@
 
                         notifications.$watch(function(){
                             $scope.notifications = notifications;
-                            $scope.notificationIndex = 0;
+                            $scope.notificationIndex = $scope.notifications.length - 1;
                             if(notifications.length > 0){
                                 $scope.showDefaultNotification = false;
                             }
