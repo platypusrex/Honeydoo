@@ -5,9 +5,9 @@ div.col-lg-3.col-md-3.col-sm-4.col-xs-8.profile-sidebar-container(ng-class="{'sl
         img.img-circle(ng-src="{{user.password.profileImageURL}}")
       div.profile-usertitle
         div.usertitle-name
-          h5(ng-bind="username")
+          h5(ng-bind="userObj.username")
         div.usertitle-email
-          p(ng-bind="firstLastName")
+          p(ng-bind="userObj.firstname + ' ' + userObj.lastname")
       div.profile-userbutton
         button.btn.btn-warning.btn-block(type="button", data-toggle="collapse", data-target="#notificationWell", aria-expanded="false", aria-controls="notificationWell") Notifications &nbsp;
           i.fa.fa-bell-o(ng-class="{'new-notification': !showDefaultNotification}")
@@ -22,7 +22,8 @@ div.col-lg-3.col-md-3.col-sm-4.col-xs-8.profile-sidebar-container(ng-class="{'sl
                     i.fa.fa-chevron-left(ng-click="prev()")
                   div.col-xs-10(ng-repeat="notification in notifications")
                     div.message(ng-if="notificationIndex === $index")
-                      span {{notification.message}}
+                      span(style="display:block;margin-bottom:8px") {{notification.message}}
+                      button.btn.btn-danger.btn-xs(ng-hide="notification.message.indexOf('received an invitation') !== -1 && value === 'received'", ng-click="removeNotification(notification)") Remove
                       div.btn-group(ng-show='value === "received" && notification.message.indexOf("received an invitation") !== -1')
                         button.btn.btn-primary.btn-xs(ng-click="acceptInvite()") accept
                         button.btn.btn-danger.btn-xs(ng-click="rejectInvite()") reject
