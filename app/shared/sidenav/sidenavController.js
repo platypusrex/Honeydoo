@@ -99,7 +99,7 @@
 
                             ref.child(honeyId).update({
                                 honey: {
-                                    uid: honeyId,
+                                    uid: userId,
                                     firstname: $scope.userObj.firstname,
                                     lastname: $scope.userObj.lastname,
                                     username: $scope.userObj.username

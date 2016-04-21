@@ -27,12 +27,11 @@
 
                 honeyData.$loaded(
                     function(data){
-                        var honeyObj = data;
                         var name = data.firstname + ' ' + data.lastname;
 
                         notifications.$add({
                             message: message + name
-                        })
+                        });
                     }
                 );
             };

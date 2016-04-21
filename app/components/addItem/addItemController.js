@@ -6,10 +6,11 @@
         'ModalService',
         'addItemService',
         'sidenavService',
+        'connectService',
         '$element',
         'close',
         'growl',
-        function($scope, ModalService, addItemService, sidenavService, $element, close, growl){
+        function($scope, ModalService, addItemService, sidenavService, connectService, $element, close, growl){
             $scope.user = addItemService.getUserAuth();
             $scope.userObject = null;
             $scope.submitted = false;
@@ -154,6 +155,7 @@
                                     saveToYourList(honeydoo, $scope.user.uid, true, itemId);
                                 }else {
                                     saveToHoneyList(honeydoo, $scope.user.uid, true, itemId);
+                                    connectService.addNotification($scope.userObject.honey.uid, 'A Honeydoo was added to your list by ', $scope.user.uid);
                                 }
                             }else {
                                 $scope.error = 'field required';
