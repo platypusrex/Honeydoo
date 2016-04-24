@@ -177,6 +177,7 @@
 
                             chatRef.once('value', function(snapshot){
                                 var chatLength = snapshot.numChildren();
+                                console.log(chatLength);
 
                                 userObj.update({
                                     lastChatLength: chatLength
@@ -185,31 +186,38 @@
                         };
 
                         if($scope.userObj.chatId) {
-                            var honeyUid = $scope.userObj.honey.uid;
                             var chats = sidenavService.getChats($scope.userObj.chatId);
                             var chatLength = sidenavService.currentChatLength(userId);
                             var unread = sidenavService.getChatLengthDif(userId);
 
-                            unread.$bindTo($scope, 'unread').then(function () {
-                                $scope.$watch('unread', function(val) {
-                                    $scope.showBadge = val.$value;
-                                })
-                            });
+                            //chatLength.$loaded(
+                            //    function (data) {
+                            //        chats.$watch(function () {
+                            //            //chatLength.$watch(function () {
+                            //            //    console.log('chat length watch');
+                            //            //    $scope.chatLengthDif = chats.length - chatLength.$value;
+                            //            //    saveChatLengthDif($scope.chatLengthDif, userId, honeyUid, chats.length);
+                            //            //});
+                            //            //$scope.chatLengthDif = chats.length - data.$value;
+                            //            //saveChatLengthDif($scope.chatLengthDif, userId, honeyUid, chats.length);
+                            //        });
+                            //    }
+                            //);
 
-                            chatLength.$loaded(
-                                function (data) {
-                                    chats.$watch(function () {
-                                        chatLength.$watch(function () {
-                                            $scope.chatLengthDif = chats.length - chatLength.$value;
-                                            saveChatLengthDif($scope.chatLengthDif, userID, honeyUid, chats.length);
-                                        });
-                                        $scope.chatLengthDif = chats.length - data.$value;
-                                        saveChatLengthDif($scope.chatLengthDif, userId, honeyUid, chats.length);
+                            if(chatLength){
+                                chatLength.$bindTo($scope, 'chatLen').then(function(){
+                                    $scope.$watch('chatLen', function(val){
+                                        $timeout(function(){
+                                            var dif = chats.length - val.$value;
+                                            saveChatLengthDif(dif, userId, honeyId, chats.length);
+                                        }, 200);
                                     });
-                                }
-                            );
+                                });
+                            }
 
                             var saveChatLengthDif = function(val, uid, huid, length){
+                                console.log('inside save chat length dif');
+                                console.log(val);
                                 var chatLength = firebaseDataService.users.child(uid);
                                 var honeyChatLength = sidenavService.currentChatLength(huid);
 
@@ -227,6 +235,12 @@
                                 )
                             };
                         }
+
+                        unread.$bindTo($scope, 'unread').then(function () {
+                            $scope.$watch('unread', function(val) {
+                                $scope.showBadge = val.$value;
+                            })
+                        });
 
                         notifications.$watch(function(){
                             $scope.notifications = notifications;

@@ -154,8 +154,9 @@
                                 if(honeydoo.honeydoo.owner === $scope.userObject.username){
                                     saveToYourList(honeydoo, $scope.user.uid, true, itemId);
                                 }else {
+                                    var str = '"' +honeydoo.honeydoo.title + "'" + ' was added to your list by ';
                                     saveToHoneyList(honeydoo, $scope.user.uid, true, itemId);
-                                    connectService.addNotification($scope.userObject.honey.uid, 'A Honeydoo was added to your list by ', $scope.user.uid);
+                                    connectService.addNotification($scope.userObject.honey.uid, str, $scope.user.uid);
                                 }
                             }else {
                                 $scope.error = 'field required';
