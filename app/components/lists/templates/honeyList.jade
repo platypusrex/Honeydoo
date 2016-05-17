@@ -1,22 +1,14 @@
 div.row
   div.col-md-12
     div.row
-      div.col-md-4
-        div.panel.panel-default.controls-panel
-          div.panel-heading
-            h4 Controls
-          div.panel-body
-            h6 Add
-            p Click the button below to add a new todo item to you or your honey's list
-            button.btn.btn-default.btn-block(type="button", ng-click="showAddItem()") Add Honeydoo
-      div.col-md-8.your-list-panel-container
+      div.col-md-10.col-md-offset-1.your-list-panel-container
         div.panel.panel-default
           div.panel-heading
             div.row
-              div.col-xs-6
+              div.col-sm-6
                 h4(ng-show="userObject.honey") {{userObject.honey.firstname + "'s"}} List
                 h4(ng-show="!userObject.honey") Not connected
-              div.col-xs-6.list-controls
+              div.col-sm-6.list-controls
                 div.btn-group.btn-group-justified(ng-show="showButtonGroup")
                   div.btn-group
                     button.btn.btn-default.bt-block(ng-click="showSearch('search')", ng-class="{'disabled': !userObject.honey}") Search
@@ -56,37 +48,46 @@ div.row
             li.list-group-item(dir-paginate="item in honeyList|orderBy:sortOrder|filter:query|itemsPerPage:pageSize", pagination-id="honeys", currentPage="currentPage")
               div.list-info-container
                 div.row
-                  div.col-md-10(data-toggle="collapse", ng-attr-data-target='{{"#honeydooItem-" + $index}}')
+                  div.col-md-9.col-xs-8(data-toggle="collapse", ng-attr-data-target='{{"#honeydooItem-" + $index}}')
                     div.date-container
                       strong Date added:
                       span.small &nbsp;{{item.addedOn | date:'MMM d, y h:mm a'}}
                     div.title-container
                       p.lead {{item.title}}
-                  div.col-md-2
-                    div.edit-todo-container
+                  div.col-md-3.col-xs-4
+                    div.edit-icons
                       i.mdi.mdi-pencil-box-outline(ng-click="editItem($index, 'honeyList', item)")
                       i.mdi.mdi-delete-variant(ng-click="removeHoneydoo(item, 'honeyList')")
               div.collapse(ng-attr-id='{{"honeydooItem-" + $index}}')
                 hr
                 div.row
-                  div.col-md-4
-                    div.requester-img-container
-                      img(ng-src="{{item.requesterImg}}")
-                    div.requester-name-container
-                      div.name-wrapper
-                        p requested by:
-                        i.mdi.mdi-account-outline &nbsp;
-                        span.small {{item.requester}}
-                  div.col-md-8
+                  div.col-xs-3.col-md-3.col-lg-2.hidden-xs
+                    div.requester-container
+                      div.requester-heading.text-center(style="border:1px solid #ddd;border-bottom:none;padding:3px;")
+                        p(style="margin:0;display:inline-block;font-weight:600") Requester
+                      div.requester-body.text-center(style="padding:0;")
+                        img.img-thumbnail.img-responsive(ng-src="{{item.requesterImg}}")
+                      div.requester-footer.text-center(style="border:1px solid #ddd;padding:2px;border-top:none;")
+                        p.small(style="margin:0;") {{item.requester}}
+                  div.col-xs-12.col-md-9.col-lg-10
                     div.row
-                      div.col-md-6
+                      div.col-sm-6.col-xs-6
                         i.mdi.mdi-calendar-clock
-                        span {{item.due}}
-                      div.col-md-6
+                        p(style="margin:0;display:inline-block;font-weight:600;") Due by:
+                        p.small {{item.due}}
+                      div.col-sm-6.col-xs-6
                         i.mdi.mdi-information-outline
-                        span {{item.status}}
+                        p(style="margin:0;display:inline-block;font-weight:600;") Due by:
+                        p.small {{item.status}}
                     div.row
-                      div.col-md-12.note-container
+                      div.col-sm-12.note-container
+                        i.mdi.mdi-note-outline
+                        p(style="margin:0;display:inline-block;font-weight:600;") Note:
                         p.note {{item.note}}
           div.panel-footer(ng-show="honeyList.length >= 1")
-            dir-pagination-controls(pagination-id="honeys", direction-links="true", on-page-change="pageChangeHandler(newPageNumber, 'honeys')", boundary-links="true", auto-hide="false")
+            div.row
+              div.col-sm-6
+                dir-pagination-controls(pagination-id="honeys", direction-links="true", on-page-change="pageChangeHandler(newPageNumber, 'honeys')", boundary-links="true", auto-hide="false")
+              div.col-sm-6
+                div.list-controls-container(style="height:56px")
+                  button.btn.btn-default.btn-block(type="button", ng-click="showAddItem()",style="position:relative;top:50%;transform:translateY(-50%)") Add Honeydoo

@@ -2,7 +2,7 @@ div.row
   div.col-md-12
     div.completed-lists-container
       div.row
-        div.col-md-6
+        div.col-md-6.your-list-panel-container
           div.panel.panel-default
             div.panel-heading
               h4 {{userObject.firstname + "'s"}} Completed Items
@@ -19,10 +19,13 @@ div.row
                       div.title-container
                         p.lead(style="margin-bottom:0") {{item.title}}
                 div.collapse(ng-attr-id='{{"your-complete-" + $index}}')
-                  p this is the stuff in the collapsed div {{yourComplete.length}}
+                  hr
+                  i.mdi.mdi-note-outline
+                  p(style="margin:0;display:inline-block;font-weight:600;") Note:
+                  p.note {{item.note}}
             div.panel-footer(ng-show="yourComplete.length > 0")
               dir-pagination-controls(pagination-id="yourComplete", direction-links="true", boundary-links="true", auto-hide="false")
-        div.col-md-6
+        div.col-md-6.your-list-panel-container
           div.panel.panel-default
             div.panel-heading
               h4(ng-show="userObject.honey") {{userObject.honey.firstname + "'s Completed Items"}}
@@ -41,6 +44,9 @@ div.row
                       div.title-container
                         p.lead(style="margin-bottom:0") {{item.title}}
                 div.collapse(ng-attr-id='{{"honey-complete-" + $index}}')
-                  p this is the stuff in the other collapsed div
+                  hr
+                  i.mdi.mdi-note-outline
+                  p(style="margin:0;display:inline-block;font-weight:600;") Note:
+                  p.note {{item.note}}
             div.panel-footer(ng-show="honeyComplete.length > 0")
               dir-pagination-controls(pagination-id="honeyComplete", direction-links="true", boundary-links="true", auto-hide="false")

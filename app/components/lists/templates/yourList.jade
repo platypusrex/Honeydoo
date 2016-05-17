@@ -1,15 +1,7 @@
 div.row
   div.col-md-12
     div.row
-      div.col-md-4
-        div.panel.panel-default.controls-panel
-          div.panel-heading
-            h4 Controls
-          div.panel-body
-            h6 Add
-            p Click the button below to add a new todo item to you or your honey's list
-            button.btn.btn-default.btn-block(type="button", ng-click="showAddItem()") Add Honeydoo
-      div.col-md-8.your-list-panel-container
+      div.col-md-10.col-md-offset-1.your-list-panel-container
         div.panel.panel-default
           div.panel-heading
             div.row
@@ -54,42 +46,52 @@ div.row
             li.list-group-item(dir-paginate="list in yourList|orderBy:sortOrder|filter:query|itemsPerPage:pageSize", pagination-id="yours", currentPage="currentPage")
               div.list-info-container
                 div.row
-                  div.col-md-10.col-xs-8(data-toggle="collapse", ng-attr-data-target='{{"#honeydoo-" + $index}}')
+                  div.col-md-9.col-xs-8(data-toggle="collapse", ng-attr-data-target='{{"#honeydoo-" + $index}}')
                     div.date-container
                       strong Date added:
                       span.small &nbsp;{{list.addedOn | date:'MMM d, y h:mm a'}}
                     div.title-container
                       p.lead {{list.title}}
-                  div.col-md-2.col-xs-4
-                    div.panel.panel-default
-                      div.panel-body
-                        div.edit-icons
-                          i.mdi.mdi-pencil-box-outline(ng-click="editItem($index, 'yourList', list)")
-                          i.mdi.mdi-delete-variant(ng-click="removeHoneydoo(list, 'yourList')")
+                  div.col-md-3.col-xs-4
+                    //div.panel.panel-default
+                    //  div.panel-body
+                    div.edit-icons
+                      i.mdi.mdi-pencil-box-outline(ng-click="editItem($index, 'yourList', list)")
+                      i.mdi.mdi-delete-variant(ng-click="removeHoneydoo(list, 'yourList')")
               div.collapse(ng-attr-id='{{"honeydoo-" + $index}}')
                 hr
                 div.row
-                  div.col-xs-4
-                    div.requester-img-container
-                      img(ng-src="{{list.requesterImg}}")
-                    div.requester-name-container
-                      div.name-wrapper
-                        p requested by:
-                        i.mdi.mdi-account-outline &nbsp;
-                        span.small {{list.requester}}
-                  div.col-xs-8
+                  div.col-xs-3.col-md-3.col-lg-2.hidden-xs
+                    div.requester-container
+                      div.requester-heading.text-center(style="border:1px solid #ddd;border-bottom:none;padding:3px;")
+                        p(style="margin:0;display:inline-block;font-weight:600") Requester
+                      div.requester-body.text-center(style="padding:0;")
+                       img.img-thumbnail.img-responsive(ng-src="{{list.requesterImg}}", style="margin:auto;")
+                      div.requester-footer.text-center(style="border:1px solid #ddd;padding:2px;border-top:none;")
+                        p.small(style="margin:0;") {{list.requester}}
+                  div.col-xs-12.col-md-9.col-lg-10
                     div.row
-                      div.col-sm-6
+                      div.col-sm-6.col-xs-6
                         i.mdi.mdi-calendar-clock
-                        span {{list.due}}
-                      div.col-sm-6
+                        p(style="margin:0;display:inline-block;font-weight:600;") Due by:
+                        p.small {{list.due}}
+                      div.col-sm-6.col-xs-6
                         i.mdi.mdi-information-outline
-                        span {{list.status}}
+                        p(style="margin:0;display:inline-block;font-weight:600;") Status:
+                        p.small {{list.status}}
                     div.row
                       div.col-sm-12.note-container
+                        i.mdi.mdi-note-outline
+                        p(style="margin:0;display:inline-block;font-weight:600;") Note:
                         p.note {{list.note}}
-          div.panel-footer(ng-show="yourList.length >= 1")
-            dir-pagination-controls(pagination-id="yours", on-page-change="pageChangeHandler(newPageNumber, 'yours')", direction-links="true", boundary-links="true", auto-hide="false")
+          div.panel-footer
+            //(ng-show="yourList.length >= 1")
+            div.row
+              div.col-sm-6
+                dir-pagination-controls(pagination-id="yours", on-page-change="pageChangeHandler(newPageNumber, 'yours')", direction-links="true", boundary-links="true", auto-hide="false")
+              div.col-sm-6
+                div.list-controls-container(style="height:56px")
+                  button.btn.btn-default.btn-block(type="button", ng-click="showAddItem()",style="position:relative;top:50%;transform:translateY(-50%)") Add Honeydoo
 
 
 

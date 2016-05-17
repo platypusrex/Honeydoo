@@ -203,6 +203,13 @@
                             //        });
                             //    }
                             //);
+                            if(unread){
+                                unread.$bindTo($scope, 'unread').then(function () {
+                                    $scope.$watch('unread', function(val) {
+                                        $scope.showBadge = val.$value;
+                                    })
+                                });
+                            }
 
                             if(chatLength){
                                 chatLength.$bindTo($scope, 'chatLen').then(function(){
@@ -235,12 +242,6 @@
                                 )
                             };
                         }
-
-                        unread.$bindTo($scope, 'unread').then(function () {
-                            $scope.$watch('unread', function(val) {
-                                $scope.showBadge = val.$value;
-                            })
-                        });
 
                         notifications.$watch(function(){
                             $scope.notifications = notifications;

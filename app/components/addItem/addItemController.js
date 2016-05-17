@@ -164,7 +164,7 @@
                         };
                     },
                     function(error){
-                        growlerError(err);
+                        growlerError(error);
                     }
                 );
             }
