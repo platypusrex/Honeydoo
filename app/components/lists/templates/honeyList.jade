@@ -48,12 +48,13 @@ div.row
             li.list-group-item(dir-paginate="item in honeyList|orderBy:sortOrder|filter:query|itemsPerPage:pageSize", pagination-id="honeys", currentPage="currentPage")
               div.list-info-container
                 div.row
-                  div.col-md-9.col-xs-8(data-toggle="collapse", ng-attr-data-target='{{"#honeydooItem-" + $index}}')
-                    div.date-container
-                      strong Date added:
-                      span.small &nbsp;{{item.addedOn | date:'MMM d, y h:mm a'}}
-                    div.title-container
-                      p.lead {{item.title}}
+                  div.col-md-9.col-xs-8(data-toggle="collapse", ng-attr-data-target='{{"#honeydooItem-" + $index}}', style="height:61px;")
+                    div.title-date-container(style="position:relative;top:50%;transform:translateY(-50%);")
+                      div.title-container
+                        p.lead {{item.title}}
+                      div.date-container
+                        strong Date added:
+                        span.small &nbsp;{{item.addedOn | date:'MMM d, y h:mm a'}}
                   div.col-md-3.col-xs-4
                     div.edit-icons
                       i.mdi.mdi-pencil-box-outline(ng-click="editItem($index, 'honeyList', item)")
@@ -63,8 +64,8 @@ div.row
                 div.row
                   div.col-xs-3.col-md-3.col-lg-2.hidden-xs
                     div.requester-container
-                      div.requester-heading.text-center(style="border:1px solid #ddd;border-bottom:none;padding:3px;")
-                        p(style="margin:0;display:inline-block;font-weight:600") Requester
+                      //div.requester-heading.text-center(style="border:1px solid #ddd;border-bottom:none;padding:3px;")
+                      //  p(style="margin:0;display:inline-block;font-weight:600") Requester
                       div.requester-body.text-center(style="padding:0;")
                         img.img-thumbnail.img-responsive(ng-src="{{item.requesterImg}}")
                       div.requester-footer.text-center(style="border:1px solid #ddd;padding:2px;border-top:none;")

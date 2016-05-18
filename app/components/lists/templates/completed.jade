@@ -12,12 +12,12 @@ div.row
               li.list-group-item(dir-paginate="item in yourComplete|itemsPerPage:pageSize", pagination-id="yourComplete")
                 div.completed-info-container(data-toggle="collapse", ng-attr-data-target='{{"#your-complete-" + $index}}')
                   div.row
-                    div.col-md-10.col-xs-4
-                      div.date-container
-                        strong Completed On:
-                        span.small &nbsp;{{item.completedOn | date:'MMM d, y h:mm a'}}
+                    div.col-xs-12
                       div.title-container
                         p.lead(style="margin-bottom:0") {{item.title}}
+                      div.date-container(style="margin:0")
+                        strong Completed On:
+                        span.small &nbsp;{{item.completedOn | date:'MMM d, y h:mm a'}}
                 div.collapse(ng-attr-id='{{"your-complete-" + $index}}')
                   hr
                   i.mdi.mdi-note-outline
@@ -37,12 +37,12 @@ div.row
               li.list-group-item(dir-paginate="item in honeyComplete|itemsPerPage:pageSize", pagination-id="honeyComplete")
                 div.completed-info-container(data-toggle="collapse", ng-attr-data-target='{{"#honey-complete-" + $index}}')
                   div.row
-                    div.col-md-10.col-xs-4
-                      div.date-container
-                        strong Completed On:
-                        span.small &nbsp;{{item.completedOn | date:'MMM d, y h:mm a'}}
+                    div.col-xs-12
                       div.title-container
                         p.lead(style="margin-bottom:0") {{item.title}}
+                      div.date-container(style="margin:0")
+                        strong Completed On:
+                        span.small &nbsp;{{item.completedOn | date:'MMM d, y h:mm a'}}
                 div.collapse(ng-attr-id='{{"honey-complete-" + $index}}')
                   hr
                   i.mdi.mdi-note-outline
